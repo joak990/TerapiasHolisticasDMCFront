@@ -1,9 +1,8 @@
 
-
 function Home() {
   return (
     <div>
-      <h1>soy home</h1>
+      <h1>i am home</h1>
     </div>
   )
 }
