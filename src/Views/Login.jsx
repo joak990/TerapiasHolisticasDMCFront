@@ -1,4 +1,4 @@
-import logo from "../assets/logocuadrado.jpg"
+import logo from "../Logocuadrado.jpg"
 import { Link, useNavigate } from 'react-router-dom';
 import { app } from '../firebaseconfig';
 import {
