@@ -5,8 +5,17 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        custom: '#C3D7BE',
+      },
+      fontFamily: {
+        custom: ['The Seasons', 'sans'], // Define la fuente personalizada
+      },
+      textColor: {
+        custom: '#643F6A', // Define el color personalizado
+      },
+    },
   },
-  plugins: [],
-}
-
+  // Otras configuraciones de Tailwind CSS
+};
