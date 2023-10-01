@@ -1,6 +1,6 @@
 
 import logo from "../Logocuadrado.jpg";
-import { Navigate, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 function Navbar() {
  const navigate =useNavigate()

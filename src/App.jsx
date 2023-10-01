@@ -16,13 +16,6 @@ function App() {
 
  {location.pathname !== "/register" 
       && location.pathname !== "/login"
-      && location.pathname !== "/admin" 
-      && location.pathname !== "/admin/account=successfully"  
-      && location.pathname !== "/admin/products"  
-      && location.pathname !== "/admin/users" 
-      && location.pathname !== "/admin/creations" 
-      && !location.pathname.includes("checkout") 
-      && !location.pathname.includes("result") 
       && location.pathname !== "*" &&(
         <Navbar />
       )}
