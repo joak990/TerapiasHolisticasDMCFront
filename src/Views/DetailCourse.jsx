@@ -3,7 +3,7 @@
 function DetailCourse() {
   return (
     <div>
-      <h1> i am detail</h1>
+      <h1> i am detaissl</h1>
     </div>
   )
 }
