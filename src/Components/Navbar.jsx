@@ -13,7 +13,7 @@ function Navbar() {
     navigate("/");
   };
   return (
-    <nav className="bg-custom p-6">
+    <nav className="bg-custom p-8">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center"> {/* Contenedor del logo y el texto */}
