@@ -22,6 +22,7 @@ const handleLogin = async () => {
         // El inicio de sesión con Google fue exitoso, result contiene información del usuario
         console.log('Inicio de sesión exitoso:', result.user);
         localStorage.setItem('displayName', result.user.displayName);
+        localStorage.setItem('PHOTO', result.user.photoURL);
         navigate("/"); // Redireccionar al usuario después del inicio de sesión
       })
       .catch((error) => {
