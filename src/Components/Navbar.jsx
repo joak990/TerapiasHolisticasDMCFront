@@ -1,7 +1,7 @@
 
 import { getAuth } from "firebase/auth";
 import logo from "../Logocuadrado.jpg";
-import {  useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 import { app } from "../firebaseconfig";
 import { CiShoppingCart } from 'react-icons/ci';
 function Navbar() {
@@ -10,7 +10,7 @@ function Navbar() {
 
  
  const user = firebaseAuth?.currentUser;
-  const displayName = localStorage.getItem('displayName');
+  const displayName = localStorage.getItem('name');
   const fotogoogle = user?.photoURL
   const handleLogout = () => {
     // Eliminar el displayName del localStorage
@@ -24,27 +24,31 @@ function Navbar() {
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center"> {/* Contenedor del logo y el texto */}
+            <Link to="/">
+            
             <img src={logo} alt="Logo" className="w-14 h-14 rounded-full mr-2" /> {/* Cambia la ruta al logotipo */}
-            <div className="text-white font-custom font-extralight text-2xl md:text-3xl">Terapias Holísticas DMC</div>
+            </Link>
+            <div className="text-white
+             font-custom font-extralight text-2xl md:text-3xl">Terapias Holísticas DMC</div>
           </div>
           <div className="md:flex md:items-center md:space-x-24 mt-4 md:mt-0">
             <ul className="md:flex md:space-x-8 text-white md:text-lg">
               <li>
-                <a href="#" className="hover:text-blue-800 font-custom text-2xl">Inicio</a>
+                <a href="/" className="hover:text-blue-800 font-custom text-2xl">Inicio</a>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-800 font-custom text-2xl">Cursos</a>
+                <a href="/courses" className="hover:text-blue-800 font-custom text-2xl">Cursos</a>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-800 font-custom text-2xl">Sobre mi</a>
+                <a href="/me" className="hover:text-blue-800 font-custom text-2xl">Sobre mi</a>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-800 font-custom text-2xl">Contacto</a>
+                <a href="/contact" className="hover:text-blue-800 font-custom text-2xl">Contacto</a>
               </li>
               {displayName ? (
                 // Mostrar "Mis Cursos" si hay un displayName en localStorage
                 <li>
-                  <a href="#" className="hover:text-blue-800 font-custom text-2xl">Mis Cursos</a>
+                  <a href="/mycourses" className="hover:text-blue-800 font-custom text-2xl">Mis Cursos</a>
                 </li>
               ) : null}
               {!displayName ? (

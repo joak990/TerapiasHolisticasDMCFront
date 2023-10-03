@@ -9,36 +9,49 @@ import {
   browserSessionPersistence,
 } from 'firebase/auth';
 import { FcGoogle } from "react-icons/fc";
-
+import Swal from 'sweetalert2'
+import { useDispatch } from "react-redux";
+import { register_google } from "../Redux/Actions";
 function Login() {
   const provider = new GoogleAuthProvider();
   const firebaseAuth = getAuth(app);
 const navigate = useNavigate()
+const dispatch = useDispatch()
 const handleLogin = async () => {
-  try {
-    await setPersistence(firebaseAuth, browserSessionPersistence);
-    await signInWithPopup(firebaseAuth, provider)
-      .then((result) => {
-        // El inicio de sesión con Google fue exitoso, result contiene información del usuario
-        console.log('Inicio de sesión exitoso:', result.user);
-        localStorage.setItem('displayName', result.user.displayName);
-        localStorage.setItem('PHOTO', result.user.photoURL);
-        navigate("/"); // Redireccionar al usuario después del inicio de sesión
-      })
-      .catch((error) => {
-        // Manejar errores si ocurren durante el inicio de sesión
-        console.error('Error al iniciar sesión con Google:', error);
-      });
-  } catch (error) {
-    console.error('Error al configurar la persistencia:', error);
-  }
-};
+  await setPersistence(firebaseAuth, browserSessionPersistence);
+  const response = await signInWithPopup(firebaseAuth, provider);
 
+  const datauser = {
+    name: response.user.displayName,
+    email: response.user.email,
+    type: "user",
+    uid: response.user.uid,
+  };
+
+  dispatch(register_google(datauser)).then((response) => {
+    console.log(response);
+  if(response === true) {
+    Swal.fire({
+      title: 'Usuario bloqueado',
+      icon: 'error',
+      buttonsStyling: false,
+      customClass: {
+        confirmButton: 'bg-orange-600 text-white rounded-md px-4 py-2',
+      }
+    })
+  }else {
+    navigate("/")
+  }
+  })
+
+
+
+};
 
   return (
     <div className="flex">
       {/* Columna izquierda con fondo verde */}
-      <div className="flex-1 bg-green-600 ">
+      <div className="flex-1 bg-fondolog ">
         {/* Coloca aquí tu imagen */}
         <div className="flex justify-center items-center h-screen"> 
           <img
@@ -74,7 +87,7 @@ const handleLogin = async () => {
             </div>
             <button
               type="submit"
-              className="bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900"
+              className="bg-bgla text-white py-2 px-4 rounded hover:bg-blue-900"
             >
               Iniciar Sesión
             </button>
@@ -87,7 +100,7 @@ const handleLogin = async () => {
           </p>
           <button
             onClick={handleLogin}
-            className="mt-8 bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center"
+            className="mt-8 bg-bgla text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center"
           > 
            Iniciar sesión con Google
            <FcGoogle className="text-2xl ml-2" />

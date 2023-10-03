@@ -6,6 +6,7 @@ import Home from './Views/Home';
 import MyCourses from './Views/MyCourses';
 import Courses from './Views/Courses';
 import Navbar from './Components/Navbar';
+import Sobremi from './Views/Sobremi';
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/mycourses' element={<MyCourses />} />
         <Route path='/courses' element={<Courses />} />
+        <Route path='/mycourses' element={<MyCourses />} />
+        <Route path='/me' element={<Sobremi />} />
       </Routes>
       
       </>

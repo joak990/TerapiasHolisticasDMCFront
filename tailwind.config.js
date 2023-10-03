@@ -8,12 +8,15 @@ export default {
     extend: {
       backgroundColor: {
         custom: '#C3D7BE',
+        bgla:'#6083DA',
+        fondolog:'#15A331'
       },
       fontFamily: {
-        custom: ['The Seasons', 'sans'], // Define la fuente personalizada
+        custom: ['The Seasons',], // Define la fuente personalizada
       },
       textColor: {
-        custom: '#643F6A', // Define el color personalizado
+        custom: '#643F6A',
+        azullog:'#6083DA' // Define el color personalizado
       },
     },
   },

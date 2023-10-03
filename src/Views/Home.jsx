@@ -21,7 +21,7 @@ const Home = () => {
           <CardCourses className="mt-4" />
         </div>
         <div className="text-center mt-10">
-        <h1 className="text-5xl font-serif   text-custom  mb-1">Conoce mas sobre nosotros</h1>
+        <h1 className="text-5xl font-serif   text-custom  mb-4">Conoce mas sobre nosotros</h1>
         <div className="flex flex-col  mt-44 sm:flex-row  gap-10 justify-center items-center">
           <CardMuestras className="mt-10"/>
           <CardMuestras className="mt-2" />

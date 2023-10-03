@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../Logocuadrado.jpg"
+import { REGISTER_BASIC } from "../Redux/types";
+import { registerbasic } from "../Redux/Actions";
 
 function Register() {
   const [errors, setErrors] = useState({});
@@ -10,9 +12,11 @@ function Register() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [form, setForm] = useState({
-    nombre: "",
-    email: "",
-    contraseña: "",
+    name : "",
+    email : "",
+    password : "",
+  type:"user"
+  
     
   });
 
@@ -33,10 +37,10 @@ function Register() {
     const newErrors = {};
 
     // Validar campo de nombre
-    if (!form.nombre.trim()) {
-      newErrors.nombre = "El nombre es requerido";
-    } else if (form.nombre.length > 20) {
-      newErrors.nombre = "El nombre debe tener como máximo 20 caracteres";
+    if (!form.name.trim()) {
+      newErrors.name = "El nombre es requerido";
+    } else if (form.name.length > 20) {
+      newErrors.name = "El nombre debe tener como máximo 20 caracteres";
     }
 
     // Validar campo de email
@@ -49,31 +53,25 @@ function Register() {
     }
 
     // Validar campo de contraseña
-    if (!form.contraseña.trim()) {
-      newErrors.contraseña = "La contraseña es requerida";
-    } else if (form.contraseña.length < 6) {
-      newErrors.contraseña = "La contraseña debe tener al menos 6 caracteres";
-    } else if (form.contraseña.length > 20) {
-      newErrors.contraseña = "La contraseña debe tener como máximo 20 caracteres";
+    if (!form.password.trim()) {
+      newErrors.password = "La contraseña es requerida";
+    } else if (form.password.length < 6) {
+      newErrors.password = "La contraseña debe tener al menos 6 caracteres";
+    } else if (form.password.length > 20) {
+      newErrors.password = "La contraseña debe tener como máximo 20 caracteres";
     }
 
     setErrors(newErrors);
 
-    // Si no hay errores, enviar el formulario
-    if (Object.keys(newErrors).length === 1) {
-      if (!isRecaptchaValid) {
-        // Mostrar un mensaje de error o tomar alguna acción adicional
-        return;
-      }
-      console.log("pase");
+      
       navigate("/login")
       setForm({
-        nombre: "",
+        name: "",
         email: "",
-        contraseña: "",
+        password: "",
       });
      
-    }
+    
   };
   return (
     <div className="flex">
@@ -98,14 +96,14 @@ function Register() {
               <label htmlFor="displayName" className="block text-gray-700">Nombre</label>
               <input
                 type="text"
-                name="nombre"
-                value={form.nombre}
+                name="name"
+                value={form.name}
                 onChange={handleInputChange}
                 className="w-full border border-gray-300 rounded px-3 py-2"
                 placeholder="Tu nombre"
               />
-              {errors.nombre && (
-            <p className="text-red-500 text-sm mt-1">{errors.nombre}</p>
+              {errors.name && (
+            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
           )}
             </div>
             <div className="mb-4">
@@ -126,20 +124,20 @@ function Register() {
               <label htmlFor="password" className="block text-gray-700">Contraseña</label>
               <input
                 type="password"
-                name="contraseña"
-                value={form.contraseña}
+                name="password"
+                value={form.password}
                 onChange={handleInputChange}
                 className="w-full border border-gray-300 rounded px-3 py-2"
                 placeholder="Tu contraseña"
               />
-              {errors.contraseña && (
-            <p className="text-red-500 text-sm mt-1">{errors.contraseña}</p>
+              {errors.password && (
+            <p className="text-red-500 text-sm mt-1">{errors.password}</p>
           )}
             </div>
             <button
               type="button"
               onClick={handleSubmit}
-              className="bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900"
+              className="bg-bgla text-white py-2 px-4 rounded hover:bg-blue-900"
             >
               Registrarse
             </button>
