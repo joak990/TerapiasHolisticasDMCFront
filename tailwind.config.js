@@ -9,7 +9,11 @@ export default {
       backgroundColor: {
         custom: '#C3D7BE',
         bgla:'#6083DA',
-        fondolog:'#15A331'
+        fondolog:'#17A833'
+        
+      },
+      animation: {
+        'spin-slow': 'spin 6s linear infinite', // Cambia la duración a 3 segundos o el valor deseado
       },
       fontFamily: {
         custom: ['The Seasons',], // Define la fuente personalizada

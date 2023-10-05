@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player';
 import ReactPaginate from 'react-paginate';
 
 function ReactPlayerVideo() {
-  const storedName = localStorage.getItem('name'); // Obtener el nombre almacenado en localStorage
+  const storedName = localStorage.getItem('email'); // Obtener el nombre almacenado en localStorage
 
   const videos = [
     { url: 'https://streamable.com/ej7c58' },

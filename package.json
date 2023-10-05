@@ -12,9 +12,12 @@
   "dependencies": {
     "axios": "^1.5.1",
     "firebase": "^10.4.0",
+    "font-awesome": "^4.7.0",
     "react": "^18.2.0",
+    "react-awesome": "^0.0.2",
     "react-dom": "^18.2.0",
     "react-icons": "^4.11.0",
+    "react-modal": "^3.16.1",
     "react-paginate": "^8.2.0",
     "react-player": "^2.13.0",
     "react-redux": "^8.1.2",
