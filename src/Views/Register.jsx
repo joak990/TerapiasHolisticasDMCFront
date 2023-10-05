@@ -62,8 +62,12 @@ function Register() {
     }
 
     setErrors(newErrors);
-
-      
+if (Object.keys(newErrors).length === 0) {
+      if (!isRecaptchaValid) {
+        // Mostrar un mensaje de error o tomar alguna acción adicional
+        return;
+      }
+      dispatch(registerbasic(form))
       navigate("/login")
       setForm({
         name: "",
@@ -71,7 +75,7 @@ function Register() {
         password: "",
       });
      
-    
+}
   };
   return (
     <div className="flex">

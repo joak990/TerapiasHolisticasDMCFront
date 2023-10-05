@@ -8,14 +8,24 @@ export const registerbasic = (payload) => {
         try {
             // Realizar la solicitud POST a /users con el payload
             const response = await axios.post('http://localhost:3001/users', payload);
-console.log(payload,"ssakdsadksakdaskd");
+console.log(response.data.duplicated,"register");
+if (response.data.duplicated == true) {
+  Swal.fire({
+    icon: 'error', // Cambiado de 'success' a 'error'
+    title: 'Ya tienes una cuenta registrada con este correo',
+    text: 'Hubo un problema al registrar el usuario.',
+});
+}
+if(response.data.duplicated == undefined){
+  Swal.fire({
+    icon: 'success',
+    title: 'Registro exitoso',
+    text: 'El usuario se registró correctamente.',
+});
+}
             // Aquí puedes realizar acciones adicionales después de un registro exitoso
             // Por ejemplo, si quieres mostrar un mensaje de éxito:
-            Swal.fire({
-                icon: 'success',
-                title: 'Registro exitoso',
-                text: 'El usuario se registró correctamente.',
-            });
+          
 
             // Despachar una acción si es necesario (actualizar el estado, etc.)
             dispatch({

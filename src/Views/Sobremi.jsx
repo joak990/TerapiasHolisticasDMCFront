@@ -2,7 +2,7 @@ import me from "../img/sobremi.jpg";
 
 function Sobremi() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mt-32">
       <div className="flex flex-col items-center sm:flex-row">
         <img className="w-[260px] md:w-[370px] md:h-[380px] h-[320px] border-8 border-blue-500 mt-4 sm:mt-22 ml-4" src={me} alt="" />
         <div className="bg-bgla mt-4 md:h-[450px] md:w-[900px]  sm:mt-16 w-full sm:w-[70%] ml-4 p-4">

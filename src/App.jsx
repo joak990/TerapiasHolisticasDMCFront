@@ -7,6 +7,7 @@ import MyCourses from './Views/MyCourses';
 import Courses from './Views/Courses';
 import Navbar from './Components/Navbar';
 import Sobremi from './Views/Sobremi';
+import Contact from './Views/Contact';
 
 function App() {
   const location = useLocation();
@@ -29,6 +30,7 @@ function App() {
         <Route path='/courses' element={<Courses />} />
         <Route path='/mycourses' element={<MyCourses />} />
         <Route path='/me' element={<Sobremi />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
       
       </>

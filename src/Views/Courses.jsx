@@ -1,13 +1,14 @@
-import CardCourses from "../Components/CardCourses";
+
+import CardCoursesMas from "../Components/CardCoursesMas";
 
 function Courses() {
   return (
     <div className="flex flex-col items-center ">
       <div className="text-4xl font-custom  mb-4 text-azullog">Explora Nuestros Cursos</div>
       <div className="flex flex-wrap justify-center gap-8">
-        <CardCourses className="" />
-        <CardCourses className="" />
-        <CardCourses className="" />
+        <CardCoursesMas className="" />
+        <CardCoursesMas className="" />
+        <CardCoursesMas className="" />
       </div>
       <div className="text-4xl mt-24 font-bold text-azullog">¿Por qué elegirnos?</div>
       <div className="mt-24 bg-gray-200  shadow-xl font-bold p-4 rounded-lg text-center text-2xl text-gray-700">
