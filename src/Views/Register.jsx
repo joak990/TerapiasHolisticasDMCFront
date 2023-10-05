@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../Logocuadrado.jpg"
-import { REGISTER_BASIC } from "../Redux/types";
+
 import { registerbasic } from "../Redux/Actions";
 
 function Register() {
@@ -63,30 +63,26 @@ function Register() {
 
     setErrors(newErrors);
 if (Object.keys(newErrors).length === 0) {
-      if (!isRecaptchaValid) {
-        // Mostrar un mensaje de error o tomar alguna acción adicional
-        return;
-      }
-      dispatch(registerbasic(form))
-      navigate("/login")
-      setForm({
-        name: "",
-        email: "",
-        password: "",
-      });
-     
+  dispatch(registerbasic(form))
+  
+  setForm({
+    name: "",
+    email: "",
+    password: "",
+    type:"user"
+  });
 }
   };
   return (
     <div className="flex">
       {/* Columna izquierda con fondo verde */}
-      <div className="flex-1 bg-green-600 ">
+      <div className="flex-1 bg-fondolog ">
         {/* Coloca aquí tu imagen */}
         <div className="flex justify-center items-center h-screen"> 
           <img
             src={logo}
             alt="Imagen"
-            className="w-96 h-96 object-cover"
+            className="w-96 h-96 object-cover animate-spin-slow infinite"
           />
         </div>
       </div>
