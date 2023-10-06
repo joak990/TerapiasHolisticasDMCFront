@@ -3,21 +3,27 @@ import logo from "../Logocuadrado.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { app } from "../firebaseconfig";
 import { CiShoppingCart } from 'react-icons/ci';
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { updateCartFromLocalStorage } from "../Redux/Actions";
+import ModalCarrito from "./ShoppingCartModal";
 
 function Navbar() {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
   const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
   const [isOptionsOpen, setOptionsOpen] = useState(false); // Estado para controlar la visibilidad de las opciones
   const firebaseAuth = getAuth(app);
   const storedFotoURL = localStorage.getItem("fotoURL");
   const user = firebaseAuth?.currentUser;
-  const displayName = localStorage.getItem('email');
+  const displayName = localStorage.getItem('name');
   const fotoURL = user?.photoURL
   if (fotoURL) {
     localStorage.setItem("fotoURL", fotoURL);
   }
-
+  
+  const cart = useSelector(state => state.cart);
   const handleLogout = async () => {
     // Eliminar el displayName del localStorage
     console.log("click");
@@ -27,6 +33,7 @@ function Navbar() {
     localStorage.removeItem('PHOTO');
     localStorage.removeItem('newphoto');
     localStorage.removeItem('email');
+    localStorage.removeItem('name');
     // Redirigir al usuario a la página de inicio
     navigate("/");
   };
@@ -36,7 +43,24 @@ function Navbar() {
     setOptionsOpen(!isOptionsOpen);
   };
 
-  return (
+
+  useEffect(() => {
+    updateCartCount(); 
+    // Actualiza el carrito en el localStorage
+
+  }, [dispatch]);
+
+  const [cartCount, setCartCount] = useState(0); // Estado para mantener la cantidad de productos en el carrito
+
+  const updateCartCount = () => {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const itemCount = cartItems.length;
+    setCartCount(itemCount);
+  };
+
+  return (<div>
+
+
     <nav className="bg-custom p-8 fixed top-0 left-0 w-full z-10">
       <div className="container mx-auto">
         <div className="flex flex-col md:flex-row justify-between items-center">
@@ -81,11 +105,20 @@ function Navbar() {
             </ul>
             <div className="flex items-center relative"> 
             <div>
-              <CiShoppingCart className="text-4xl"></CiShoppingCart>
+            
+              <img src={storedFotoURL} onClick={toggleOptions} className="cursor-pointer h-9 w-9 rounded-full"/>
+              {cart.length > 0 && ( // Mostrar notificación si el carrito no está vacío
+                    <div className="bg-red-500 text-white text-xs w-5 h-5 rounded-full absolute top-0 right-0 -mt-1 -mr-1 flex items-center justify-center">
+                      {cart.length }
+                    </div>
+                  )}
             </div>
-              <div onClick={toggleOptions}> {/* Hacer clic en la foto para abrir/cerrar el menú */}
-                <img src={storedFotoURL} className="font-custom rounded-full h-9 cursor-pointer" alt="Foto de perfil" />
+              <div > 
+                <Link to="/myshop">
+                <CiShoppingCart  className="text-4xl" alt="Foto de perfil" />
+                </Link>
               </div>
+             
               {isOptionsOpen && ( // Mostrar las opciones si isOptionsOpen es true
                 <div className="absolute right-0 top-10 bg-white w-44 p-2 rounded shadow-md">
                   <ul>
@@ -99,11 +132,13 @@ function Navbar() {
                 </div>
               )}
             </div>
-            
+          
           </div>
         </div>
       </div>
     </nav>
+    
+     </div>
   );
 }
 

@@ -61,6 +61,7 @@ function Login() {
         });
       } else {
         navigate("/");
+        localStorage.setItem('name',response.user.displayName)
       }
     });
   };
@@ -95,6 +96,7 @@ dispatch(Loginregister(form)).then((response) => {
   console.log(response,"ident");
   if(response == true) {
     navigate("/")
+    
    
   }else {
     Swal.fire({

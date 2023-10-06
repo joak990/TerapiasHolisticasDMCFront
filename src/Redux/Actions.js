@@ -1,6 +1,6 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
-import { REGISTER_BASIC } from "./types";
+import { REGISTER_BASIC, UPDATE_CART_FROM_LOCAL_STORAGE } from "./types";
 
 export const registerbasic = (payload) => {
     console.log('::payloadUSERS:', payload);
@@ -123,5 +123,34 @@ export const register_google = (payload) => {
         console.error(error);
         return { success: false, message: "Error de autenticación" };
       }
+    };
+  };
+
+
+  export const addToCart = (item) => ({
+    type: 'ADD_TO_CART',
+    payload: item,
+  });
+  
+  // Acción para eliminar un elemento del carrito
+  export const removeFromCart = (item) => ({
+    type: 'REMOVE_FROM_CART',
+    payload: item,
+  });
+  
+  // Acción para incrementar la cantidad de elementos en el carrito
+  export const incrementCartCount = () => ({
+    type: 'INCREMENT_CART_COUNT',
+  });
+  
+  // Acción para decrementar la cantidad de elementos en el carrito
+  export const decrementCartCount = () => ({
+    type: 'DECREMENT_CART_COUNT',
+  });
+
+  export const updateCartFromLocalStorage = (cart) => {
+    return {
+      type: UPDATE_CART_FROM_LOCAL_STORAGE,
+      payload: cart,
     };
   };
