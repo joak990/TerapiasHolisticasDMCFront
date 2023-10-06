@@ -1,4 +1,4 @@
-import { ADD_TO_CART, LOGIN_REGISTER, REGISTER_BASIC, REGISTER_GOOGLE, REMOVE_FROM_CART, UPDATE_CART_FROM_LOCAL_STORAGE } from "./types";
+import { ADD_TO_CART, GET_ALL_COURSES, LOGIN_REGISTER, REGISTER_BASIC, REGISTER_GOOGLE, REMOVE_FROM_CART, UPDATE_CART_FROM_LOCAL_STORAGE } from "./types";
 
 const initialState = {
   courses: [],
@@ -27,13 +27,21 @@ const rootReducer = (state = initialState, { type, payload }) => {
       case REMOVE_FROM_CART:
         return {
           ...state,
-          cart: state.cart.filter(item => item.id !== payload.id), 
+          cart: state.cart.filter(item => item.id !== payload),
+          
         };
+      
         case UPDATE_CART_FROM_LOCAL_STORAGE:
       return {
         ...state,
         cart: payload,// Actualiza el carrito con los datos de localStorage
       };
+      case GET_ALL_COURSES:
+        return {
+          ...state,
+          courses: payload
+        };
+
     default:
       return state;
   }

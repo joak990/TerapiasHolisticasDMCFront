@@ -11,9 +11,9 @@ import Contact from './Views/Contact';
 import logowp from "./img/wplogo2.png"
 import Profile from './Views/Profile';
 import ModalCarrito from './Components/ShoppingCartModal';
+import { useState } from 'react';
 function App() {
   const location = useLocation();
-
 
   return (
     <>
@@ -32,7 +32,7 @@ function App() {
  {location.pathname !== "/register" 
       && location.pathname !== "/login"
       && location.pathname !== "*" &&(
-        <Navbar />
+        <Navbar  />
       )}
 
       <Routes>
@@ -45,7 +45,7 @@ function App() {
         <Route path='/me' element={<Sobremi />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/profile' element={<Profile />} />
-        <Route path='/myshop' element={<ModalCarrito />} />
+        <Route path='/myshop' element={<ModalCarrito  />} />
       </Routes>
       
       </>

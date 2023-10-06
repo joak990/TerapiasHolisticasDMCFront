@@ -13,6 +13,7 @@
     "axios": "^1.5.1",
     "firebase": "^10.4.0",
     "font-awesome": "^4.7.0",
+    "mercadopago": "^2.0.1",
     "react": "^18.2.0",
     "react-awesome": "^0.0.2",
     "react-dom": "^18.2.0",

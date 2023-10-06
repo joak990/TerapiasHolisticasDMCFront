@@ -5,14 +5,11 @@ import { app } from "../firebaseconfig";
 import { CiShoppingCart } from 'react-icons/ci';
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateCartFromLocalStorage } from "../Redux/Actions";
-import ModalCarrito from "./ShoppingCartModal";
+
 
 function Navbar() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [isModalOpen, setModalOpen] = useState(false);
   const [isOptionsOpen, setOptionsOpen] = useState(false); // Estado para controlar la visibilidad de las opciones
   const firebaseAuth = getAuth(app);
   const storedFotoURL = localStorage.getItem("fotoURL");
@@ -25,16 +22,16 @@ function Navbar() {
   
   const cart = useSelector(state => state.cart);
   const handleLogout = async () => {
-    // Eliminar el displayName del localStorage
-    console.log("click");
+    
     await signOut(firebaseAuth);
     localStorage.removeItem('id');
-    localStorage.removeItem('userPhotoURL');
+    localStorage.removeItem('fotoURL');
     localStorage.removeItem('PHOTO');
     localStorage.removeItem('newphoto');
     localStorage.removeItem('email');
     localStorage.removeItem('name');
-    // Redirigir al usuario a la página de inicio
+    localStorage.removeItem("cart");
+   
     navigate("/");
   };
 
@@ -56,6 +53,8 @@ function Navbar() {
     const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const itemCount = cartItems.length;
     setCartCount(itemCount);
+    console.log(cart,"ute ");
+
   };
 
   return (<div>
@@ -96,12 +95,7 @@ function Navbar() {
                   <a href="/login" className="hover:text-blue-800 font-custom text-2xl">Iniciar Sesión</a>
                 </li>
               ) : null}
-              {displayName ? (
-                // Mostrar "Cerrar Sesión" si hay un displayName en localStorage
-                <li>
-                  <button  onClick={handleLogout} className="hover:text-blue-800  cursor-pointer font-custom text-2xl">Cerrar Sesión</button>
-                </li>
-              ) : null}
+              
             </ul>
             <div className="flex items-center relative"> 
             <div>
@@ -115,18 +109,23 @@ function Navbar() {
             </div>
               <div > 
                 <Link to="/myshop">
-                <CiShoppingCart  className="text-4xl" alt="Foto de perfil" />
+                  { displayName ? (<CiShoppingCart  className="text-4xl" alt="Foto de perfil" />) :null
+                  
+                }
                 </Link>
               </div>
              
               {isOptionsOpen && ( // Mostrar las opciones si isOptionsOpen es true
-                <div className="absolute right-0 top-10 bg-white w-44 p-2 rounded shadow-md">
+                <div className="absolute right-0 top-10 bg-white w-32 p-2 rounded shadow-md">
                   <ul>
                     <li>
                       <a href="/profile" className="hover:text-blue-800 font-custom text-xl block">Mi Perfil</a>
                     </li>
                     <li>
                       <a href="/mycourses" className="hover:text-blue-800 font-custom text-xl block">Mis Cursos</a>
+                    </li>
+                    <li>
+                      <a href="/" onClick={handleLogout} className="hover:text-blue-800 font-custom text-xl block">Cerrar Sesión</a>
                     </li>
                   </ul>
                 </div>

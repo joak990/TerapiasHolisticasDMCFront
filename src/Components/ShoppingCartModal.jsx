@@ -1,27 +1,45 @@
-import React, { useState } from "react";
+import  { useState } from "react";
+import { useDispatch } from "react-redux";
+import {removeFromCart, sendpayament} from "../Redux/Actions"
+
 
 const ModalCarrito = ({ isOpen, onClose }) => {
   // Recuperar los datos del carrito del localStorage
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-
-  // Estado local para mantener la orden actual
+const emailshop = localStorage.getItem("email")
+const nameshop = localStorage.getItem("name")
+const dispatch = useDispatch()
   const [currentCart, setCurrentCart] = useState(cartItems);
-  const total = currentCart.reduce((acc, item) => acc + item.price, 0);
+  const total = currentCart.reduce((acc, item) => acc + item.precio, 0);
   const removeItemFromCart = (index) => {
     // Crea una copia del carrito actual
     const updatedCart = [...currentCart];
-    // Elimina el artículo específico
+   const removedItemId = updatedCart[index].id;
     updatedCart.splice(index, 1);
     // Actualiza el estado local y el localStorage
     setCurrentCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+window.location.reload()
+  
   };
-
+  
   const removecart = () => {
     // Vaciar todo el carrito
     localStorage.removeItem("cart");
+
     setCurrentCart([]);
   };
+
+  const datashop = {
+    id: currentCart,
+    email:emailshop,
+    nombre: nameshop
+  }
+
+  const handlesendpayment = ()=>{
+    dispatch(sendpayament(datashop))
+  }
+
 
   return (
     <div className={`modal md:mt-44 ${isOpen ? "is-active" : ""}`}>
@@ -36,13 +54,13 @@ const ModalCarrito = ({ isOpen, onClose }) => {
               <li key={index} className="mb-6">
                 <div className="flex items-center h-[100px]">
                   <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-24 h-24 mr-4"
+                    src={item.imagen}
+                    alt={item.imagen}
+                    className="w-24 h-24 rounded-lg mr-4"
                   />
                   <div>
-                    <div className="font-bold text-white">{item.name}</div>
-                    <div className="text-gray-600">Precio: ${item.price}</div>
+                    <div className="font-bold text-black">{item.nombre}</div>
+                    <div className="text-gray-600">Precio: ${item.precio}</div>
                     <div className="text-center mt-2">Cantidad: 1</div>
                     <div>
                       <button
@@ -72,8 +90,14 @@ const ModalCarrito = ({ isOpen, onClose }) => {
         </div>
         <footer className="modal-card-foot flex justify-center ">
        
-       <button className="button bg-red-300 w-20 is-success rounded-lg font-custom " onClick={onClose}>Cerrar</button>
-       <button className="button  bg-green-200 w-20  rounded-lg is-primary ml-2 font-custom" onClick={onClose}>Pagar</button>
+
+        <div 
+          onClick={handlesendpayment}
+            className="button text-center bg-blue-400 h-9 w-72 text-white rounded-lg is-primary ml-2 font-custom"
+          
+          >
+            Pagar con Mercado Pago
+          </div>
      </footer>
       </div>
     </div>

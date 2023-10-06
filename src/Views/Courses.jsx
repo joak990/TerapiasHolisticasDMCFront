@@ -2,6 +2,9 @@
 import CardCoursesMas from "../Components/CardCoursesMas";
 
 function Courses() {
+  
+
+
   return (
     <div className="flex flex-col items-center ">
       <div className="text-4xl font-custom  mb-4 text-azullog">Explora Nuestros Cursos</div>

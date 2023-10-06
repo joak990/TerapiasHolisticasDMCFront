@@ -17,8 +17,7 @@ const Home = () => {
       <h1 className="text-5xl  text-custom  mb-1">Nuestros cursos on demand</h1>
         <div className="flex flex-col sm:flex-row justify-center items-center mt-4">
           <CardCourses className="mt-4" />
-          <CardCourses className="mt-4" />
-          <CardCourses className="mt-4" />
+          
         </div>
         <div className="text-center mt-10">
         <h1 className="text-5xl font-serif   text-custom  mb-4">Conoce mas sobre nosotros</h1>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
-import { REGISTER_BASIC, UPDATE_CART_FROM_LOCAL_STORAGE } from "./types";
+import { GET_ALL_COURSES, REGISTER_BASIC, UPDATE_CART_FROM_LOCAL_STORAGE } from "./types";
 
 export const registerbasic = (payload) => {
     console.log('::payloadUSERS:', payload);
@@ -133,11 +133,13 @@ export const register_google = (payload) => {
   });
   
   // Acción para eliminar un elemento del carrito
-  export const removeFromCart = (item) => ({
-    type: 'REMOVE_FROM_CART',
-    payload: item,
-  });
-  
+  export const removeFromCart = (productId) => {
+    console.log(productId,"ident");
+    return {
+      type: 'REMOVE_FROM_CART',
+      payload: productId,
+    };
+  };
   // Acción para incrementar la cantidad de elementos en el carrito
   export const incrementCartCount = () => ({
     type: 'INCREMENT_CART_COUNT',
@@ -152,5 +154,45 @@ export const register_google = (payload) => {
     return {
       type: UPDATE_CART_FROM_LOCAL_STORAGE,
       payload: cart,
+    };
+  };
+
+
+  export const getallcourses = () => {
+    return async function (dispatch) {
+      try {
+        const json = await axios.get("http://localhost:3001/cursos");
+  
+        return dispatch({
+          type: GET_ALL_COURSES,
+          payload: json.data,
+        });
+      } catch (error) {
+        Swal.fire({
+          title: 'Error Courses',
+          icon: 'error',
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: 'bg-orange-600 text-white rounded-md px-4 py-2',
+          }
+        })
+        //alert(`Message ${GET_CREATIONS}:`, error);
+      }
+    };
+  };
+
+
+  export const sendpayament = (payload) => {
+
+    return async function (dispatch) {
+      try {
+  console.log(payload);
+        
+     
+      } catch (error) {
+        // Error en la petición
+        console.error(error);
+        return { success: false, message: "Error de Pago" };
+      }
     };
   };
