@@ -182,13 +182,24 @@ export const register_google = (payload) => {
   };
 
 
-  export const sendpayament = async (payload) => {
+  export const sendpayament =  (payload) => {
 
-    return async function (dispatch) {
+    return async function () {
       try {
-  console.log(payload);
-       const response = await axios.post("https://terapias-holisticas-dmc-back-jlvw.vercel.app/payament")
-     
+      console.log(payload,"payload");
+       const response = await axios.post("https://terapias-holisticas-dmc-back-jlvw.vercel.app/cursos/pago",payload)
+      console.log(response);
+       if(response.data === true){
+        Swal.fire({
+          title: 'Gracias por comprar este curso!',
+          icon: 'success',
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: 'bg-orange-600 text-white rounded-md px-4 py-2',
+          } 
+        })
+      }
+
       } catch (error) {
         // Error en la petición
         console.error(error);

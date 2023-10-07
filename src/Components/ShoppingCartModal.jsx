@@ -42,13 +42,14 @@ window.location.reload()
     email:emailshop,
    
   }
-  console.log(datashop,"current");
+  
 
   const handlesendpayment = ()=>{
+    console.log("cli");
     dispatch(sendpayament(datashop))
+    localStorage.removeItem("cart");
+
   }
-
-
   return (
     <div className={`modal mt-44 md:mt-44 ${isOpen ? "is-active" : ""}`}>
       <div className="modal-background" onClick={onClose}></div>

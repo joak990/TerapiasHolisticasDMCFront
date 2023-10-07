@@ -13,6 +13,7 @@ import Profile from './Views/Profile';
 import ModalCarrito from './Components/ShoppingCartModal';
 import { useState } from 'react';
 import PlayMyCourses from './Views/PlayMyCourses';
+import PaypalButton from './Components/PaypalButton';
 function App() {
   const location = useLocation();
 
@@ -48,6 +49,7 @@ function App() {
         <Route path='/profile' element={<Profile />} />
         <Route path='/myshop' element={<ModalCarrito  />} />
         <Route path='/playcourse/:courseId' element={<PlayMyCourses  />} />
+        <Route path='/paypal' element={<PaypalButton  />} />
       </Routes>
       
       </>
