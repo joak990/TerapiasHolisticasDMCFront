@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 function Profile() {
   const storedFotoURL = localStorage.getItem("fotoURL");
   const [nombre, setNombre] = useState(localStorage.getItem("name") || ''); // Obtener y establecer el nombre
@@ -141,6 +142,8 @@ function Profile() {
           </div>
         </form>
       </div>
+
+  
     </div>
   );
 }

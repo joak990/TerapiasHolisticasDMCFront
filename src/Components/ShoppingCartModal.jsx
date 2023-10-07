@@ -33,8 +33,9 @@ window.location.reload()
   const datashop = {
     id: currentCart,
     email:emailshop,
-    nombre: nameshop
+   
   }
+  console.log(datashop,"current");
 
   const handlesendpayment = ()=>{
     dispatch(sendpayament(datashop))

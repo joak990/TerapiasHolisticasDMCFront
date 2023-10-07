@@ -1,4 +1,5 @@
 
+import { Link } from "react-router-dom";
 import image from "../img/registros.jpg"
 
 function MyCourses() {
@@ -16,13 +17,15 @@ function MyCourses() {
       name: 'Testeo de Memoria Celular',
       description: 'testeo muscular se presicion.',
       image: image,
-      Purchased: false,
+      Purchased: true,
     },
     // Agrega más cursos aquí
   ];
 
   // Filtrar los cursos comprados
   const purchasedCourses = courses.filter((course) => course.Purchased);
+
+  
 
   return (
     <div className="mt-44 mx-auto max-w-screen-lg">
@@ -34,15 +37,18 @@ function MyCourses() {
             <div className="p-4">
               <h2 className="text-xl font-semibold">{course.name}</h2>
               <p className="text-gray-500 mt-2">{course.description}</p>
-              <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
-                Ver Curso
-              </button>
+              <Link to={`/playcourse/${course.id}`}>
+                <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+                  Ver Curso
+                </button>
+              </Link>
             </div>
           </div>
         ))}
       </div>
       <p className="mt-8 text-center text-gray-600">
         ¿Quieres comprar más cursos? <a href="/">Haz clic aquí</a>.
+       
       </p>
     </div>
   );

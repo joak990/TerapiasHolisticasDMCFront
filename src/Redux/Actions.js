@@ -182,12 +182,12 @@ export const register_google = (payload) => {
   };
 
 
-  export const sendpayament = (payload) => {
+  export const sendpayament = async (payload) => {
 
     return async function (dispatch) {
       try {
   console.log(payload);
-        
+       const response = await axios.post("https://terapias-holisticas-dmc-back-jlvw.vercel.app/payament")
      
       } catch (error) {
         // Error en la petición
