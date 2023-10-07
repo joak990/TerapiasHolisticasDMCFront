@@ -42,16 +42,16 @@ window.location.reload()
 
 
   return (
-    <div className={`modal md:mt-44 ${isOpen ? "is-active" : ""}`}>
+    <div className={`modal mt-44 md:mt-44 ${isOpen ? "is-active" : ""}`}>
       <div className="modal-background" onClick={onClose}></div>
-      <div className="modal-card w-[600px]  mx-auto">
+      <div className="modal-card  w-[260px] md:w-[600px]  mx-auto">
      <div className="flex justify-center">
-      <h1 className="text-4xl font-custom text-center">Tu Compra</h1>
+      <h1 className="text-4xl md:mb-0 mb-8 font-custom text-center">Tu Compra</h1>
      </div>
-        <section className="modal-card-body p-4">
+        <section className="modal-card-body  p-4">
           <ul>
             {currentCart.map((item, index) => (
-              <li key={index} className="mb-6">
+              <li key={index} className="md:mb-6  mb-10">
                 <div className="flex items-center h-[100px]">
                   <img
                     src={item.imagen}
@@ -84,7 +84,7 @@ window.location.reload()
         </div>
         <hr className="my-4 border-t border-gray-400" />
         <div className="flex justify-start font-custom text-2xl items-start">
-          <button className="font-custom" onClick={removecart}>
+          <button className="font-custom text-lg md:text-2xl" onClick={removecart}>
             Vaciar carrito
           </button>
         </div>
