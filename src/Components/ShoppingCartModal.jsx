@@ -7,9 +7,15 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   // Recuperar los datos del carrito del localStorage
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
 const emailshop = localStorage.getItem("email")
-const nameshop = localStorage.getItem("name")
+
 const dispatch = useDispatch()
   const [currentCart, setCurrentCart] = useState(cartItems);
+  const idshop = []
+  cartItems.map((e)=>{
+
+  idshop.push(e.id)
+  })
+console.log(idshop);
   const total = currentCart.reduce((acc, item) => acc + item.precio, 0);
   const removeItemFromCart = (index) => {
     // Crea una copia del carrito actual
@@ -30,8 +36,9 @@ window.location.reload()
     setCurrentCart([]);
   };
 
+
   const datashop = {
-    id: currentCart,
+    id: idshop,
     email:emailshop,
    
   }
