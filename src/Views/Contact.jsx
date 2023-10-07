@@ -77,8 +77,8 @@ function Contact() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center mt-96 md:mt-44 bg-gray-100">
-      <div className="bg-white p-6 rounded-lg shadow-md w-1/2">
+    <div className="min-h-screen flex justify-center items-center mt-28 md:mt-44 bg-gray-100">
+      <div className="bg-white w-[300px] p-6 rounded-lg shadow-md md:w-1/2">
         <h2 className="text-3xl font-semibold mb-6">Contáctanos</h2>
         <form className="space-y-4">
           <div className="flex flex-col">

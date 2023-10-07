@@ -101,7 +101,7 @@ function Navbar() {
                 <div>
                   <img src={storedFotoURL} onClick={toggleOptions} className="cursor-pointer h-9 w-9 rounded-full" />
                   {cart.length > 0 && (
-                    <div className="bg-red-500  text-white text-xs w-5 h-5 rounded-full absolute top-0 right-4 md:right-0 -mt-1 -mr-1 flex items-center justify-center">
+                    <div className="bg-red-500  text-white text-xs w-5 h-5 rounded-full absolute top-0 right-10 md:right-0 -mt-1 -mr-1 flex items-center justify-center">
                       {cart.length}
                     </div>
                   )}

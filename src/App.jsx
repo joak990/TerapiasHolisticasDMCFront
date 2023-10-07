@@ -25,7 +25,7 @@ function App() {
             rel="noopener noreferrer"
             className="  p-4 rounded-full "
           >
-            <img src={logowp} alt="WhatsApp" className="w-15 h-14" />
+            <img src={logowp} alt="WhatsApp" className=" w-12 md:w-15 h-12 md:h-14" />
           </a>
         </div>
       )}
