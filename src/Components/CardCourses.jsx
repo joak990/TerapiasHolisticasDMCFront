@@ -29,12 +29,24 @@ function CardCourses() {
       });
       return;
     }
-
   
-    dispatch(addToCart({ course }));
+    // Verificar si el curso ya está en el carrito
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push(course);
-    localStorage.setItem("cart", JSON.stringify(cart));
+    const courseAlreadyInCart = cart.some((cartItem) => cartItem.id === course.id);
+  
+    if (courseAlreadyInCart) {
+      // Si el curso ya está en el carrito, mostrar un mensaje de error
+      Swal.fire({
+        title: 'No puedes volver a agregar este curso',
+        text: 'Este curso ya se encuentra en tu carrito de compras.',
+        icon: 'error',
+      });
+    } else {
+      // Si el curso no está en el carrito, agregarlo
+      dispatch(addToCart({ course }));
+      cart.push(course);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
   };
 
   return (

@@ -67,7 +67,7 @@ function Navbar() {
             <Link to="/">
               <img src={logo} alt="Logo" className="w-14 h-14 rounded-full mr-2" /> {/* Cambia la ruta al logotipo */}
             </Link>
-            <div className="text-white font-custom font-extralight text-2xl md:text-3xl">Terapias Holísticas DMC</div>
+            <div className="text-white  md:m-0 ml-4 font-custom font-extralight text-2xl md:text-3xl">Terapias Holísticas DMC</div>
           </div>
           <div className="md:flex md:items-center md:space-x-24 mt-4 md:mt-0">
             <ul className="md:flex md:space-x-8 text-white md:text-lg">
@@ -97,12 +97,12 @@ function Navbar() {
               ) : null}
               
             </ul>
-            <div className="flex items-center relative"> 
+            <div className=" md:mt-0  mt-4 flex items-center relative"> 
             <div>
             
               <img src={storedFotoURL} onClick={toggleOptions} className="cursor-pointer h-9 w-9 rounded-full"/>
               {cart.length > 0 && ( // Mostrar notificación si el carrito no está vacío
-                    <div className="bg-red-500 text-white text-xs w-5 h-5 rounded-full absolute top-0 right-0 -mt-1 -mr-1 flex items-center justify-center">
+                    <div className="bg-red-500  text-white text-xs w-5 h-5 rounded-full absolute top-0 right-4 md:right-0 -mt-1 -mr-1 flex items-center justify-center">
                       {cart.length }
                     </div>
                   )}
