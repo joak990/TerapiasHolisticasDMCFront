@@ -3,14 +3,15 @@ import vidd from "../img/vidd.mp4"
 import marcc from "../img/marccc.mp4"
 import VideoControls from "./VideoControls";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function ReactPlayerVideo() {
   const { courseId } = useParams();
-
-  // Define las URLs de los videos correspondientes a cada courseId
+  const getmyvideos = useSelector(state => state.mycoursesvideos);
+  console.log(getmyvideos, "mis videos");
   const videos = {
     1: marcc,
-    2:vidd
+    2: vidd
   };
 
   // Selecciona la URL del video según el courseId
@@ -29,7 +30,7 @@ function ReactPlayerVideo() {
     const video = videoRef.current;
     const handleTimeUpdate = () => setProgress(video.currentTime);
     const handleDurationChange = () => setDuration(video.duration);
-    
+
     video.addEventListener("timeupdate", handleTimeUpdate);
     video.addEventListener("durationchange", handleDurationChange);
 
@@ -105,15 +106,20 @@ function ReactPlayerVideo() {
       id="videoContainer"
       className="relative  border shadow-2xl shadow-black rounded-md overflow-hidden w-[900px] h[500px] drop-shadow-sm group"
     >
-      {videoUrl && (
-        <video
-          src={videoUrl}
-          controlsList="nodownload"
-          className="w-ful h-full object-cover"
-          ref={videoRef}
-          onClick={tooglePlay}
-        ></video>
-      )}
+      {
+        getmyvideos && getmyvideos?.map((el, i) => {
+          return (
+            <video
+              key={i}
+              src={videoUrl}
+              controlsList="nodownload"
+              className="w-ful h-full object-cover"
+              ref={videoRef}
+              onClick={tooglePlay}
+            ></video>
+          )
+        })
+      }
       <VideoControls
         progress={progress}
         duration={duration}

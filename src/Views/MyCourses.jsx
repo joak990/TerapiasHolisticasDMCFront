@@ -1,9 +1,13 @@
 
 import { Link } from "react-router-dom";
 import image from "../img/registros.jpg"
+import { useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { getmycourses ,getallmycourses} from "../Redux/Actions";
 
 function MyCourses() {
-  // Supongamos que tienes una lista de cursos
+
+  const mycourses = useSelector(state => state.mycourses);
   const courses = [
     {
       id: 1,
@@ -22,23 +26,33 @@ function MyCourses() {
     // Agrega más cursos aquí
   ];
 
+  const dispatch = useDispatch()
+
   // Filtrar los cursos comprados
   const purchasedCourses = courses.filter((course) => course.Purchased);
 
-  
+  useEffect(() => {
+    const storedemail= localStorage.getItem("email")
+   dispatch(getallmycourses(storedemail))
+    // Actualiza el carrito en el localStorage
+  }, []);
 
+  const handlegetmyvideos = (id)=>{
+    console.log(id , 'id del component My courses' );
+    dispatch(getmycourses(id));
+  }
   return (
     <div className="mt-44 mx-auto max-w-screen-lg">
       <h1 className="text-4xl text-custom text-center">MIS CURSOS</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6">
-        {purchasedCourses.map((course) => (
+        {mycourses.map((course) => (
           <div key={course.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
             <img src={course.image} alt={course.name} className="w-full h-40 object-cover" />
             <div className="p-4">
               <h2 className="text-xl font-semibold">{course.name}</h2>
               <p className="text-gray-500 mt-2">{course.description}</p>
               <Link to={`/playcourse/${course.id}`}>
-                <button className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+                <button onClick={() => handlegetmyvideos(course.id)} className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
                   Ver Curso
                 </button>
               </Link>

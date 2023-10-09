@@ -77,67 +77,33 @@ function Contact() {
   };
 
   return (
-    <div className="min-h-screen flex justify-center items-center mt-28 md:mt-44 bg-gray-100">
-      <div className="bg-white w-[300px] p-6 rounded-lg shadow-md md:w-1/2">
-        <h2 className="text-3xl font-semibold mb-6">Contáctanos</h2>
-        <form className="space-y-4">
-          <div className="flex flex-col">
-            <label htmlFor="name" className="text-sm font-medium text-gray-600">
-              Nombre:
-            </label>
-            <input
-              onChange={handleInputChange}
-              name="name"
-              value={form.name}
-              type="text"
-              className="border rounded-md py-2 px-3 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Introduzca su nombre"
-            />
-            {errors.name && (
-              <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-            )}
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="email" className="text-sm font-medium text-gray-600">
-              Email:
-            </label>
-            <input
-              onChange={handleInputChange}
-              value={form.email}
-              name="email"
-              type="email"
-              className="border rounded-md py-2 px-3 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Introduzca su email"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-            )}
-          </div>
-          <div className="flex flex-col">
-            <label htmlFor="message" className="text-sm font-medium text-gray-600">
-              Consulta:
-            </label>
-            <textarea
-              onChange={handleInputChange}
-              value={form.message}
-              name="message"
-              rows="4"
-              className="border rounded-md py-2 px-3 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Escriba su consulta aquí"
-            ></textarea>
-            {errors.message && (
-              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
-            )}
-          </div>
-          <div className="flex justify-center">
-            <button
-              onClick={handleSubmit}
-              type="submit"
-              className="bg-bgla hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition duration-300"
-            >
-              Enviar
-            </button>
-          </div>
+    <div className="min-h-screen flex justify-center items-center mt-28 md:mt-44 ">
+      <div className=" w-[300px] p-6 rounded-lg shadow-2xl shadow-black md:w-1/2">
+        <h2 className="text-3xl font-extralight mb-6 text-center">Contáctanos</h2>
+        <form action="https://getform.io/f/7a095ddb-8434-4364-9dc2-fb16286e3641" method="POST" className="space-y-4 ">
+        <div className=" grid md:grid-cols-2 gap-4 w-full py-2">
+                    <div className=" flex flex-col">
+                        <label className=" uppercase text-sm py-2">Nombre</label>
+                        <input className=" border-2 rounded-lg p-3 flex border-gray-300" type="text" name='name'></input>
+                    </div>
+                    <div className=" flex flex-col">
+                        <label className=" uppercase text-sm py-2">Numero de Telefono</label>
+                        <input  className=" border-2 rounded-lg p-3 flex border-gray-300" type="text" name='phone'></input>
+                    </div>
+                </div>
+                <div className=" flex flex-col py-2">
+                    <label className=" uppercase text-sm py-2" >Email</label>
+                    <input className=" border-2 rounded-lg p-3 flex border-gray-300" type="text" name="email"></input>
+                </div>
+                <div className=" flex flex-col py-2">
+                    <label className=" uppercase text-sm py-2" >Asunto</label>
+                    <input className=" border-2 rounded-lg p-3 flex border-gray-300" type="text" name="subject"></input>
+                </div>
+                <div className=" flex flex-col py-2">
+                    <label className=" uppercase text-sm py-2" >Mensaje</label>
+                    <textarea className=" border-2 rounded-lg p-3 border-gray-300 " rows='10' name="message"></textarea>
+                </div>
+                <button className=" bg-bgla text-gray-100 mt-4 w-full p-4 rounded-lg">Enviar mensaje</button>
         </form>
 
         <div className="flex justify-end mt-4">
