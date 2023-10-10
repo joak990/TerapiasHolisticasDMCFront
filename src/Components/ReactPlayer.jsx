@@ -20,8 +20,8 @@ function ReactPlayerVideo() {
     const video = videoRef.current;
   console.log(video);
     if (video) {
-      const handleTimeUpdate = () => setProgress(video.currentTime);
-      const handleDurationChange = () => setDuration(video.duration);
+      const handleTimeUpdate =  async ()  =>await setProgress(video.currentTime);
+      const handleDurationChange =  async () => await setDuration(video.duration);
   
       video.addEventListener("timeupdate", handleTimeUpdate);
       video.addEventListener("durationchange", handleDurationChange);
@@ -39,7 +39,7 @@ function ReactPlayerVideo() {
         });
       };
     }
-  }, []);
+  }, [getmyvideos]);
 
   const tooglePlay = useCallback(() => {
     const video = videoRef.current;
@@ -100,7 +100,7 @@ function ReactPlayerVideo() {
       className="relative  border shadow-2xl shadow-black rounded-md overflow-hidden w-[900px] h[500px] drop-shadow-sm group"
     >
       {
-        getmyvideos && getmyvideos.map((el, i) => {
+        getmyvideos && getmyvideos?.map((el, i) => {
           return (
             <video
               key={i}
