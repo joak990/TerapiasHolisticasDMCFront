@@ -213,7 +213,7 @@ export const getmycourses = (id) => {
   return async function (dispatch) {
     try {
       console.log(id, "payloadgetMyCourses");
-      const response = await axios.get(`http://localhost:3001/videos/${id}`)
+      const response = await axios.get(`https://terapias-holisticas-dmc-back-jlvw.vercel.app/videos/${id}`)
 
       return dispatch({
         type: GET_COURSES_VIDEOS,
@@ -235,7 +235,7 @@ export const getallmycourses = (payload) => {
     try {
       console.log(payload, "payloadgetMyCourses");
       const objectEmail = {email: payload}
-      const response = await axios.post(`http://localhost:3001/cursos/miscursos`,objectEmail)
+      const response = await axios.post(`https://terapias-holisticas-dmc-back-jlvw.vercel.app/cursos/miscursos`,objectEmail)
 
       return dispatch({
         type: GET_ALL_MY_COURSES,
