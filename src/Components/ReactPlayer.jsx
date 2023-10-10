@@ -18,7 +18,7 @@ function ReactPlayerVideo() {
 
   useEffect(() => {
     const video = videoRef.current;
-  
+  console.log(video);
     if (video) {
       const handleTimeUpdate = () => setProgress(video.currentTime);
       const handleDurationChange = () => setDuration(video.duration);
