@@ -18,24 +18,27 @@ function ReactPlayerVideo() {
 
   useEffect(() => {
     const video = videoRef.current;
-    const handleTimeUpdate = () => setProgress(video.currentTime);
-    const handleDurationChange = () => setDuration(video.duration);
-
-    video.addEventListener("timeupdate", handleTimeUpdate);
-    video.addEventListener("durationchange", handleDurationChange);
-
-    const videoContainer = document.getElementById("videoContainer");
-    videoContainer.addEventListener("contextmenu", (e) => {
-      e.preventDefault(); // Evita que se abra el menú contextual
-    });
-
-    return () => {
-      video.removeEventListener("timeupdate", handleTimeUpdate);
-      video.removeEventListener("durationchange", handleDurationChange);
-      videoContainer.removeEventListener("contextmenu", (e) => {
-        e.preventDefault();
+  
+    if (video) {
+      const handleTimeUpdate = () => setProgress(video.currentTime);
+      const handleDurationChange = () => setDuration(video.duration);
+  
+      video.addEventListener("timeupdate", handleTimeUpdate);
+      video.addEventListener("durationchange", handleDurationChange);
+  
+      const videoContainer = document.getElementById("videoContainer");
+      videoContainer.addEventListener("contextmenu", (e) => {
+        e.preventDefault(); // Evita que se abra el menú contextual
       });
-    };
+  
+      return () => {
+        video.removeEventListener("timeupdate", handleTimeUpdate);
+        video.removeEventListener("durationchange", handleDurationChange);
+        videoContainer.removeEventListener("contextmenu", (e) => {
+          e.preventDefault();
+        });
+      };
+    }
   }, []);
 
   const tooglePlay = useCallback(() => {
