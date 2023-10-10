@@ -3,7 +3,7 @@ import { ADD_TO_CART, GET_ALL_COURSES,GET_ALL_MY_COURSES, LOGIN_REGISTER, REGIST
 const initialState = {
   courses: [],
   mycoursesvideos: [],
-  mycourses: []
+  mycourses: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
 };
 

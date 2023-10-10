@@ -234,7 +234,8 @@ export const getallmycourses = (payload) => {
   return async function (dispatch) {
     try {
       console.log(payload, "payloadgetMyCourses");
-      const response = await axios.get(`http://localhost:3001/cursos/miscursos`,payload)
+      const objectEmail = {email: payload}
+      const response = await axios.post(`http://localhost:3001/cursos/miscursos`,objectEmail)
 
       return dispatch({
         type: GET_ALL_MY_COURSES,

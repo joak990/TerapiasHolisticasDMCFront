@@ -1,23 +1,13 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import vidd from "../img/vidd.mp4"
-import marcc from "../img/marccc.mp4"
 import VideoControls from "./VideoControls";
-import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function ReactPlayerVideo() {
-  const { courseId } = useParams();
+ 
   const getmyvideos = useSelector(state => state.mycoursesvideos);
-  console.log(getmyvideos, "mis videos");
-  const videos = {
-    1: marcc,
-    2: vidd
-  };
 
-  // Selecciona la URL del video según el courseId
-  const videoUrl = videos[courseId] || null;
+ 
 
-  const storedName = localStorage.getItem("email");
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
@@ -111,7 +101,7 @@ function ReactPlayerVideo() {
           return (
             <video
               key={i}
-              src={videoUrl}
+              src={el.link}
               controlsList="nodownload"
               className="w-ful h-full object-cover"
               ref={videoRef}

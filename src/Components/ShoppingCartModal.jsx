@@ -1,34 +1,58 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
-import {removeFromCart, sendpayament} from "../Redux/Actions"
-
+import { sendpayament } from "../Redux/Actions"
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import axios from "axios";
+initMercadoPago('TEST-e0a79806-12bb-45f7-9dc4-5e2e46bed1f1');
 
 const ModalCarrito = ({ isOpen, onClose }) => {
   // Recuperar los datos del carrito del localStorage
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-const emailshop = localStorage.getItem("email")
-
-const dispatch = useDispatch()
+  const emailshop = localStorage.getItem("email")
+const [prefenceid,setPreferenceId] = useState(null)
+  const dispatch = useDispatch()
   const [currentCart, setCurrentCart] = useState(cartItems);
   const idshop = []
-  cartItems.map((e)=>{
+  cartItems.map((e) => {
 
-  idshop.push(e.id)
+    idshop.push(e.id)
   })
-console.log(idshop);
+  console.log(prefenceid,'prefendeID');
   const total = currentCart.reduce((acc, item) => acc + item.precio, 0);
   const removeItemFromCart = (index) => {
     // Crea una copia del carrito actual
     const updatedCart = [...currentCart];
-   const removedItemId = updatedCart[index].id;
+
     updatedCart.splice(index, 1);
     // Actualiza el estado local y el localStorage
     setCurrentCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
-window.location.reload()
-  
+    window.location.reload()
+
   };
-  
+
+  const createpreference =  async() =>{
+try {
+  const response = await axios.post("http://localhost:3001/create_preference",{
+    title:"title",
+    price:total,
+    quantity:1,
+  })
+const  {id } = response.data
+return id
+
+} catch (error) {
+  console.log(TypeError);
+}
+  }
+
+  const handlebuy =  async()=>{
+    const id = await createpreference()
+    if(id) {
+      setPreferenceId(id)
+    }
+  }
+
   const removecart = () => {
     // Vaciar todo el carrito
     localStorage.removeItem("cart");
@@ -39,12 +63,11 @@ window.location.reload()
 
   const datashop = {
     id: idshop,
-    email:emailshop,
-   
+    email: emailshop,
   }
-  
 
-  const handlesendpayment = ()=>{
+
+  const handlesendpayment = () => {
     console.log("cli");
     dispatch(sendpayament(datashop))
     localStorage.removeItem("cart");
@@ -54,9 +77,9 @@ window.location.reload()
     <div className={`modal mt-44 md:mt-44 ${isOpen ? "is-active" : ""}`}>
       <div className="modal-background" onClick={onClose}></div>
       <div className="modal-card  w-[260px] md:w-[600px]  mx-auto">
-     <div className="flex justify-center">
-      <h1 className="text-4xl md:mb-0 mb-8 font-custom text-center">Tu Compra</h1>
-     </div>
+        <div className="flex justify-center">
+          <h1 className="text-4xl md:mb-0 mb-8 font-custom text-center">Tu Compra</h1>
+        </div>
         <section className="modal-card-body  p-4">
           <ul>
             {currentCart.map((item, index) => (
@@ -98,16 +121,17 @@ window.location.reload()
           </button>
         </div>
         <footer className="modal-card-foot flex justify-center ">
-       
 
-        <div 
-          onClick={handlesendpayment}
+
+          <button
+            onClick={handlebuy}
             className="button text-center bg-blue-400 h-9 w-72 text-white rounded-lg is-primary ml-2 font-custom"
-          
+
           >
             Pagar con Mercado Pago
-          </div>
-     </footer>
+          </button>
+          {prefenceid && <Wallet initialization={{prefenceid}} />}
+        </footer>
       </div>
     </div>
   );
