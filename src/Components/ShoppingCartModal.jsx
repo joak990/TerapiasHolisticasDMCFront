@@ -1,23 +1,26 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
-// import { sendpayament } from "../Redux/Actions"
+import { sendpayament } from "../Redux/Actions"
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import axios from "axios";
 
-initMercadoPago('TEST-e0a79806-12bb-45f7-9dc4-5e2e46bed1f1');
 
-const ModalCarrito = ({isOpen,onClose}) => {
+initMercadoPago('TEST-3ed998e7-fcad-4a71-a939-d9241b087494');
+
+const ModalCarrito = ({ isOpen, onClose }) => {
+  const dispatch = useDispatch()
   // Recuperar los datos del carrito del localStorage
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
   const emailshop = localStorage.getItem("email")
-const [prefenceid,setPreferenceId] = useState(null)
+  const [preferenceId, setPreferenceId] = useState(null)
   const [currentCart, setCurrentCart] = useState(cartItems);
   const idshop = []
   cartItems.map((e) => {
-
     idshop.push(e.id)
   })
-
+  const itemNames = cartItems.map((item) => item.nombre).join(', ');
+  
+  console.log(itemNames,"carritonamessss");
   const total = currentCart.reduce((acc, item) => acc + item.precio, 0);
   const removeItemFromCart = (index) => {
     // Crea una copia del carrito actual
@@ -31,36 +34,44 @@ const [prefenceid,setPreferenceId] = useState(null)
 
   };
 
-  const createpreference =  async() =>{
-try {
-  const response = await axios.post("http://localhost:3001/mercado_pago",{
-    title:"title",
-    price:total,
-    quantity:1,
-  })
- 
-
-  return response.data.response.response.init_point
-
-} catch (error) {
-  console.log(TypeError);
-}
+  
+  const createpreference = async () => {
+    try {
+      const response = await axios.post("http://localhost:3001/mercado_pago", 
+      {
+        title: itemNames,
+        quantity:1,
+        price: total
+      }
+      )
+      
+      const { id } = response.data;
+      console.log('id--->',id);
+      return id;
+      
+    } catch (error) {
+      console.log(error);
+    }
   }
-
-  const handlebuy =  async()=>{
-    const id = await createpreference()
-    setPreferenceId(id)
-
-  }
+  
+  // const handlebuy = async () => {
+  //   const id = await createpreference()
+  //   if(id) {
+  //     setPreferenceId(id)
+  //   }
+  //   // console.log('----preferenceid---',prefenceId);
+  // }
+  
+  
 
   const removecart = () => {
     // Vaciar todo el carrito
     localStorage.removeItem("cart");
-
+    
     setCurrentCart([]);
   };
-
-
+  
+  
   const datashop = {
     id: idshop,
     email: emailshop,
@@ -71,8 +82,22 @@ try {
     console.log("cli");
     dispatch(sendpayament(datashop))
     localStorage.removeItem("cart");
-
+    
   }
+  
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const id = await createpreference();
+        setPreferenceId(id);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
   return (
     <div className={`modal mt-44 md:mt-44 ${isOpen ? "is-active" : ""}`}>
       <div className="modal-background" onClick={onClose}></div>
@@ -89,7 +114,7 @@ try {
                     src={item.imagen}
                     alt={item.imagen}
                     className="w-24 h-24 rounded-lg mr-4"
-                  />
+                    />
                   <div>
                     <div className="font-bold text-black">{item.nombre}</div>
                     <div className="text-gray-600">Precio: ${item.precio}</div>
@@ -121,17 +146,18 @@ try {
           </button>
         </div>
         <footer className="modal-card-foot flex justify-center ">
-           <button 
-           onClick = {handlebuy}
-           >
-           pagar con mercadopago 
-           </button>
+          {/* <button
+            onClick={handlebuy}
+          >
+            pagar con mercadopago
+          </button> */}
 
-           {prefenceid && <Wallet initialization={{prefenceid}}  />}
+          {preferenceId && <Wallet initialization={{preferenceId}} />}
         </footer>
       </div>
     </div>
   );
 };
+
 
 export default ModalCarrito;
