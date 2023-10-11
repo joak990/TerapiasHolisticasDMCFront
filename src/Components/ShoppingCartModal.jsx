@@ -37,7 +37,7 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   
   const createpreference = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/mercado_pago", 
+      const response = await axios.post("https://terapias-holisticas-dmc-back-jlvw.vercel.app/mercado_pago", 
       {
         title: itemNames,
         quantity:1,
