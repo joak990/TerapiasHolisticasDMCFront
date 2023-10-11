@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { nextPage, prevPage } from "../redux/actions";
+import { nextPage, prevPage } from "../Redux/Actions";
 import PropTypes from "prop-types";
 
 const Pagination = ({ cantPages }) => {
