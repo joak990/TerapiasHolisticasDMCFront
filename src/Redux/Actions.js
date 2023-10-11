@@ -1,6 +1,6 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
-import { GET_ALL_COURSES,GET_ALL_MY_COURSES, REGISTER_BASIC, UPDATE_CART_FROM_LOCAL_STORAGE, GET_COURSES_VIDEOS } from "./types";
+import { PREV_PAGE, NEXT_PAGE ,GET_ALL_COURSES,GET_ALL_MY_COURSES, REGISTER_BASIC, UPDATE_CART_FROM_LOCAL_STORAGE, GET_COURSES_VIDEOS } from "./types";
 
 export const registerbasic = (payload) => {
   console.log('::payloadUSERS:', payload);
@@ -248,3 +248,15 @@ export const getallmycourses = (payload) => {
     }
   };
 };
+
+export function prevPage() {
+  return {
+      type: PREV_PAGE,
+  };
+}
+
+export function nextPage() {
+  return {
+      type: NEXT_PAGE,
+  };
+}

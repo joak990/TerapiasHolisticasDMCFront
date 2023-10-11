@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { sendpayament } from "../Redux/Actions"
+// import { sendpayament } from "../Redux/Actions"
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import axios from "axios";
+
 initMercadoPago('TEST-e0a79806-12bb-45f7-9dc4-5e2e46bed1f1');
 
-const ModalCarrito = ({ isOpen, onClose }) => {
+const ModalCarrito = ({isOpen,onClose}) => {
   // Recuperar los datos del carrito del localStorage
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
   const emailshop = localStorage.getItem("email")
 const [prefenceid,setPreferenceId] = useState(null)
-  const dispatch = useDispatch()
   const [currentCart, setCurrentCart] = useState(cartItems);
   const idshop = []
   cartItems.map((e) => {
 
     idshop.push(e.id)
   })
-  console.log(prefenceid,'prefendeID');
+
   const total = currentCart.reduce((acc, item) => acc + item.precio, 0);
   const removeItemFromCart = (index) => {
     // Crea una copia del carrito actual
@@ -33,13 +33,14 @@ const [prefenceid,setPreferenceId] = useState(null)
 
   const createpreference =  async() =>{
 try {
-  const response = await axios.post("http://localhost:3001/create_preference",{
+  const response = await axios.post("http://localhost:3001/mercado_pago",{
     title:"title",
     price:total,
     quantity:1,
   })
-const  {id } = response.data
-return id
+ 
+
+  return response.data.response.response.init_point
 
 } catch (error) {
   console.log(TypeError);
@@ -48,9 +49,8 @@ return id
 
   const handlebuy =  async()=>{
     const id = await createpreference()
-    if(id) {
-      setPreferenceId(id)
-    }
+    setPreferenceId(id)
+
   }
 
   const removecart = () => {
@@ -121,16 +121,13 @@ return id
           </button>
         </div>
         <footer className="modal-card-foot flex justify-center ">
+           <button 
+           onClick = {handlebuy}
+           >
+           pagar con mercadopago 
+           </button>
 
-
-          <button
-            onClick={handlebuy}
-            className="button text-center bg-blue-400 h-9 w-72 text-white rounded-lg is-primary ml-2 font-custom"
-
-          >
-            Pagar con Mercado Pago
-          </button>
-          {prefenceid && <Wallet initialization={{prefenceid}} />}
+           {prefenceid && <Wallet initialization={{prefenceid}}  />}
         </footer>
       </div>
     </div>

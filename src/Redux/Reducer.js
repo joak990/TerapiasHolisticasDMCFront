@@ -1,9 +1,10 @@
-import { ADD_TO_CART, GET_ALL_COURSES,GET_ALL_MY_COURSES, LOGIN_REGISTER, REGISTER_BASIC, GET_COURSES_VIDEOS,REGISTER_GOOGLE, REMOVE_FROM_CART, UPDATE_CART_FROM_LOCAL_STORAGE } from "./types";
+import { NEXT_PAGE, PREV_PAGE, GET_ALL_COURSES,GET_ALL_MY_COURSES, LOGIN_REGISTER, REGISTER_BASIC, GET_COURSES_VIDEOS,REGISTER_GOOGLE, REMOVE_FROM_CART, UPDATE_CART_FROM_LOCAL_STORAGE ,ADD_TO_CART} from "./types";
 
 const initialState = {
   courses: [],
   mycoursesvideos: [],
   mycourses: [],
+  numPage: 1,
   cart: JSON.parse(localStorage.getItem("cart")) || [],
 };
 
@@ -53,8 +54,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
           ...state,
           mycourses: [...payload],
         };
-        
-
+        case NEXT_PAGE:
+          return {
+              ...state,
+              numPage: state.numPage + 1,
+          };
+      case PREV_PAGE:
+          return {
+              ...state,
+              numPage: state.numPage - 1,
+          };
     default:
       return state;
   }
