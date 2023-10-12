@@ -3,17 +3,18 @@ import { useDispatch } from "react-redux";
 import { sendpayament } from "../Redux/Actions"
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import axios from "axios";
-
+import { useLocation } from 'react-router-dom';
+import Loading from "./Loading";
 
 initMercadoPago('TEST-3ed998e7-fcad-4a71-a939-d9241b087494');
 
 const ModalCarrito = ({ isOpen, onClose }) => {
   const dispatch = useDispatch()
-  // Recuperar los datos del carrito del localStorage
   const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
   const emailshop = localStorage.getItem("email")
   const [preferenceId, setPreferenceId] = useState(null)
   const [currentCart, setCurrentCart] = useState(cartItems);
+  const [isLoading, setIsLoading] = useState(true);
   const idshop = []
   cartItems.map((e) => {
     idshop.push(e.id)
@@ -37,16 +38,18 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   
   const createpreference = async () => {
     try {
-      const response = await axios.post("https://terapias-holisticas-dmc-back-jlvw.vercel.app/mercado_pago", 
+      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/mercado_pago", 
+     
       {
         title: itemNames,
         quantity:1,
         price: total
       }
+    
       )
       
       const { id } = response.data;
-      console.log('id--->',id);
+      console.log(response);
       return id;
       
     } catch (error) {
@@ -86,18 +89,36 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   }
   
   useEffect(() => {
+    localStorage.setItem("orderdata", JSON.stringify(datashop));
     const fetchData = async () => {
       try {
         const id = await createpreference();
         setPreferenceId(id);
+        setIsLoading(false); // Una vez que la preferencia está lista, establecemos isLoading en falso
       } catch (error) {
         console.error(error);
+        setIsLoading(false); // En caso de error, también establecemos isLoading en falso
       }
     };
-
+   
     fetchData();
   }, []);
   
+
+  const handlesave = () => {
+    console.log("se apretó el botón de MercadoPago");
+  
+    // Guardar datashop en localStorage
+    localStorage.setItem("order", JSON.stringify(datashop));
+  
+    // Asegurarse de que el pedido se haya guardado correctamente
+    const orderData = localStorage.getItem("order");
+    if (orderData) {
+      console.log("La información del pedido se ha guardado en el localStorage:", orderData);
+    } else {
+      console.error("Hubo un problema al guardar la información del pedido en el localStorage.");
+    }
+  };
   return (
     <div className={`modal mt-44 md:mt-44 ${isOpen ? "is-active" : ""}`}>
       <div className="modal-background" onClick={onClose}></div>
@@ -146,13 +167,12 @@ const ModalCarrito = ({ isOpen, onClose }) => {
           </button>
         </div>
         <footer className="modal-card-foot flex justify-center ">
-          {/* <button
-            onClick={handlebuy}
-          >
-            pagar con mercadopago
-          </button> */}
-
-          {preferenceId && <Wallet initialization={{preferenceId}} />}
+        {isLoading ? (
+            <Loading /> // Mostrar el componente de carga mientras isLoading es true
+          ) : (
+            // Mostrar el botón de MercadoPago una vez que isLoading es false
+            preferenceId && <Wallet  initialization={{ preferenceId }} />
+          )}
         </footer>
       </div>
     </div>

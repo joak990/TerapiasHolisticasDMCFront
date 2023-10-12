@@ -7,7 +7,7 @@ export const registerbasic = (payload) => {
   return async function (dispatch) {
     try {
       // Realizar la solicitud POST a /users con el payload
-      const response = await axios.post('https://terapias-holisticas-dmc-back-jlvw.vercel.app/users', payload);
+      const response = await axios.post('https://terapias-holisticas-dmc-back.vercel.app/users', payload);
       console.log(response.data.duplicated, "register");
       if (response.data.duplicated == true) {
         Swal.fire({
@@ -49,7 +49,7 @@ export const register_google = (payload) => {
   return async function (dispatch) {
     try {
 
-      const response = await axios.post("https://terapias-holisticas-dmc-back-jlvw.vercel.app/users", payload);
+      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/users", payload);
 
       if (response.data === true) {
         return { success: false }
@@ -88,7 +88,7 @@ export const Loginregister = (payload) => {
   return async function (dispatch) {
     try {
 
-      const response = await axios.post("https://terapias-holisticas-dmc-back-jlvw.vercel.app/validate", payload);
+      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/validate", payload);
 
       if (response.data === false) {
         Swal.fire({
@@ -161,7 +161,7 @@ export const updateCartFromLocalStorage = (cart) => {
 export const getallcourses = () => {
   return async function (dispatch) {
     try {
-      const json = await axios.get("https://terapias-holisticas-dmc-back-jlvw.vercel.app/cursos");
+      const json = await axios.get("https://terapias-holisticas-dmc-back.vercel.app/cursos");
 
       return dispatch({
         type: GET_ALL_COURSES,
@@ -187,7 +187,7 @@ export const sendpayament = (payload) => {
   return async function () {
     try {
       console.log(payload, "payload");
-      const response = await axios.post("https://terapias-holisticas-dmc-back-jlvw.vercel.app/cursos/pago", payload)
+      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/cursos/pago", payload)
       console.log(response);
       if (response.data === true) {
         Swal.fire({
@@ -213,7 +213,7 @@ export const getmycourses = (id) => {
   return async function (dispatch) {
     try {
       console.log(id, "payloadgetMyCourses");
-      const response = await axios.get(`https://terapias-holisticas-dmc-back-jlvw.vercel.app/videos/${id}`)
+      const response = await axios.get(`https://terapias-holisticas-dmc-back.vercel.app/videos/${id}`)
 
       return dispatch({
         type: GET_COURSES_VIDEOS,
@@ -235,7 +235,7 @@ export const getallmycourses = (payload) => {
     try {
       console.log(payload, "payloadgetMyCourses");
       const objectEmail = {email: payload}
-      const response = await axios.post(`https://terapias-holisticas-dmc-back-jlvw.vercel.app/cursos/miscursos`,objectEmail)
+      const response = await axios.post(`https://terapias-holisticas-dmc-back.vercel.app/cursos/miscursos`,objectEmail)
 
       return dispatch({
         type: GET_ALL_MY_COURSES,
