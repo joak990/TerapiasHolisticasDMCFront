@@ -7,7 +7,7 @@ export const registerbasic = (payload) => {
   return async function (dispatch) {
     try {
       // Realizar la solicitud POST a /users con el payload
-      const response = await axios.post('http://localhost:3001/users', payload);
+      const response = await axios.post('https://terapias-holisticas-dmc-back.vercel.app/users', payload);
       console.log(response, "register");
       if (response.data.duplicated == true) {
         Swal.fire({
@@ -49,7 +49,7 @@ export const register_google = (payload) => {
   return async function (dispatch) {
     try {
 
-      const response = await axios.post("http://localhost:3001/users", payload);
+      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/users", payload);
 console.log(payload,"pay");
       if (response.data === true) {
         return { success: false }
