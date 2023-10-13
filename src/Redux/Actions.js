@@ -7,8 +7,8 @@ export const registerbasic = (payload) => {
   return async function (dispatch) {
     try {
       // Realizar la solicitud POST a /users con el payload
-      const response = await axios.post('https://terapias-holisticas-dmc-back.vercel.app/users', payload);
-      console.log(response.data.duplicated, "register");
+      const response = await axios.post('http://localhost:3001/users', payload);
+      console.log(response, "register");
       if (response.data.duplicated == true) {
         Swal.fire({
           icon: 'error', // Cambiado de 'success' a 'error'
@@ -49,8 +49,8 @@ export const register_google = (payload) => {
   return async function (dispatch) {
     try {
 
-      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/users", payload);
-
+      const response = await axios.post("http://localhost:3001/users", payload);
+console.log(payload,"pay");
       if (response.data === true) {
         return { success: false }
       } else {
@@ -186,19 +186,10 @@ export const sendpayament = (payload) => {
 
   return async function () {
     try {
-      console.log(payload, "payload");
+    
       const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/cursos/pago", payload)
-      console.log(response);
-      if (response.data === true) {
-        Swal.fire({
-          title: 'Gracias por comprar este curso!',
-          icon: 'success',
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: 'bg-orange-600 text-white rounded-md px-4 py-2',
-          }
-        })
-      }
+      
+      
 
     } catch (error) {
       // Error en la petición

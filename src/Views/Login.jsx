@@ -45,6 +45,7 @@ function Login() {
       email: response.user.email,
       type: "user",
       uid: response.user.uid,
+      otp:1
     };
 
    
