@@ -216,6 +216,7 @@ const namelocal = localStorage.getItem("name")
             <p className="mt-2 text-gray-700">{newComment}</p>
           </div>
         )}
+        
       </div>
     </div>
   );
