@@ -1,21 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Rating from "react-rating-stars-component";
+import { createcomment } from "../Redux/Actions";
 
 function DetailCourse() {
   const { id } = useParams();
   const courses = useSelector((state) => state.courses);
   const course = courses.find((course) => course.id === id);
-
+const iduser = localStorage.getItem("id")
+const dispatch = useDispatch()
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState("");
+  const [errors, setErrors] = useState({});
+  const [isRecaptchaValid, setRecaptchaValid] = useState(false);
+  const [isFormSubmitted, setFormSubmitted] = useState(false);
+ 
 
-  const handleCommentSubmit = () => {
-    console.log("Calificación:", rating);
-    console.log("Comentario:", comment);
-    setRating(0);
-    setComment("");
+
+  const [form, setForm] = useState({
+    id : iduser,
+    curso:course.id,
+    Contenido:"",
+  rating:""
+  });
+  const handleRatingChange = (value) => {
+    setRating(value);
+    setForm({
+      ...form,
+      rating: value.toString(),
+    });
+  };
+  
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setFormSubmitted(true);
+    const newErrors = {};
+
+
+    if (!form.Contenido.trim()) {
+      newErrors.Contenido = "El mensaje no puede estar vacio";
+    } else if (form.Contenido.length < 6) {
+      newErrors.Contenido = "El mensaje  debe tener al menos 10 caracteres";
+    } else if (form.Contenido.length > 400) {
+      newErrors.Contenido = "El mensaje debe tener como máximo 400 caracteres";
+    }
+
+    setErrors(newErrors);
+if (Object.keys(newErrors).length === 0) {
+  dispatch(createcomment(form))
+  
+  setForm({
+    Contenido: "",
+    Rating: "",
+    id:"",
+    curso:""
+  });
+}
   };
 
   return (
@@ -56,16 +104,19 @@ function DetailCourse() {
             <div className="flex items-center justify-between mb-4">
              
             </div>
+            <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label htmlFor="comment" className="block text-gray-600">
+             
+              <label htmlFor="Contenido" className="block text-gray-600">
                 Comentar:
               </label>
               <textarea
-                id="comment"
+                id="Contenido"
                 className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
                 rows="4"
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
+                name="Contenido"
+                value={form.Contenido}
+                onChange={handleInputChange}
               />
             </div>
             <div className="mb-4">
@@ -75,18 +126,19 @@ function DetailCourse() {
               <Rating
                 name="rating"
                 count={5}
-                value={rating}
-                onChange={setRating}
+                value={rating} 
+                onChange={handleRatingChange}
                 size={30}
                 activeColor="#ffd700"
               />
             </div>
             <button
-              onClick={handleCommentSubmit}
+              onClick={handleSubmit}
               className="bg-blue-500 text-white font-bold px-4 py-2 rounded-full hover:bg-blue-600 mt-4"
             >
               Enviar Comentario
             </button>
+            </form>
           </div>
         </div>
       ) : (

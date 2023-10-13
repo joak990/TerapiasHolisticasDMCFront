@@ -199,6 +199,23 @@ export const sendpayament = (payload) => {
   };
 };
 
+export const createcomment = (payload) => {
+
+  return async function () {
+    try {
+    console.log(payload,"pay");
+      const response = await axios.post("http://localhost:3001/comments", payload)
+      
+      console.log(response,"response");
+
+    } catch (error) {
+      // Error en la petición
+      console.error(error);
+      return { success: false, message: "Error al crear comentario" };
+    }
+  };
+};
+
 export const getmycourses = (id) => {
 
   return async function (dispatch) {
