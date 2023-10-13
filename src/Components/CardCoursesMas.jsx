@@ -35,7 +35,7 @@ function CardCoursesMas() {
               <h2 className="text-xl font-custom font-semibold mb-2">{course.nombre}</h2>
               <p className="text-gray-700 font-custom">{course.descripcion}</p>
               <div className="flex justify-between items-center mt-4">
-                <Link to={`/cursodetail/${course.id}`}>
+                <Link to={`/${course.id}`}>
                   <button
                     className="font-bold bg-bgla hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full"
                   >

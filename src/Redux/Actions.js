@@ -1,6 +1,13 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
-import { PREV_PAGE, NEXT_PAGE ,GET_ALL_COURSES,GET_ALL_MY_COURSES, REGISTER_BASIC, UPDATE_CART_FROM_LOCAL_STORAGE, GET_COURSES_VIDEOS } from "./types";
+import {ALL_COMMENTS ,
+        PREV_PAGE, 
+        NEXT_PAGE ,
+        GET_ALL_COURSES,
+        GET_ALL_MY_COURSES, 
+        REGISTER_BASIC, 
+        UPDATE_CART_FROM_LOCAL_STORAGE, 
+        GET_COURSES_VIDEOS } from "./types";
 
 export const registerbasic = (payload) => {
   console.log('::payloadUSERS:', payload);
@@ -268,3 +275,23 @@ export function nextPage() {
       type: NEXT_PAGE,
   };
 }
+
+
+export const getAllComments = (id) => {
+
+  return async function (dispatch) {
+    try {
+      const response = await axios.post(`http://localhost:3001/all_comments/${id}`);
+     
+      return dispatch({
+        type: ALL_COMMENTS,
+        payload: response.data,
+      });
+     
+    } catch (error) {
+      // Error en la petición
+      console.error(error);
+      return { success: false, message: "Error de autenticación" };
+    }
+  };
+};

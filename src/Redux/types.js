@@ -9,3 +9,4 @@ export const GET_COURSES_VIDEOS = "GET_COURSES_VIDEOS";
 export const GET_ALL_MY_COURSES = "GET_ALL_MY_COURSES";
 export const NEXT_PAGE = "NEXT_PAGE"
 export const PREV_PAGE = "PREV_PAGE"
+export const ALL_COMMENTS = "ALLCOMENTS"

@@ -60,7 +60,7 @@ function App() {
         <Route path="/playcourse/:courseId" element={<PlayMyCourses />} />
         <Route path="/success" element={<Success />} />
         <Route path="/paypal" element={<PaypalButton />} />
-        <Route path="/cursodetail/:id" element={<DetailCourse />} />
+        <Route path="/:id" element={<DetailCourse />} />
         <Route path="/error" element={<Error />} />
         <Route path="/load" element={<Loading />} />
       </Routes>
