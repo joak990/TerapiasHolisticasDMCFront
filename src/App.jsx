@@ -18,6 +18,8 @@ import Success from "./Views/Success";
 import DetailCourse from "./Views/DetailCourse";
 import Loading from "./Components/Loading";
 import Error from "./Views/Error";
+import VerifiedRegister from "./Views/VerifiedRegister";
+import Recovery from "./Views/Recovery";
 function App() {
   const location = useLocation();
 
@@ -40,7 +42,9 @@ function App() {
         </div>
       )}
       {location.pathname !== "/register" &&
+        !location.pathname.match(/^\/verified\/[a-zA-Z0-9@._-]+/) &&
         location.pathname !== "/load" &&
+        location.pathname !== "/recovery" &&
         location.pathname !== "/error" &&
         location.pathname !== "/success" &&
         location.pathname !== "/login" &&
@@ -61,6 +65,8 @@ function App() {
         <Route path="/success" element={<Success />} />
         <Route path="/paypal" element={<PaypalButton />} />
         <Route path="/:id" element={<DetailCourse />} />
+        <Route path="/verified/:email/:name*" element={<VerifiedRegister />} />
+        <Route path="/recovery" element={<Recovery />} />
         <Route path="/error" element={<Error />} />
         <Route path="/load" element={<Loading />} />
       </Routes>

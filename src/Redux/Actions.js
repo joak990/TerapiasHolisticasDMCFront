@@ -22,13 +22,12 @@ export const registerbasic = (payload) => {
           title: 'Ya tienes una cuenta registrada con este correo',
           text: 'Hubo un problema al registrar el usuario.',
         });
+        return {status : "failed"}
       }
+      console.log(response.data.duplicated);
       if (response.data.duplicated == undefined) {
-        Swal.fire({
-          icon: 'success',
-          title: 'Registro exitoso',
-          text: 'El usuario se registró correctamente.',
-        });
+      
+        return {status: "approved"}
       }
 
       dispatch({
@@ -94,7 +93,7 @@ export const Loginregister = (payload) => {
 
   return async function (dispatch) {
     try {
-
+console.log(payload);
       const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/validate", payload);
 
       if (response.data === false) {
@@ -211,7 +210,7 @@ export const createcomment = (payload) => {
   return async function () {
     try {
     console.log(payload,"pay");
-      const response = await axios.post("http://localhost:3001/comments", payload)
+      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/comments", payload)
       
       console.log(response,"response");
 
@@ -281,7 +280,7 @@ export const getAllComments = (id) => {
 
   return async function (dispatch) {
     try {
-      const response = await axios.post(`http://localhost:3001/all_comments/${id}`);
+      const response = await axios.post(`https://terapias-holisticas-dmc-back.vercel.app/all_comments/${id}`);
      
       return dispatch({
         type: ALL_COMMENTS,
@@ -292,6 +291,89 @@ export const getAllComments = (id) => {
       // Error en la petición
       console.error(error);
       return { success: false, message: "Error de autenticación" };
+    }
+  };
+};
+
+
+
+export const validateotp = (payload) => {
+
+  return async function () {
+    try {
+    console.log(payload,"pay");
+      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/validateop", payload)
+      
+      console.log(response);
+      if(response.data === true){
+        return {status: "approved"}
+      } else return {status: "declined"}
+
+    } catch (error) {
+      // Error en la petición
+      console.error(error);
+      return { success: false, message: "Error al crear comentario" };
+    }
+  };
+};
+
+
+
+
+export const sendrecoverypass = (payload) => {
+
+  return async function () {
+    try {
+    console.log(payload,"pay");
+      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/send-recovery", payload)
+      
+      console.log(response);
+      if(response.data === false){
+        Swal.fire({
+          title: 'Email Incorrecto',
+          icon: 'error',
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: 'bg-orange-600 text-white rounded-md px-4 py-2',
+          }
+        })
+      } else if (response.data===true){
+        Swal.fire({
+          title: 'Codigo de verificación enviado!',
+          icon: 'success',
+          buttonsStyling: false,
+          customClass: {
+            confirmButton: 'bg-bgla text-white rounded-md px-4 py-2',
+          }
+        })
+        return {status:"approved"}
+      }
+
+    } catch (error) {
+      // Error en la petición
+      console.error(error);
+      return { success: false, message: "Error al crear comentario" };
+    }
+  };
+};
+
+
+export const changepass = (payload) => {
+
+  return async function () {
+    try {
+    console.log(payload,"pay");
+      const response = await axios.put("https://terapias-holisticas-dmc-back.vercel.app/recovery", payload)
+      console.log(response);
+  if(response.data === true){
+    return {status: "approved"}
+  }
+     
+
+    } catch (error) {
+      // Error en la petición
+      console.error(error);
+      return { success: false, message: "Error al crear comentario" };
     }
   };
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { FiUser } from 'react-icons/fi';
 
 function Profile() {
   const storedFotoURL = localStorage.getItem("fotoURL");
@@ -76,11 +76,16 @@ function Profile() {
       <div className="bg-white p-8 w-[500px] rounded-lg shadow-md">
         {/* Foto de perfil */}
         <div className="text-center mb-4">
-        <img
+          {storedFotoURL ?(   <img
     src={ storedFotoURL}
     alt="Foto de perfil"
     className="w-24 h-24 rounded-full mx-auto mb-2"
   />
+  ): <div className='flex justify-center'><FiUser
+                  
+  className="cursor-pointer h-24 w-24 "
+/></div>}
+   
         </div>
 
     

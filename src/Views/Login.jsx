@@ -185,6 +185,12 @@ dispatch(Loginregister(form)).then((response) => {
               Regístrate aquí
             </Link>
           </p>
+          <p className="mt-4 text-sm ml-4">
+            ¿Olvidaste tu contraseña?{" "}
+            <Link to="/recovery" className="text-blue-500 hover:underline">
+              Recupera aqui
+            </Link>
+          </p>
           <button
             onClick={handleLogin}
             className="mt-8 bg-bgla text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center"

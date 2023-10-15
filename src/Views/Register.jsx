@@ -64,6 +64,13 @@ function Register() {
     setErrors(newErrors);
 if (Object.keys(newErrors).length === 0) {
   dispatch(registerbasic(form))
+      .then((response) => {
+        // Aquí puedes manejar la respuesta de tu acción
+        if(response.status === "approved"){
+          navigate(`/verified/${form.email}/${form.name}"`)
+          console.log(`/verified/${form.email}/otp`);
+        }
+      })
   
   setForm({
     name: "",

@@ -48,6 +48,27 @@ function CardCourses() {
       // Si el curso no está en el carrito, agregarlo
       dispatch(addToCart({ course }));
       cart.push(course);
+      Swal.fire({
+        title: 'Producto agregado al carrito!',
+        text: '¿Deseas seguir comprando o ir al carrito?',
+        icon: 'success',
+        showCancelButton: true,
+        confirmButtonText: 'Ir al carrito',
+        cancelButtonText: 'Seguir comprando',
+        customClass: {
+          confirmButton: 'bg-blue-200 text-white', // Clase para el botón "Ir al carrito"
+          cancelButton: 'bg-gray-200 text-white'  // Clase para el botón "Seguir comprando"
+      }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirige a /myshop
+            window.location.href = '/myshop';
+        } else {
+            // Continúa comprando
+            // Puedes agregar aquí la lógica para seguir comprando
+        }
+    });
+
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   };

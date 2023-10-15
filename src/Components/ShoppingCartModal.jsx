@@ -70,7 +70,7 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   const removecart = () => {
     // Vaciar todo el carrito
     localStorage.removeItem("cart");
-    
+    window.location.reload()
     setCurrentCart([]);
   };
   
@@ -81,12 +81,7 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   }
 
 
-  const handlesendpayment = () => {
-    console.log("cli");
-    dispatch(sendpayament(datashop))
-    localStorage.removeItem("cart");
-    
-  }
+  
   
   useEffect(() => {
     localStorage.setItem("orderdata", JSON.stringify(datashop));
@@ -124,45 +119,50 @@ const ModalCarrito = ({ isOpen, onClose }) => {
       <div className="modal-background" onClick={onClose}></div>
       <div className="modal-card  w-[260px] md:w-[600px]  mx-auto">
         <div className="flex justify-center">
-          <h1 className="text-4xl md:mb-0 mb-8 font-custom text-center">Tu Compra</h1>
+          <h1 className="text-4xl md:mb-8 mb-8 font-custom text-center">Tu Compra</h1>
         </div>
         <section className="modal-card-body  p-4">
           <ul>
-            {currentCart.map((item, index) => (
-              <li key={index} className="md:mb-6  mb-10">
-                <div className="flex items-center h-[100px]">
-                  <img
-                    src={item.imagen}
-                    alt={item.imagen}
-                    className="w-24 h-24 rounded-lg mr-4"
-                    />
-                  <div>
-                    <div className="font-bold text-black">{item.nombre}</div>
-                    <div className="text-gray-600">Precio: ${item.precio}</div>
-                    <div className="text-center mt-2">Cantidad: 1</div>
-                    <div>
-                      <button
-                        onClick={() => removeItemFromCart(index)}
-                        className="text-red-500 font-custom"
-                      >
-                        Eliminar
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            ))}
+          {currentCart.map((item, index) => (
+  <li key={index} className="md:mb-6 mb-10">
+    <div className="flex flex-col md:flex-row items-center justify-between md:justify-start h-[100px]">
+      <div className="flex items-center">
+        <img
+          src={item.imagen}
+          alt={item.imagen}
+          className="w-24 h-24 rounded-lg mr-4"
+        />
+        <div className="flex flex-col">
+          <div className="font-bold text-black">{item.nombre}</div>
+          <div className=" mt-2">Cantidad: 1</div>
+          <div>
+            <button
+              onClick={() => removeItemFromCart(index)}
+              className="text-red-500  mt-2 font-custom"
+            >
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="text-center md:text-right mt-4 md:mt-0">
+        <div className="text-gray-600">Precio: ${item.precio.toFixed(2)}</div>
+      </div>
+    </div>
+  </li>
+))}
           </ul>
         </section>
 
         <div>
-          <div className="text-gray-600 font-bold text-xl my-4">
+          <div className="text-gray-600 flex  justify-end font-bold text-xl my-4">
+            
             Total: ${total.toFixed(2)}
           </div>
         </div>
         <hr className="my-4 border-t border-gray-400" />
-        <div className="flex justify-start font-custom text-2xl items-start">
-          <button className="font-custom text-lg md:text-2xl" onClick={removecart}>
+        <div className="flex justify-end font-custom text-2xl items-start">
+          <button className="font-custom  text-lg md:text-2xl" onClick={removecart}>
             Vaciar carrito
           </button>
         </div>
