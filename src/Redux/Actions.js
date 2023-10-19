@@ -14,8 +14,9 @@ export const registerbasic = (payload) => {
   return async function (dispatch) {
     try {
       // Realizar la solicitud POST a /users con el payload
-      const response = await axios.post('https://terapias-holisticas-dmc-back.vercel.app/users', payload);
-      console.log(response, "register");
+      const response = await axios.post('http://localhost:3001/users', payload);
+      console.log(response.data, "register");
+     
       if (response.data.duplicated == true) {
         Swal.fire({
           icon: 'error', // Cambiado de 'success' a 'error'
@@ -94,9 +95,16 @@ export const Loginregister = (payload) => {
   return async function (dispatch) {
     try {
 console.log(payload);
-      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/validate", payload);
-
-      if (response.data === false) {
+      const response = await axios.post("http://localhost:3001/validate", payload);
+console.log(response.data,"responsedata");
+      if(response.data.isDeleted === true){
+        Swal.fire({
+          icon: 'error', // Cambiado de 'success' a 'error'
+          title: 'Tu cuenta no esta verificada',
+          text: 'Por favor verifica tu cuenta.',
+        });
+        
+      }else if (response.data === false) {
         Swal.fire({
           icon: 'error',
           title: 'Inicio de sesión incorrecto!',
@@ -302,7 +310,7 @@ export const validateotp = (payload) => {
   return async function () {
     try {
     console.log(payload,"pay");
-      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/validateop", payload)
+      const response = await axios.post("http://localhost:3001/validateop", payload)
       
       console.log(response);
       if(response.data === true){

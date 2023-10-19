@@ -22,6 +22,7 @@ function DetailCourse() {
   const [isFormSubmitted, setFormSubmitted] = useState(false);
   const [newComment, setNewComment] = useState("");
   const [coursess, setCoursess] = useState(null);
+
   useEffect(() => {
     dispatch(getallcourses());
     dispatch(getAllComments(id)).then(() => {
@@ -43,6 +44,7 @@ function DetailCourse() {
         if (parsedCourse && parsedCourse.id === id) {
           // Si el curso almacenado coincide con el ID actual, establece el curso en el estado
           setCoursess(parsedCourse);
+          
         }
       } catch (error) {
         // Manejar cualquier error al analizar JSON

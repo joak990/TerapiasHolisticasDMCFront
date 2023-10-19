@@ -97,17 +97,7 @@ dispatch(Loginregister(form)).then((response) => {
   console.log(response,"ident");
   if(response == true) {
     navigate("/")
-    
-   
-  }else {
-    Swal.fire({
-      title: 'Datos Incorrectos',
-      icon: 'error',
-      buttonsStyling: false,
-      customClass: {
-        confirmButton: 'bg-orange-600 text-white rounded-md px-4 py-2',
-      }
-    })
+
   }
   })
     setForm({

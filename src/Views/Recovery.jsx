@@ -35,6 +35,7 @@ function Recovery() {
     const formData = {
       email: email,
       code: parseInt(code.join(""), 10),
+      
     };
 
     dispatch(sendrecoverypass(formData))
