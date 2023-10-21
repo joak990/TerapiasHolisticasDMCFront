@@ -1,45 +1,41 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import VideoControls from "./VideoControls";
 import { useSelector } from "react-redux";
 import Pagination from "./Pagination";
 
 function ReactPlayerVideo() {
- 
-  const getmyvideos = useSelector(state => state.mycoursesvideos);
+  const getmyvideos = useSelector((state) => state.mycoursesvideos);
   const numPage = useSelector((state) => state.numPage);
-
 
   let desde = (numPage - 1) * 1;
   let hasta = numPage * 1;
   let cantPages = Math.floor(getmyvideos.length / 1);
-  let viewvideos = getmyvideos.slice(desde, hasta)
- 
+  let viewvideos = getmyvideos.slice(desde, hasta);
+
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const videoRef = useRef(null);
+  const videoRefs = useRef([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(1);
   const [playBackRate, setPlayBackRate] = useState(1);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [duration, setDuration] = useState(0);
   const [progress, setProgress] = useState(0);
- 
+
   useEffect(() => {
-    const video = videoRef.current;
-    
-  console.log(video);
+    const video = videoRefs.current[currentVideoIndex];
+
     if (video) {
-      const handleTimeUpdate =  async ()  =>await setProgress(video.currentTime);
-      const handleDurationChange =  async () => await setDuration(video.duration);
-      console.log("numPage:", numPage);
-      console.log("viewvideos:", viewvideos);
+      const handleTimeUpdate = async () => await setProgress(video.currentTime);
+      const handleDurationChange = async () => await setDuration(video.duration);
+
       video.addEventListener("timeupdate", handleTimeUpdate);
       video.addEventListener("durationchange", handleDurationChange);
-     
+
       const videoContainer = document.getElementById("videoContainer");
       videoContainer.addEventListener("contextmenu", (e) => {
-        e.preventDefault(); // Evita que se abra el menú contextual
+        e.preventDefault();
       });
-      setCurrentVideoIndex(0);
+
       return () => {
         video.removeEventListener("timeupdate", handleTimeUpdate);
         video.removeEventListener("durationchange", handleDurationChange);
@@ -48,10 +44,10 @@ function ReactPlayerVideo() {
         });
       };
     }
-  }, [getmyvideos,numPage]);
+  }, [getmyvideos, numPage, currentVideoIndex]);
 
   const tooglePlay = useCallback(() => {
-    const video = videoRef.current;
+    const video = videoRefs.current[currentVideoIndex];
     if (video.paused) {
       video.play();
       setIsPlaying(true);
@@ -59,10 +55,9 @@ function ReactPlayerVideo() {
       video.pause();
       setIsPlaying(false);
     }
-  }, []);
+  }, [currentVideoIndex]);
 
   const handleVideoEnded = useCallback(() => {
-    // Cuando un video termina, avanza al siguiente si hay más videos
     if (currentVideoIndex < viewvideos.length - 1) {
       setCurrentVideoIndex(currentVideoIndex + 1);
     }
@@ -70,18 +65,18 @@ function ReactPlayerVideo() {
 
   const handleVolumeChange = useCallback((e) => {
     const newVolume = e.target.value;
-    videoRef.current.volume = newVolume;
+    videoRefs.current[currentVideoIndex].volume = newVolume;
     setVolume(newVolume);
-  }, []);
+  }, [currentVideoIndex]);
 
   const handlePlayBackRateChange = useCallback((e) => {
     const newPlayBackRate = e.target.value;
-    videoRef.current.playbackRate = newPlayBackRate;
+    videoRefs.current[currentVideoIndex].playbackRate = newPlayBackRate;
     setPlayBackRate(newPlayBackRate);
-  }, []);
+  }, [currentVideoIndex]);
 
   const toogleFullScreen = useCallback(() => {
-    const video = videoRef.current;
+    const video = videoRefs.current[currentVideoIndex];
     if (!isFullScreen) {
       if (video.requestFullscreen) {
         video.requestFullscreen();
@@ -102,55 +97,50 @@ function ReactPlayerVideo() {
       }
     }
     setIsFullScreen(!isFullScreen);
-  }, [isFullScreen]);
+  }, [isFullScreen, currentVideoIndex]);
 
   const handleProgressChange = useCallback((e) => {
     const newProgress = e.target.value;
-    videoRef.current.currentTime = newProgress;
+    videoRefs.current[currentVideoIndex].currentTime = newProgress;
     setProgress(newProgress);
-  }, []);
+  }, [currentVideoIndex]);
 
   return (
-   <div>
-    <div
-      id="videoContainer"
-      className="relative  border shadow-2xl shadow-black rounded-md overflow-hidden w-[900px] h[500px] drop-shadow-sm group"
-    >
-      {
-         viewvideos?.map((el, i) => {
+    <div>
+      <div
+        id="videoContainer"
+        className="relative border shadow-2xl shadow-black rounded-md overflow-hidden w-[900px] h[500px] drop-shadow-sm group"
+      >
+        {viewvideos?.map((el, i) => {
           return (
             <video
               key={i}
               src={el.link}
               controlsList="nodownload"
               className="w-ful h-full object-cover"
-              ref={videoRef}
+              ref={(el) => (videoRefs.current[i] = el)}
               onClick={tooglePlay}
-              onEnded={handleVideoEnded} // Detecta cuando un video termina
+              onEnded={handleVideoEnded}
               style={{ display: i === currentVideoIndex ? "block" : "none" }}
-           
             ></video>
-          )
-        })
-      }
-      <VideoControls
-        progress={progress}
-        duration={duration}
-        isPlaying={isPlaying}
-        volume={volume}
-        playbackrate={playBackRate}
-        isFullScreen={isFullScreen}
-        tooglePlay={tooglePlay}
-        handleVolumeChange={handleVolumeChange}
-        handleProgressChange={handleProgressChange}
-        toogleFullScreen={toogleFullScreen}
-        handlePlayBackRateChange={handlePlayBackRateChange}
-      />
-      <div>
+          );
+        })}
+        <VideoControls
+          progress={progress}
+          duration={duration}
+          isPlaying={isPlaying}
+          volume={volume}
+          playbackrate={playBackRate}
+          isFullScreen={isFullScreen}
+          tooglePlay={tooglePlay}
+          handleVolumeChange={handleVolumeChange}
+          handleProgressChange={handleProgressChange}
+          toogleFullScreen={toogleFullScreen}
+          handlePlayBackRateChange={handlePlayBackRateChange}
+        />
+      </div>
+      <Pagination cantPages={cantPages} />
     </div>
-   
-    </div>
-    <Pagination cantPages={cantPages} /></div>  
   );
 }
 

@@ -62,7 +62,7 @@ function Login() {
         });
       } else {
         navigate("/");
-        localStorage.setItem('name',response.user.displayName)
+        localStorage.setItem('id',response.user.uid)
       }
     });
   };

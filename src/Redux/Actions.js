@@ -237,7 +237,7 @@ export const getmycourses = (id) => {
   return async function (dispatch) {
     try {
       console.log(id, "payloadgetMyCourses");
-      const response = await axios.get(`https://terapias-holisticas-dmc-back.vercel.app/videos/${id}`)
+      const response = await axios.get(`http://localhost:3001/videos/${id}`)
 
       return dispatch({
         type: GET_COURSES_VIDEOS,
