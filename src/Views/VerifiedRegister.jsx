@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import logogira from '../img/logosinfondo.png';
 import { useDispatch } from "react-redux";
-import { validateotp } from "../Redux/Actions";
+import { validateotp, resendcode } from "../Redux/Actions";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from 'sweetalert2';
 
 function VerifiedRegister() {
   const [code, setCode] = useState(["", "", "", ""]);
-  const [timeLeft, setTimeLeft] = useState(120); // 2 minutos en segundos
+  const [timeLeft, setTimeLeft] = useState(120);
+  const [isResendDisabled, setIsResendDisabled] = useState(true);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { email } = useParams();
   const { name } = useParams();
 
-  console.log(name, "email che");
+  useEffect(() => {
+    // Deshabilitar el botón al montar el componente
+    setIsResendDisabled(true);
+  }, []);
 
   const handleCodeChange = (event, index) => {
     const value = event.target.value;
 
-    // Verificar que el valor sea un dígito y limitar la longitud a 1
     if (/^\d$/.test(value) && index >= 0 && index <= 3) {
       const updatedCode = [...code];
       updatedCode[index] = value;
@@ -39,6 +42,8 @@ function VerifiedRegister() {
       return () => {
         clearInterval(countdown);
       };
+    } else {
+      setIsResendDisabled(false);
     }
   }, [timeLeft]);
 
@@ -52,39 +57,51 @@ function VerifiedRegister() {
       code: verificationCode,
     };
 
-    // Restablece el tiempo restante a 2 minutos al verificar
     setTimeLeft(120);
 
     dispatch(validateotp(formData))
-    .then((response) => {
-      if (response.status === 'approved') {
-        localStorage.setItem("email", email);
-        localStorage.setItem("name", name);
-        Swal.fire({
-          title: 'Registro Exitoso',
-          icon: 'success',
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: 'bg-bgla text-white rounded-md px-4 py-2',
-          },
-        });
-        navigate("/");
-      } else if (response.status === 'declined') {
-        Swal.fire({
-          title: 'El código es incorrecto!',
-          icon: 'error',
-          buttonsStyling: false,
-          customClass: {
-            confirmButton: 'bg-orange-600 text-white rounded-md px-4 py-2',
-          },
-        });
-        setCode(["", "", "", ""]);
-      }
-    })
-    .catch((error) => {
-      // Maneja errores aquí si es necesario
-      console.error('Error:', error);
-    });
+      .then((response) => {
+        if (response.status === 'approved') {
+          localStorage.setItem("email", email);
+          localStorage.setItem("name", name);
+          Swal.fire({
+            title: 'Registro Exitoso',
+            icon: 'success',
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: 'bg-bgla text-white rounded-md px-4 py-2',
+            },
+          });
+          navigate("/");
+        } else if (response.status === 'declined') {
+          Swal.fire({
+            title: 'El código es incorrecto!',
+            icon: 'error',
+            buttonsStyling: false,
+            customClass: {
+              confirmButton: 'bg-orange-600 text-white rounded-md px-4 py-2',
+            },
+          });
+          setCode(["", "", "", ""]);
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+
+  const handleSubmitresendcode = () => {
+    const formData = {
+      email: email,
+    };
+    dispatch(resendcode(formData))
+      .then((response) => {
+        setIsResendDisabled(true);
+        setTimeLeft(120);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   return (
@@ -114,6 +131,15 @@ function VerifiedRegister() {
         <div className="text-center">
           <div className="font-bold">
             Tiempo restante: {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+          </div>
+          <div className="mt-4">
+            <button
+              onClick={handleSubmitresendcode}
+              className={`bg-bgla w-44 h-10 rounded-lg text-white ${isResendDisabled ? 'cursor-not-allowed bg-blue-200' : ''}`}
+              disabled={isResendDisabled}
+            >
+              Reenviar código
+            </button>
           </div>
           <button
             className="bg-bgla mt-4 text-white py-2 px-4 rounded hover-bg-blue-600"
