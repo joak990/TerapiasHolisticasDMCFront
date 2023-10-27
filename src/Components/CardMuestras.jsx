@@ -14,7 +14,7 @@ function CardMuestras() {
 
   return (
     <div
-      className={`max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform`}
+      className={`max-w-sm mx-auto bg-blue-100 shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >

@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       {location.pathname !== "/register" && location.pathname !== "/login" && (
-        <div className="fixed z-50 bottom-4 right-4">
+        <div className="fixed z-50  bottom-4 right-4">
           <a
             href="https://web.whatsapp.com/send?phone=5491159482032"
             target="_blank"

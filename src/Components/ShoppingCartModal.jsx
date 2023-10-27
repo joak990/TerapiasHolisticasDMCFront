@@ -56,16 +56,7 @@ const ModalCarrito = ({ isOpen, onClose }) => {
       console.log(error);
     }
   }
-  
-  // const handlebuy = async () => {
-  //   const id = await createpreference()
-  //   if(id) {
-  //     setPreferenceId(id)
-  //   }
-  //   // console.log('----preferenceid---',prefenceId);
-  // }
-  
-  
+
 
   const removecart = () => {
     // Vaciar todo el carrito
@@ -113,11 +104,11 @@ const ModalCarrito = ({ isOpen, onClose }) => {
     } else {
       console.error("Hubo un problema al guardar la información del pedido en el localStorage.");
     }
-  };
+  }
   return (
     <div className={`modal mt-44 md:mt-44 ${isOpen ? "is-active" : ""}`}>
       <div className="modal-background" onClick={onClose}></div>
-      <div className="modal-card  w-[260px] md:w-[600px]  mx-auto">
+      <div className="modal-card  w-[260px] md:w-[600px] bg-blue-100  mx-auto">
         <div className="flex justify-center">
           <h1 className="text-4xl md:mb-8 mb-8 font-custom text-center">Tu Compra</h1>
         </div>

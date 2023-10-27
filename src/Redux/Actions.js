@@ -16,7 +16,7 @@ export const registerbasic = (payload) => {
   return async function (dispatch) {
     try {
       // Realizar la solicitud POST a /users con el payload
-      const response = await axios.post('http://localhost:3001/users', payload);
+      const response = await axios.post('/users', payload);
       console.log(response.data, "register");
 
       if (response.data.duplicated == true) {
@@ -58,8 +58,9 @@ export const register_google = (payload) => {
   return async function (dispatch) {
     try {
 
-      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/users", payload);
+      const response = await axios.post("/users", payload);
       console.log(payload, "pay");
+      
       if (response.data === true) {
         return { success: false }
       } else {
@@ -97,7 +98,7 @@ export const Loginregister = (payload) => {
   return async function (dispatch) {
     try {
       console.log(payload);
-      const response = await axios.post("http://localhost:3001/validate", payload);
+      const response = await axios.post("/validate", payload);
       console.log(response.data, "responsedata");
       if (response.data.isDeleted === true) {
         Swal.fire({
@@ -177,8 +178,8 @@ export const updateCartFromLocalStorage = (cart) => {
 export const getallcourses = () => {
   return async function (dispatch) {
     try {
-      const json = await axios.get("https://terapias-holisticas-dmc-back.vercel.app/cursos");
-
+      const json = await axios.get("/cursos");
+           
       return dispatch({
         type: GET_ALL_COURSES,
         payload: json.data,
@@ -203,7 +204,7 @@ export const sendpayament = (payload) => {
   return async function () {
     try {
 
-      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/cursos/pago", payload)
+      const response = await axios.post("/cursos/pago", payload)
 
 
 
@@ -220,7 +221,7 @@ export const createcomment = (payload) => {
   return async function () {
     try {
       console.log(payload, "pay");
-      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/comments", payload)
+      const response = await axios.post("/comments", payload)
 
       console.log(response, "response");
 
@@ -237,7 +238,7 @@ export const getmycourses = (id) => {
   return async function (dispatch) {
     try {
       console.log(id, "payloadgetMyCourses");
-      const response = await axios.get(`http://localhost:3001/videos/${id}`)
+      const response = await axios.get(`/videos/${id}`)
 
       return dispatch({
         type: GET_COURSES_VIDEOS,
@@ -259,7 +260,7 @@ export const getallmycourses = (payload) => {
     try {
       console.log(payload, "payloadgetMyCourses");
       const objectEmail = { email: payload }
-      const response = await axios.post(`https://terapias-holisticas-dmc-back.vercel.app/cursos/miscursos`, objectEmail)
+      const response = await axios.post(`/cursos/miscursos`, objectEmail)
 
       return dispatch({
         type: GET_ALL_MY_COURSES,
@@ -290,7 +291,7 @@ export const getAllComments = (id) => {
 
   return async function (dispatch) {
     try {
-      const response = await axios.post(`https://terapias-holisticas-dmc-back.vercel.app/all_comments/${id}`);
+      const response = await axios.post(`/all_comments/${id}`);
 
       return dispatch({
         type: ALL_COMMENTS,
@@ -312,7 +313,7 @@ export const validateotp = (payload) => {
   return async function () {
     try {
       console.log(payload, "pay");
-      const response = await axios.post("http://localhost:3001/validateop", payload)
+      const response = await axios.post("/validateop", payload)
 
       console.log(response);
       if (response.data === true) {
@@ -335,7 +336,7 @@ export const sendrecoverypass = (payload) => {
   return async function () {
     try {
       console.log(payload, "pay");
-      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/send-recovery", payload)
+      const response = await axios.post("/send-recovery", payload)
 
       console.log(response);
       if (response.data === false) {
@@ -373,7 +374,7 @@ export const changepass = (payload) => {
   return async function () {
     try {
       console.log(payload, "pay");
-      const response = await axios.put("https://terapias-holisticas-dmc-back.vercel.app/recovery", payload)
+      const response = await axios.put("/recovery", payload)
       console.log(response);
       if (response.data === true) {
         return { status: "approved" }
@@ -396,7 +397,7 @@ export const resendcode = (payload) => {
   return async function () {
     try {
       console.log(payload, "pay");
-      const response = await axios.post("http://localhost:3001/resendcode", payload)
+      const response = await axios.post("/resendcode", payload)
       if (response.data === true) {
         return { status: "approved" }
       } else {

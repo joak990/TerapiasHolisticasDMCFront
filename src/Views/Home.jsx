@@ -4,7 +4,7 @@ import CoverImage from "../img/terapia.jpg"; // Reemplaza "terapia.jpg" con la r
 
 const Home = () => {
   return (
-    <div>
+    <div className="bg-blue-100">
       <div
         className="h-[400px] bg-center bg-cover"
         style={{ backgroundImage: `url(${CoverImage})` }}
@@ -14,14 +14,13 @@ const Home = () => {
         </div>
       </div>
       <div className="text-center mt-10">
-      <h1 className="text-5xl  text-azullog font-bold  mb-1">Nuestros cursos en linea!</h1>
+      <h1 className="text-5xl  text-blue-950  font-roboto mb-1">Nuestros cursos en linea!</h1>
         <div className="flex flex-col sm:flex-row justify-center items-center mt-4">
           <CardCourses className="mt-4" />
-          
         </div>
         <div className="text-center mt-10">
-        <h1 className="text-5xl  text-azullog font-bold mb-4">Conoce mas sobre nosotros</h1>
-        <div className="flex flex-col  mt-44 sm:flex-row  gap-10 justify-center items-center">
+        <h1 className="text-5xl  text-blue-950 font-roboto mb-4">Conoce mas sobre nosotros</h1>
+        <div className="flex flex-col  mt-24 sm:flex-row  gap-10 justify-center items-center">
           <CardMuestras className="mt-10"/>
           <CardMuestras className="mt-2" />
           <CardMuestras className="mt-2"/>

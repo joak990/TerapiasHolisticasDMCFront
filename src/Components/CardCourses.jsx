@@ -79,15 +79,15 @@ function CardCourses() {
       <Loading /> // Mostrar el componente de carga mientras isLoading es true
     ) : (
       // Cuando isLoading es falso, mostrar la lista de cursos
-      <div className="md:flex   gap-32  ">
+      <div className="md:flex    gap-20  ">
         {courses.map((course) => (
-        <div key={course.id} className="max-w-xs mt-28 bg-white shadow-xl  shadow-blue-200 rounded-lg overflow-hidden">
+        <div key={course.id} className="w-[400px] mt-28 bg-white shadow-xl  shadow-blue-400 rounded-lg overflow-hidden">
           <img src={course.imagen} alt={course.nombre} className="w-full h-auto" />
           <div className="p-4">
             <h2 className="text-xl font-custom font-semibold mb-2">{course.nombre}</h2>
             <p className="text-gray-700 font-custom">{course.descripcion}</p>
             <div className="flex justify-between items-center mt-4">
-              <p className="font-custom text-gray-500 text-lg"> ${course.precio}</p>
+              <p className="font-custom text-gray-900  text-xl"> ${course.precio}</p>
               <button onClick={() => handleBuyClick(course)} className="font-bold bg-bgla hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
                 Comprar
               </button>
