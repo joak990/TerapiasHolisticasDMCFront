@@ -152,7 +152,8 @@ function Navbar() {
               </ul>
               <div className=" md:mt-0  mt-4 flex items-center relative">
                 <div>
-                  {fotoURL ? (
+                  {
+                  fotoURL ? (
                     <img
                       src={storedFotoURL}
                       onClick={toggleOptions}
@@ -160,12 +161,21 @@ function Navbar() {
                       alt="Foto de perfil"
                     />
                   ) : (
-                    <FiUser
+
+                    displayName?  (
+                      <FiUser
                     
                       onClick={toggleOptions}
                       className="cursor-pointer h-7 w-7"
                     />
-                  )}
+                    ) : (null)
+                    // <FiUser
+                    
+                    //   onClick={toggleOptions}
+                    //   className="cursor-pointer h-7 w-7"
+                    // />
+                  )
+                  }
                   {cart.length > 0 && (
                     <div className="bg-red-500 text-white text-xs w-5 h-5 rounded-full absolute top-0 right-10 md:right-0 -mt-1 -mr-1 flex items-center justify-center">
                       {cart.length}
