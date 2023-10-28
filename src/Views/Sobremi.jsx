@@ -1,3 +1,4 @@
+import CardMuestras from "../Components/CardMuestras";
 import me from "../img/sobremi.jpg";
 
 function Sobremi() {
@@ -13,6 +14,16 @@ function Sobremi() {
             Mi distinción es la auto-exploración y apropiación de todo aquello que resuena conmigo para re-crearme, y acompañar a recrear, una vida llena de paz, liviandad y disfrute. Este es mi legado para vos.
           </p>
         </div>
+       
+      </div>
+      <div className="text-center mt-10">
+        <h1 className="text-5xl  text-blue-950 font-roboto mb-4">Conoce mas sobre nosotros</h1>
+        <div className="flex flex-col  mt-24 sm:flex-row  gap-10 justify-center items-center">
+          <CardMuestras className="mt-10"/>
+          <CardMuestras className="mt-2" />
+          <CardMuestras className="mt-2"/>
+        </div>
+       
       </div>
     </div>
   );

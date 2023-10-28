@@ -151,8 +151,11 @@ function DetailCourse() {
                 </span>
               </div>
               <p className="text-center text-gray-600 sm:text-left mt-4">
-                ¿Quieres comprar este curso? <a href="/">Haz clic aquí</a>.
+                Comprar <a href="/"></a>.
               </p>
+            </div>
+            <div>
+              <h2 className="font-semibold">Tenes mas dudas sobre este curso hace <span className="text-blue-700 cursor-pointer">click aqui</span> </h2>
             </div>
           </div>
           <div className="sm:w-1/2 sm:ml-4 lg:w-2/3 lg:ml-6">
@@ -160,6 +163,7 @@ function DetailCourse() {
             <p className="text-gray-700 mb-4">{course?.descripcion}</p>
             <div className="flex items-center justify-between mb-4">
             </div>
+          
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="Contenido" className="block text-gray-600">

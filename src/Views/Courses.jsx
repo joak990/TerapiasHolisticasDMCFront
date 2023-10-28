@@ -1,4 +1,5 @@
 
+import CardCourses from "../Components/CardCourses";
 import CardCoursesMas from "../Components/CardCoursesMas";
 
 function Courses() {
@@ -9,7 +10,7 @@ function Courses() {
     <div className="flex flex-col items-center ">
       <div className="text-4xl font-custom  mb-4 text-azullog">Explora Nuestros Cursos</div>
       <div className="flex justify-center gap-8">
-        <CardCoursesMas className="flex justify-center" />
+        <CardCourses className="flex justify-center" />
      
       </div>
       <div className="text-4xl mt-24 font-bold text-azullog">¿Por qué elegirnos?</div>
