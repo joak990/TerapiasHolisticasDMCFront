@@ -2,11 +2,13 @@
 import ReactPlayerVideo from '../Components/ReactPlayer';
 
 function PlayMyCourses() {
-
-  return (
-    <div className="min-h-screen md:mt-44 mt-0  flex items-center justify-center">
+  
+  return (  
+    <div style={{ backgroundColor: 'black', width: '100vw', height: '100vh' }} className="h-full w-full md:mt-20 mt-0 bg-black  flex items-center justify-center">
+      <div className='flex'>
       
-      <ReactPlayerVideo />
+      </div>
+      <ReactPlayerVideo  />
       <div className=' justify-center items-center'>
      
       </div>

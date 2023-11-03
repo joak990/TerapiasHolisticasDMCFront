@@ -61,7 +61,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/myshop" element={<ModalCarrito />} />
-        <Route path="/playcourse/:courseId" element={<PlayMyCourses />} />
+        <Route path="/playcourse/:courseId" element={<PlayMyCourses  />} />
         <Route path="/success" element={<Success />} />
         <Route path="/paypal" element={<PaypalButton />} />
         <Route path="/:id" element={<DetailCourse />} />

@@ -7,44 +7,46 @@ const Pagination = ({ cantPages }) => {
   const dispatch = useDispatch();
 
   function next() {
-    dispatch(nextPage());
+    if (numPage < cantPages) {
+      dispatch(nextPage());
+    }
   }
+
   function prev() {
-    dispatch(prevPage());
+    if (numPage > 1) {
+      dispatch(prevPage());
+    }
   }
 
   return (
     <div className="flex justify-center items-center mt-16">
-      {numPage > 1 ? (
-        <div className="mr-4">
-          <button
-            className="bg-bgla w-20 md:w-24 h-12 text-white rounded-xl font-bold"
-            onClick={prev}
-          >
-            PREV
-          </button>
-        </div>
-      ) : null}
-      <div className="text-xl font-bold">
-        <h3>{numPage}</h3>
+      <div className="mr-4">
+        <button
+          className=" w-20 md:w-24 h-12 text-white rounded-xl font-bold"
+          onClick={prev}
+          disabled={numPage === 1}
+        >
+          PREV
+        </button>
       </div>
-      {numPage < cantPages ? (
-        <div className="ml-4">
-          <button
-            className="bg-bgla w-20 md:w-24 h-12 text-white rounded-xl font-bold"
-            onClick={next}
-          >
-            NEXT
-          </button>
-        </div>
-      ) : null}
+      <div className="text-xl font-bold">
+        <h3 className="text-white shadow-xl" >{numPage}</h3>
+      </div>
+      <div className="ml-4">
+        <button
+          className=" w-20 md:w-24 h-12 text-white rounded-xl font-bold"
+          onClick={next}
+          disabled={numPage === cantPages}
+        >
+          NEXT
+        </button>
+      </div>
     </div>
   );
 };
 
 Pagination.propTypes = {
-    cantPages: PropTypes.number.isRequired,
-
+  cantPages: PropTypes.number.isRequired,
 };
 
 export default Pagination;

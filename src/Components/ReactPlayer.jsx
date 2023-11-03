@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import VideoControls from "./VideoControls";
 import { useSelector } from "react-redux";
 import Pagination from "./Pagination";
@@ -106,7 +106,26 @@ function ReactPlayerVideo() {
   }, [currentVideoIndex]);
 
   return (
-    <div>
+
+<div>
+  <div className="">
+    
+  {
+  viewvideos && viewvideos.map((el, index) => (
+    <div className="" key={index}>
+      <div className="flex justify-center">
+      <h1 className=" text-5xl text-center flex font-semibold text-white">{el.nombre}</h1>
+      </div>
+     
+        
+        <div  className="flex justify-center">
+        <h1 className=" text-white">{el.descripcion}</h1>
+        </div>
+     
+        </div>
+  ))
+}
+  </div>
       <div
         id="videoContainer"
         className="relative border shadow-2xl shadow-black rounded-md overflow-hidden w-[900px] h[500px] drop-shadow-sm group"
@@ -117,12 +136,12 @@ function ReactPlayerVideo() {
               key={i}
               src={el.link}
               controlsList="nodownload"
-              className="w-ful h-full object-cover"
+              className="w-[1000px] h-full object-cover"
               ref={(el) => (videoRefs.current[i] = el)}
               onClick={tooglePlay}
               onEnded={handleVideoEnded}
               style={{ display: i === currentVideoIndex ? "block" : "none" }}
-            ></video>
+              ></video>
           );
         })}
         <VideoControls
