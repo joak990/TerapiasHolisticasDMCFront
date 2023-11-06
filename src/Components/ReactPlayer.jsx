@@ -114,12 +114,12 @@ function ReactPlayerVideo() {
   viewvideos && viewvideos.map((el, index) => (
     <div className="" key={index}>
       <div className="flex justify-center">
-      <h1 className=" text-5xl text-center flex font-semibold text-white">{el.nombre}</h1>
+      <h1 className=" text-5xl text-center flex font-semibold text-black">{el.nombre}</h1>
       </div>
      
         
         <div  className="flex justify-center">
-        <h1 className=" text-white">{el.descripcion}</h1>
+        <h1 className=" text-black">{el.descripcion}</h1>
         </div>
      
         </div>

@@ -43,7 +43,7 @@ function CardCoursesMas() {
         <div className={isMobile ? "sm:flex-col" : "md:flex"}>
           {courses.map((course) => (
             <div key={course.id} className={`w-${isMobile ? 'full' : '1/3'} p-4`}>
-              <div className="w-[400px] mt-28 bg-white shadow-xl shadow-blue-400 rounded-lg overflow-hidden">
+              <div className="w-[400px] mt-28 bg-white shadow-xl shadow-blue-400 rounded-xl overflow-hidden">
                 <img src={course.imagen} alt={course.nombre} className="w-full h-auto" />
                 <div className="p-4">
                   <h2 className="text-xl font-custom font-semibold mb-2">{course.nombre}</h2>

@@ -144,7 +144,7 @@ if (Object.keys(newErrors).length === 0) {
             <button
               type="button"
               onClick={handleSubmit}
-              className="bg-bgla text-white py-2 px-4 rounded hover:bg-blue-900"
+              className="bg-blue-800  h-8 text-white w-full rounded hover:bg-blue-900"
             >
               Registrarse
             </button>

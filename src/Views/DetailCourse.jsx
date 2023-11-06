@@ -2,8 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Rating from "react-rating-stars-component";
-import Swal from 'sweetalert2';
-import { createcomment, getAllComments, getallcourses } from "../Redux/Actions";
+import Swal from "sweetalert2";
+import {
+  addToCart,
+  createcomment,
+  getAllComments,
+  getallcourses,
+} from "../Redux/Actions";
 import Loading from "../Components/Loading";
 
 function DetailCourse() {
@@ -44,7 +49,6 @@ function DetailCourse() {
         if (parsedCourse && parsedCourse.id === id) {
           // Si el curso almacenado coincide con el ID actual, establece el curso en el estado
           setCoursess(parsedCourse);
-          
         }
       } catch (error) {
         // Manejar cualquier error al analizar JSON
@@ -58,7 +62,7 @@ function DetailCourse() {
     id: iduser,
     curso: courseId,
     Contenido: "",
-    rating: ""
+    rating: "",
   });
 
   const handleRatingChange = (value) => {
@@ -75,6 +79,64 @@ function DetailCourse() {
       ...form,
       [name]: value,
     });
+  };
+  const handleBuyClick = (course) => {
+    const accountVerified = localStorage.getItem("name");
+    if (!accountVerified) {
+      Swal.fire({
+        title: "Necesitas iniciar sesión",
+        text: "Para comprar este curso, debes iniciar sesión.",
+        icon: "error",
+        showCancelButton: true,
+        confirmButtonText: "Iniciar Sesión",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Redirigir al usuario a la página de inicio de sesión
+          window.location.href = "/login"; // Cambia '/login' por la URL de tu página de inicio de sesión
+        }
+      });
+      return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const courseAlreadyInCart = cart.some(
+      (cartItem) => cartItem.id === course.id
+    );
+
+    if (courseAlreadyInCart) {
+      // Si el curso ya está en el carrito, mostrar un mensaje de error
+      Swal.fire({
+        title: "No puedes volver a agregar este curso",
+        text: "Este curso ya se encuentra en tu carrito de compras.",
+        icon: "error",
+      });
+    } else {
+      // Si el curso no está en el carrito, agregarlo
+      dispatch(addToCart({ course }));
+      cart.push(course);
+      Swal.fire({
+        title: "Producto agregado al carrito!",
+        text: "¿Deseas seguir comprando o ir al carrito?",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonText: "Ir al carrito",
+        cancelButtonText: "Seguir comprando",
+        customClass: {
+          confirmButton: "bg-blue-200 text-white", // Clase para el botón "Ir al carrito"
+          cancelButton: "bg-gray-200 text-white", // Clase para el botón "Seguir comprando"
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // Redirige a /myshop
+          window.location.href = "/myshop";
+        } else {
+          // Continúa comprando
+          // Puedes agregar aquí la lógica para seguir comprando
+        }
+      });
+
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
   };
 
   const handleSubmit = (event) => {
@@ -97,17 +159,16 @@ function DetailCourse() {
 
     if (Object.keys(newErrors).length === 0) {
       dispatch(createcomment(form));
-      
+
       // Actualiza el comentario en el localStorage
-     
-      
+
       Swal.fire({
-        title: 'Comentario enviado',
-        icon: 'success',
+        title: "Comentario enviado",
+        icon: "success",
         buttonsStyling: false,
         customClass: {
-          confirmButton: 'bg-blue-600 text-white rounded-md px-4 py-2',
-        }
+          confirmButton: "bg-blue-600 text-white rounded-md px-4 py-2",
+        },
       });
 
       setNewComment(form.Contenido);
@@ -116,7 +177,7 @@ function DetailCourse() {
         Contenido: "",
         Rating: "",
         id: "",
-        curso: ""
+        curso: "",
       });
     }
   };
@@ -135,35 +196,50 @@ function DetailCourse() {
             />
             <div className="mt-2 sm:mt-4">
               <div className="sm:ml-2">
-                <Rating
-                  name="rating"
-                  count={5}
-                  value={4.5}
-                  edit={false}
-                  size={30}
-                  activeColor="#ffd700"
-                />
+                <div className="flex justify-between items-center">
+                  <div className="w-1/2">
+                    <Rating
+                      name="rating"
+                      count={5}
+                      value={4.5}
+                      edit={false}
+                      size={30}
+                      activeColor="#ffd700"
+                    />
+                  </div>
+                  <div className=" flex items-center  text-right">
+                    <span className="text-red-500 text-sm  md:text-xl  ml-4 line-through">
+                      {" "}
+                      $199.99{" "}
+                    </span>
 
-                <span className="text-red-500 text-lg ml-4 line-through"> $199.99 </span>
-
-                <span className="text-green-600 text-xl ml-4 font-bold font-custom">
-                  ${course?.precio}
-                </span>
+                    <span className="text-green-600 md:text-xl text-sm ml-4 font-bold font-custom">
+                      ${course?.precio}
+                    </span>
+                  </div>
+                </div> 
+                <div className="flex mt-4  justify-start">
+                  <button
+                    onClick={() => handleBuyClick(course)}
+                    className="font-bold bg-bgla hover:bg-blue-600 text-white font-bold w-28 h-8 rounded-full"
+                  >
+                    Comprar
+                  </button>
+                </div>
               </div>
-              <p className="text-center text-gray-600 sm:text-left mt-4">
-                Comprar <a href="/"></a>.
-              </p>
             </div>
-            <div>
-              <h2 className="font-semibold">Tenes mas dudas sobre este curso hace <span className="text-blue-700 cursor-pointer">click aqui</span> </h2>
+            <div className="mt-4">
+              <h2 className="font-semibold">
+                Tenes mas dudas sobre este curso hace{" "}
+                <span className="text-blue-700 cursor-pointer">click aqui</span>{" "}
+              </h2>
             </div>
           </div>
           <div className="sm:w-1/2 sm:ml-4 lg:w-2/3 lg:ml-6">
             <h1 className="text-2xl font-bold mb-4">{course?.nombre}</h1>
             <p className="text-gray-700 mb-4">{course?.descripcion}</p>
-            <div className="flex items-center justify-between mb-4">
-            </div>
-          
+            <div className="flex items-center justify-between mb-4"></div>
+
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label htmlFor="Contenido" className="block text-gray-600">
@@ -178,13 +254,16 @@ function DetailCourse() {
                   onChange={handleInputChange}
                 />
                 {errors.Contenido && (
-                  <p className="text-red-500 text-sm mt-1">{errors.Contenido}</p>
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.Contenido}
+                  </p>
                 )}
               </div>
               <div className="mb-4">
                 <label htmlFor="rating" className="block text-gray-600">
                   Calificación:
                 </label>
+
                 <Rating
                   name="rating"
                   count={5}
@@ -193,6 +272,7 @@ function DetailCourse() {
                   size={30}
                   activeColor="#ffd700"
                 />
+
                 {errors.rating && (
                   <p className="text-red-500 text-sm mt-1">{errors.rating}</p>
                 )}
@@ -211,7 +291,10 @@ function DetailCourse() {
         <h1 className="text-2xl font-bold text-center">Comentarios</h1>
         {allcomments && allcomments?.length > 0 ? (
           allcomments.map((el, index) => (
-            <div className="mt-4  md:ml-4 p-4 rounded-lg border border-gray-300 md:border-none" key={index}>
+            <div
+              className="mt-4  md:ml-4 p-4 rounded-lg border border-gray-300 md:border-none"
+              key={index}
+            >
               <h2 className="font-semibold text-xl">{el?.User?.name}</h2>
               <div className="flex items-center">
                 <Rating
@@ -234,7 +317,8 @@ function DetailCourse() {
         {/* Renderiza el nuevo comentario si existe */}
         {newComment && (
           <div className="mt-4  md:ml-4 p-4 rounded-lg border border-gray-300 md:border-none">
-            <h2 className="font-semibold text-xl">{namelocal}</h2> {/* Reemplaza "Tu Nombre" con el nombre del usuario actual */}
+            <h2 className="font-semibold text-xl">{namelocal}</h2>{" "}
+            {/* Reemplaza "Tu Nombre" con el nombre del usuario actual */}
             <div className="flex items-center">
               <Rating
                 name={`rating_new`}

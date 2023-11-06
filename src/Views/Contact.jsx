@@ -77,7 +77,7 @@ function Contact() {
   };
 
   return (
-    <div className=" bg-blue-100 min-h-screen flex justify-center items-center mt-28 md:mt-44 ">
+    <div className="  min-h-screen flex justify-center items-center mt-28 md:mt-44 ">
       <div className=" w-[300px] p-6 rounded-lg shadow-2xl shadow-black md:w-1/2">
         <h2 className="text-3xl font-extralight mb-6 text-center">Contáctanos</h2>
         <form action="https://getform.io/f/7a095ddb-8434-4364-9dc2-fb16286e3641" method="POST" className="space-y-4 ">

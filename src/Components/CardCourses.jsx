@@ -33,7 +33,7 @@ function CardCourses() {
       return;
     }
   
-    // Verificar si el curso ya está en el carrito
+   
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
     const courseAlreadyInCart = cart.some((cartItem) => cartItem.id === course.id);
   
