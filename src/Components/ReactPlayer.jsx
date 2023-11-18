@@ -133,7 +133,9 @@ function ReactPlayerVideo() {
         {viewvideos?.map((el, i) => {
           return (
             <video
+            
               key={i}
+              
               src={el.link}
               controlsList="nodownload"
               className="w-[1000px] h-full object-cover"

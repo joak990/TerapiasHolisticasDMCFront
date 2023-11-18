@@ -10,6 +10,7 @@ import {
   getallcourses,
 } from "../Redux/Actions";
 import Loading from "../Components/Loading";
+import VideoControls from "../Components/VideoControls";
 
 function DetailCourse() {
   const { id } = useParams();
@@ -156,17 +157,17 @@ function DetailCourse() {
             </ul><br />
             <p className="font font-semibold text-sm">1° nivel – Prácticas para la Certificación</p>
             <p>Incluye <br />
-Oración Sagrada, liberación de creencias y conductas para optimizar nuestro “ser canal”, recalibración energética y práctica: la primera apertura se hace en la clase.
-</p><br />
+              Oración Sagrada, liberación de creencias y conductas para optimizar nuestro “ser canal”, recalibración energética y práctica: la primera apertura se hace en la clase.
+            </p><br />
 
-<p className="font font-semibold text-sm ">2° nivel - Prácticas para la Certificación</p>
-<p>Luego de cursar el 1° nivel y tener una cierta práctica se puede realizar el 2° nivel de Registros Akáshicos para aprender a abrir registros de otros.</p><br />
-<ul>
+            <p className="font font-semibold text-sm ">2° nivel - Prácticas para la Certificación</p>
+            <p>Luego de cursar el 1° nivel y tener una cierta práctica se puede realizar el 2° nivel de Registros Akáshicos para aprender a abrir registros de otros.</p><br />
+            <ul>
               <li className="text-gray-800"> • Repaso de contenidos teóricos que sean necesarios</li>
               <li className="text-gray-800"> • Ejercicios para potenciar el/los sentidos con los que recibimos las canalizaciones</li>
               <li className="text-gray-800"> • Ejercicios de recalibración energética: para qué sirven y en qué circunstancias ofrecerlos</li>
               <li className="text-gray-800"> • Responsabilidad del lector: pautas, qué se recomienda y qué no</li>
-             
+
             </ul>
           </>
         );
@@ -245,9 +246,11 @@ Oración Sagrada, liberación de creencias y conductas para optimizar nuestro �
           <div className="mb-4 sm:w-1/2 sm:mr-4 lg:w-1/3 lg:mr-6">
             <video
               src={course?.contents}
-              autoPlay
               
+              
+              muted
               alt={course?.nombre}
+              controls
               className="w-full rounded-lg border border-purple-600"
             />
             <div className="mt-2 sm:mt-4">
@@ -273,7 +276,7 @@ Oración Sagrada, liberación de creencias y conductas para optimizar nuestro �
                       ${course?.precio}
                     </span>
                   </div>
-                </div> 
+                </div>
                 <div className="flex mt-4  justify-start">
                   <button
                     onClick={() => handleBuyClick(course)}
