@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react";
 import CardCoursesMas from "../Components/CardCoursesMas";
 import CardMuestras from "../Components/CardMuestras";
-import CoverImage from "../img/terapia.jpg"; // Reemplaza "terapia.jpg" con la ruta de tu imagen de portada
-import registros from "../img/registros.jpg";
+import carrusel from "../img/carrusel.jpg"; // Reemplaza "terapia.jpg" con la ruta de tu imagen de portada
+import carrusel2 from "../img/carrusel 2.jpg";
+import carrusel3 from "../img/carrusel 3.jpg";
+import carrusel4 from "../img/carrusel 4.jpg";
 import { RxDot } from "react-icons/rx";
 const Home = () => {
   const slides = [
     {
-      url: `${CoverImage}`,
+      url: `${carrusel}`,
     },
     {
-      url: `${registros}`,
+      url: `${carrusel2}`,
     },
     {
-      url: `${CoverImage}`,
+      url: `${carrusel3}`,
     },
     {
-      url: `${CoverImage}`,
+      url: `${carrusel4}`,
     },
   ];
 
@@ -45,9 +47,10 @@ const Home = () => {
   }, [currentIndex]);
 
   return (
+
     <div className="">
-      <div></div>
-      <div className="bg-black w-full py-60 h-[400px] md:h-[500px]  overflow-hidden relative">
+  
+      <div className="bg-black w-full py-60 h-[400px] md:h-[600px]  overflow-hidden relative">
         {slides.map((slide, slideIndex) => (
           <img
             key={slideIndex}

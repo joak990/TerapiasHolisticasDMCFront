@@ -139,6 +139,60 @@ function DetailCourse() {
     }
   };
 
+  const renderCourseContents = (course) => {
+    switch (course?.id) {
+      case "1":
+        return (
+          <>
+            <p className="font font-semibold text-lg">Contenidos</p>
+            <ul>
+              <li className="text-gray-800"> • Qué son los registros Akáshicos.</li>
+              <li className="text-gray-800"> • Historia de la técnica.</li>
+              <li className="text-gray-800"> • Objetivos de la técnica: ¿Para qué sirve una lectura de registros?</li>
+              <li className="text-gray-800"> • Energías planetarias hoy: qué significa 3°, 4° y 5° dimensión, y los primeros delineamientos de la 6°. Física cuántica: nociones básicas</li>
+              <li className="text-gray-800"> • Conexión con Akasha y la importancia de los 5 sentidos.</li>
+              <li className="text-gray-800"> • Claridad en el mensaje y características de los mismos</li>
+              <li className="text-gray-800"> • Perfil del lector.</li>
+            </ul><br />
+            <p className="font font-semibold text-sm">1° nivel – Prácticas para la Certificación</p>
+            <p>Incluye <br />
+Oración Sagrada, liberación de creencias y conductas para optimizar nuestro “ser canal”, recalibración energética y práctica: la primera apertura se hace en la clase.
+</p><br />
+
+<p className="font font-semibold text-sm ">2° nivel - Prácticas para la Certificación</p>
+<p>Luego de cursar el 1° nivel y tener una cierta práctica se puede realizar el 2° nivel de Registros Akáshicos para aprender a abrir registros de otros.</p><br />
+<ul>
+              <li className="text-gray-800"> • Repaso de contenidos teóricos que sean necesarios</li>
+              <li className="text-gray-800"> • Ejercicios para potenciar el/los sentidos con los que recibimos las canalizaciones</li>
+              <li className="text-gray-800"> • Ejercicios de recalibración energética: para qué sirven y en qué circunstancias ofrecerlos</li>
+              <li className="text-gray-800"> • Responsabilidad del lector: pautas, qué se recomienda y qué no</li>
+             
+            </ul>
+          </>
+        );
+      case "2":
+        return (
+          <>
+            <p className="font font-semibold text-2xl">Contenidos</p>
+            <ul>
+              <li className="text-gray-800">Breve historia de la técnica: su origen está en la kinesiología.</li>
+              <li className="text-gray-800">Objetivo de la técnica: conflicto desencadenante.</li>
+              <li className="text-gray-800">Tono muscular: qué es.</li>
+              <li className="text-gray-800">Sistemas de comunicación con el cuerpo: Si y No - Mudanza de Indicador</li>
+              <li className="text-gray-800">Rol del testeador: cuando el protagonista es el consultante</li>
+              <li className="text-gray-800">Importancia de la carpeta para testear y el “botiquín” del facilitador (elementos de testeo)</li>
+              <li className="text-gray-800">Etapas de un testeo: Pre-test, rueda china y testeo en sí</li>
+              <li className="text-gray-800">Herramientas del Pre-Test: cuerpos y chakras</li>
+              <li className="text-gray-800">Rueda China: Trabajo en 6º dimensión. Los 5 elementos: nociones básicas de medicina china</li>
+              <li className="text-gray-800">Herramientas del Testeo en sí: chakras y cuerpos (se incluyen también), meridianos, hidratación, timo, ionización, hioides, oídos, ojos, esencias florales, visualización, símbolos, viaje por el cuerpo, fijación, punto universal, flujo de energía arterio-venosa</li>
+            </ul>
+          </>
+        );
+      default:
+        return <p>Contenidos no disponibles</p>;
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormSubmitted(true);
@@ -189,8 +243,10 @@ function DetailCourse() {
       ) : (
         <div className="bg-white rounded-lg shadow-xl shadow-blue-200 p-4 sm:p-6 lg:p-8 sm:flex">
           <div className="mb-4 sm:w-1/2 sm:mr-4 lg:w-1/3 lg:mr-6">
-            <img
-              src={course?.imagen}
+            <video
+              src={course?.contents}
+              autoPlay
+              
               alt={course?.nombre}
               className="w-full rounded-lg border border-purple-600"
             />
@@ -237,7 +293,7 @@ function DetailCourse() {
           </div>
           <div className="sm:w-1/2 sm:ml-4 lg:w-2/3 lg:ml-6">
             <h1 className="text-2xl font-bold mb-4">{course?.nombre}</h1>
-            <p className="text-gray-700 mb-4">{course?.descripcion}</p>
+            {renderCourseContents(course)}
             <div className="flex items-center justify-between mb-4"></div>
 
             <form onSubmit={handleSubmit}>
