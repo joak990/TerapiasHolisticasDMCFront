@@ -81,8 +81,8 @@ function CardCourses() {
       // Cuando isLoading es falso, mostrar la lista de cursos
       <div className="md:flex    gap-20  ">
         {courses.map((course) => (
-        <div key={course.id} className="w-[400px] mt-28 bg-white shadow-xl  shadow-blue-400 rounded-lg overflow-hidden">
-          <img src={course.imagen} alt={course.nombre} className="w-full h-[250px] " />
+        <div key={course.id} className="w-[300px] mt-28 bg-white shadow-xl  shadow-blue-400 rounded-lg overflow-hidden">
+          <img src={course.imagen} alt={course.nombre} className="w-full h-[200px] " />
           <div className="p-4">
             <h2 className="text-xl font-custom font-semibold mb-2">{course.nombre}</h2>
             <p className="text-gray-700 font-custom">{course.descripcion}</p>
