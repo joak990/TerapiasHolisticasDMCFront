@@ -82,11 +82,7 @@ const Home = () => {
 
 
       <div className="relative flex justify-center mt-0 md:h-[800px]">
-        <div className="absolute w-full h-full" style={{
-          backgroundImage: `url(${image})`,
-          backgroundSize: 'cover',
-          filter: ' blur(4px)'
-        }}></div>
+       
 
         <div className="relative md:mt-32 ">
           <video

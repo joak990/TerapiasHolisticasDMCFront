@@ -373,14 +373,16 @@ export const changepass = (payload) => {
 
   return async function () {
     try {
-      console.log(payload, "pay");
+      console.log(payload, "payload changepass");
       const response = await axios.put("/recovery", payload)
+      console.log(response,'response changepass');
       console.log(response);
       if (response.data === true) {
         return { status: "approved" }
       }
-
-
+      else {
+        return {status : "desaprobado"}
+      }
     } catch (error) {
       // Error en la petición
       console.error(error);

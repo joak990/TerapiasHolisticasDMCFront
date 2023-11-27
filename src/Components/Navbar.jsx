@@ -169,11 +169,6 @@ function Navbar() {
                       className="cursor-pointer h-7 w-7"
                     />
                     ) : (null)
-                    // <FiUser
-                    
-                    //   onClick={toggleOptions}
-                    //   className="cursor-pointer h-7 w-7"
-                    // />
                   )
                   }
                   {cart.length > 0 && (
@@ -194,14 +189,7 @@ function Navbar() {
                 {isOptionsOpen && (
                   <div className="absolute right-0 top-10 bg-white w-32 p-2 rounded shadow-md">
                     <ul>
-                      <li>
-                        <a
-                          href="/profile"
-                          className="hover:text-blue-800 font-custom text-xl block"
-                        >
-                          Mi Perfil
-                        </a>
-                      </li>
+                    
                       <li>
                         <a
                           href="/mycourses"

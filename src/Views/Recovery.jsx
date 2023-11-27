@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import logogira from "../img/logosinfondo.png";
 import Swal from 'sweetalert2';
-import { sendrecoverypass, validateotp, changepass } from "../Redux/Actions";
+import { sendrecoverypass, validateotp, changepass, resendcode } from "../Redux/Actions";
 import Modal from 'react-modal';
 import { useNavigate } from "react-router-dom";
 
@@ -13,6 +13,7 @@ function Recovery() {
   const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
   const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [code, setCode] = useState(["", "", "", ""]);
+  const [isResendDisabled, setIsResendDisabled] = useState(true);
   const [password, setPassword] = useState(""); // Nueva contraseña
   const [repeatPassword, setRepeatPassword] = useState(""); // Repetir nueva contraseña
   const navigate = useNavigate()
@@ -35,21 +36,27 @@ function Recovery() {
     const formData = {
       email: email,
       code: parseInt(code.join(""), 10),
-      
+
     };
 
     dispatch(sendrecoverypass(formData))
-    .then((response) => {
-      if (response.status === 'approved') {
-        setIsCodeModalOpen(true);
-      }
-    });
+      .then((response) => {
+        if (response.status === 'approved') {
+          setIsCodeModalOpen(true);
+        }
+      });
   };
 
   const closeModal = () => {
     setIsCodeModalOpen(false);
     setIsPasswordModalOpen(false);
   };
+  
+  useEffect(() => {
+    // Deshabilitar el botón al montar el componente
+    setIsResendDisabled(true);
+  }, []);
+  
   useEffect(() => {
     if (timeLeft > 0) {
       const countdown = setInterval(() => {
@@ -59,28 +66,32 @@ function Recovery() {
       return () => {
         clearInterval(countdown);
       };
+    } else {
+      setIsResendDisabled(false);
     }
   }, [timeLeft]);
+
+
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
 
 
   const handleSubmitCode = () => {
-    
+
     const formData = {
       email: email,
       code: parseInt(code.join(""), 10),
     };
 
     dispatch(validateotp(formData))
-    .then((response) => {
-    
-      if (response.status === "approved") {
-        localStorage.setItem("code",parseInt(code.join(""), 10))
-        setIsCodeModalOpen(false);
-        setIsPasswordModalOpen(true);
-      }else{
-        Swal.fire({
+      .then((response) => {
+
+        if (response.status === "approved") {
+          localStorage.setItem("code", parseInt(code.join(""), 10))
+          setIsCodeModalOpen(false);
+          setIsPasswordModalOpen(true);
+        } else {
+          Swal.fire({
             title: "El codigo ingresado es incorrecto!",
             icon: 'error',
             buttonsStyling: false,
@@ -88,9 +99,11 @@ function Recovery() {
               confirmButton: 'bg-bgla text-white rounded-md px-4 py-2',
             }
           })
-      }
-    });
+        }
+      });
   };
+
+
 
   const handleSubmitChangePassword = () => {
     const codenum = localStorage.getItem("code")
@@ -110,22 +123,36 @@ function Recovery() {
       }
 
       dispatch(changepass(formData))
-      .then((response) => {
-        console.log(response);
-      if(response.status==="approved"){
-        Swal.fire({
-            title: "La contraseña se modifico con exito!",
-            icon: 'success',
-            buttonsStyling: false,
-            customClass: {
-              confirmButton: 'bg-bgla text-white rounded-md px-4 py-2',
-            }
-          })
-          navigate("/login")
-          
-      }
-      });
+        .then((response) => {
+          console.log(response);
+          if (response.status === "approved") {
+            Swal.fire({
+              title: "La contraseña se modifico con exito!",
+              icon: 'success',
+              buttonsStyling: false,
+              customClass: {
+                confirmButton: 'bg-bgla text-white rounded-md px-4 py-2',
+              }
+            })
+            navigate("/login")
+
+          }
+        });
     }
+  };
+
+  const handleSubmitresendcode = () => {
+    const formData = {
+      email: email,
+    };
+    dispatch(resendcode(formData))
+      .then((response) => {
+        setIsResendDisabled(true);
+        setTimeLeft(120);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   return (
@@ -187,8 +214,17 @@ function Recovery() {
               ))}
             </div>
             <div className="font-bold flex justify-center">
-            Tiempo restante: {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-          </div>
+              Tiempo restante: {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
+            </div>
+            <div className="flex mt-4 justify-center">
+              <button
+                onClick={handleSubmitresendcode}
+                className={`bg-bgla w-44 h-10 rounded-lg text-white ${isResendDisabled ? 'cursor-not-allowed bg-blue-200' : ''}`}
+                disabled={isResendDisabled}
+              >
+                Reenviar código
+              </button>
+            </div>
             <button className="mt-4" onClick={handleSubmitCode}>Continuar</button>
           </div>
         </div>
