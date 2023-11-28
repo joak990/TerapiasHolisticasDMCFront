@@ -114,7 +114,7 @@ const ModalCarrito = ({ isOpen, onClose }) => {
         <div className="flex justify-center">
           <h1 className="text-4xl md:mb-8 mb-8 font-custom text-center">Tu Compra</h1>
         </div>
-        <section className="modal-card-body p-4">
+        <section className="modal-card-body p-4 rounded-lg shadow-2xl w-[330px]  shadow-black md:w-[700px]" >
           {currentCart.map((item, index) => (
             <div key={index} className="md:mb-8 mb-10  mt-4 h-[200px]" >
               <div className=" flex flex-col md:flex-row items-center justify-between h-[100px]">
@@ -141,20 +141,21 @@ const ModalCarrito = ({ isOpen, onClose }) => {
               <div className=" text-right md:text-right mt-10 md:mt-0">
                 <div className="text-gray-600">Precio: ${item.precio.toFixed(2)}</div>
               </div>
+              <hr className="my-4 border-t border-gray-400" />
             </div>
           ))}
-        </section>
-
-        <div className="text-gray-600 flex justify-end font-bold text-xl my-4">
+        <div className="text-gray-600 flex justify-end font-bold text-xl my-4 mt-12">
           Total: ${total.toFixed(2)}
         </div>
-        <hr className="my-4 border-t border-gray-400" />
-        <div className="flex justify-end font-custom text-2xl items-start">
-          <button className="font-custom text-lg md:text-2xl rounded-full shadow-lg bg-gray-300 shadow-gray-400 m-2 p-4 cursor-pointer hover:scale-110 ease-in duration-200 " onClick={removecart}>
+        <div className="flex justify-start font-custom text-2xl items-start">
+          <button className="font-custom text-sm md:text-base rounded-md shadow-lg bg-gray-300 shadow-gray-400 m-3 p-2 cursor-pointer hover:scale-110 ease-in duration-200 " onClick={removecart}>
             Vaciar carrito
           </button>
         </div>
-        <footer className="modal-card-foot flex justify-center">
+        </section>
+
+        {/* <hr className="my-4 border-t border-gray-400" /> */}
+        <footer className="modal-card-foot flex justify-center mt-6">
           {isLoading ? (
             <Loading /> // Mostrar el componente de carga mientras isLoading es true
           ) : (
