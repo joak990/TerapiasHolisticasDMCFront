@@ -126,7 +126,7 @@ const ModalCarrito = ({ isOpen, onClose }) => {
                   />
                   <div className="flex flex-col">
                     <div className="font-bold text-black">{item.nombre}</div>
-                    <div className="mt-2">Cantidad: 1</div>
+                    <div className="mt-2">Cantidad:  1</div>
                     <div>
                       <button
                         onClick={() => removeItemFromCart(index)}
