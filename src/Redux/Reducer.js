@@ -1,4 +1,4 @@
-import { NEXT_PAGE, PREV_PAGE, GET_ALL_COURSES, GET_ALL_MY_COURSES, LOGIN_REGISTER, REGISTER_BASIC, GET_COURSES_VIDEOS, REGISTER_GOOGLE, REMOVE_FROM_CART, UPDATE_CART_FROM_LOCAL_STORAGE, ADD_TO_CART, ALL_COMMENTS } from "./types";
+import { NEXT_PAGE, PREV_PAGE, GET_ALL_COURSES, GET_ALL_MY_COURSES, LOGIN_REGISTER, REGISTER_BASIC, GET_COURSES_VIDEOS, REGISTER_GOOGLE, REMOVE_FROM_CART, UPDATE_CART_FROM_LOCAL_STORAGE, ADD_TO_CART, ALL_COMMENTS , ALL_BOOKS} from "./types";
 
 const initialState = {
   courses: [],
@@ -6,6 +6,7 @@ const initialState = {
   mycourses: [],
   numPage: 1,
   allComents: [],
+  books : [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
 };
 
@@ -69,6 +70,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         allComents: [...payload],
+      };
+      case ALL_BOOKS:
+      return {
+        ...state,
+        books: [...payload],
       };
     default:
       return state;

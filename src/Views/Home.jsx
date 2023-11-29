@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CardCoursesMas from "../Components/CardCoursesMas";
+import CardBooksMas from "../Components/CardBooksMas";
 import CardMuestras from "../Components/CardMuestras";
 import carrusel from "../img/carrusel.jpg"; // Reemplaza "terapia.jpg" con la ruta de tu imagen de portada
 import carrusel2 from "../img/carrusel 2.jpg";
@@ -101,10 +102,17 @@ const Home = () => {
 
   <div className="bg-white bg-opacity-50"> {/* Agrega este div para que el contenido sea legible */}
     <h1 className="text-5xl text-blue-950 font-family mb-1">
-      Nuestros cursos en linea!
+      Nuestros cursos 
     </h1>
     <div className="flex flex-col sm:flex-row justify-center items-center mt-4" >
       <CardCoursesMas />
+    </div>
+    <div>
+      <h1 className="text-5xl text-blue-950 font-family">Nuestros Libros</h1>
+      <div className="flex flex-col sm:flex-row justify-center items-center mb-2" >
+      <CardBooksMas/>
+    </div>
+     
     </div>
   </div>
 </div>

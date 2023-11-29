@@ -17,6 +17,7 @@ function DetailCourse() {
 
   const [isLoading, setIsLoading] = useState(true);
   const courses = useSelector((state) => state.courses);
+  const bookss = useSelector((state) => state.books);
   const allcomments = useSelector((state) => state.allComents);
   const course = courses?.find((course) => course.id === id);
   const namelocal = localStorage?.getItem("name");

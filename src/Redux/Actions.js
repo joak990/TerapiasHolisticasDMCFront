@@ -8,7 +8,8 @@ import {
   GET_ALL_MY_COURSES,
   REGISTER_BASIC,
   UPDATE_CART_FROM_LOCAL_STORAGE,
-  GET_COURSES_VIDEOS
+  GET_COURSES_VIDEOS,
+  ALL_BOOKS
 } from "./types";
 
 export const registerbasic = (payload) => {
@@ -187,6 +188,29 @@ export const getallcourses = () => {
     } catch (error) {
       Swal.fire({
         title: 'Error Courses',
+        icon: 'error',
+        buttonsStyling: false,
+        customClass: {
+          confirmButton: 'bg-orange-600 text-white rounded-md px-4 py-2',
+        }
+      })
+      //alert(`Message ${GET_CREATIONS}:`, error);
+    }
+  };
+};
+
+export const getallbooks = () => {
+  return async function (dispatch) {
+    try {
+      const json = await axios.get("/libros");
+           
+      return dispatch({
+        type: ALL_BOOKS,
+        payload: json.data,
+      });
+    } catch (error) {
+      Swal.fire({
+        title: 'Error books',
         icon: 'error',
         buttonsStyling: false,
         customClass: {
