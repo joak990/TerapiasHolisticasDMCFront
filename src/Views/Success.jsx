@@ -1,41 +1,65 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import logogira from '../img/logosinfondo.png'
-import { sendpayament } from '../Redux/Actions';
+import { sendpayament , sendpayamentbooks } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
 function Success() {
 
   const currentURL = window.location.href;
-  const orderData = localStorage.getItem('orderdata');
+  const email = localStorage.getItem('email')
+  const cart = localStorage.getItem('cart');
 // Analiza los parámetros de la URL
 const urlParams = new URLSearchParams(currentURL);
 const dispatch = useDispatch()
-// Extrae los valores de los parámetros que necesitas
-const collectionId = urlParams.get('collection_id');
-const paymentId = urlParams.get('payment_id');
 const status = urlParams.get('status');
-const preferenceId = urlParams.get('preference_id');
-const transactionData = {
-  collectionId,
-  paymentId,
-  preferenceId,
-  status
-  // Agrega otros datos aquí si es necesario
-};
+const cartbuy = JSON.parse(cart)
 
 
+const libros = cartbuy.filter(item => "link" in item);
+const cursos = cartbuy.filter(item => !("link" in item));
 
-  if(orderData){
-    const datashop = JSON.parse(orderData)
+// Imprimir los resultados
+console.log("Cursos:");
+console.log(cursos);
+
+console.log("\nLibros:");
+console.log(libros);
+
+
+const idLibros = []
+ libros.map((e) => {
+  idLibros.push(e.id)
+})
+
+const idCursos = []
+ cursos.map((e) => {
+  idCursos.push(e.id)
+})
+
+console.log('idLibrios' , idLibros);
+
+const DataLibros = {
+  id: idLibros,
+  email: email,
+}
+
+const DataCursos = {
+  id: idCursos,
+  email: email,
+}
+
+console.log(DataCursos ,'DataCursos');
+console.log(DataLibros ,'DataLibros');
+
+
+  if(cursos || libros){
     if(status === "approved"){
-      dispatch(sendpayament(datashop))
+      dispatch(sendpayament(DataCursos))
+      dispatch(sendpayamentbooks(DataLibros))
       localStorage.removeItem("orderdata")
       localStorage.removeItem("cart")
     }
   }
   
-
-
 
   return (
     <div className="h-screen flex flex-col justify-center items-center">

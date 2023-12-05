@@ -1,9 +1,23 @@
-import { NEXT_PAGE, PREV_PAGE, GET_ALL_COURSES, GET_ALL_MY_COURSES, LOGIN_REGISTER, REGISTER_BASIC, GET_COURSES_VIDEOS, REGISTER_GOOGLE, REMOVE_FROM_CART, UPDATE_CART_FROM_LOCAL_STORAGE, ADD_TO_CART, ALL_COMMENTS , ALL_BOOKS} from "./types";
+import { NEXT_PAGE, 
+          PREV_PAGE, 
+          GET_ALL_COURSES, 
+          GET_ALL_MY_COURSES, 
+          LOGIN_REGISTER, 
+          MY_BOOKS, 
+          REGISTER_BASIC, 
+          GET_COURSES_VIDEOS, 
+          REGISTER_GOOGLE, 
+          REMOVE_FROM_CART, 
+          UPDATE_CART_FROM_LOCAL_STORAGE, 
+          ADD_TO_CART, 
+          ALL_COMMENTS , 
+          ALL_BOOKS} from "./types";
 
 const initialState = {
   courses: [],
   mycoursesvideos: [],
   mycourses: [],
+  mybooks : [],
   numPage: 1,
   allComents: [],
   books : [],
@@ -76,6 +90,11 @@ const rootReducer = (state = initialState, { type, payload }) => {
         ...state,
         books: [...payload],
       };
+      case MY_BOOKS:
+        return {
+          ...state,
+          mybooks: [...payload],
+        };
     default:
       return state;
   }

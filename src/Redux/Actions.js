@@ -9,7 +9,8 @@ import {
   REGISTER_BASIC,
   UPDATE_CART_FROM_LOCAL_STORAGE,
   GET_COURSES_VIDEOS,
-  ALL_BOOKS
+  ALL_BOOKS,
+  MY_BOOKS
 } from "./types";
 
 export const registerbasic = (payload) => {
@@ -240,6 +241,20 @@ export const sendpayament = (payload) => {
   };
 };
 
+export const sendpayamentbooks = (payload) => {
+
+  return async function () {
+    try {
+
+      const response = await axios.post("/pagobooks", payload)
+    } catch (error) {
+      // Error en la petición
+      console.error(error);
+      return { success: false, message: "Error de Pago" };
+    }
+  };
+};
+
 export const createcomment = (payload) => {
 
   return async function () {
@@ -437,3 +452,25 @@ export const resendcode = (payload) => {
     }
   };
 };
+
+export const getMyBooks = (payload) => {
+
+  return async function (dispatch) {
+    try {
+      console.log(payload, "payloadgetMyCourses");
+      const objectEmail = { email: payload }
+      const response = await axios.post(`/libros/mybooks`, objectEmail)
+
+      return dispatch({
+        type: MY_BOOKS,
+        payload: response.data,
+      });
+    } catch (error) {
+      // Error en la petición
+      console.error(error);
+      return { success: false, message: "Error al obtener mis libros-contenido" };
+    }
+  };
+};
+
+
