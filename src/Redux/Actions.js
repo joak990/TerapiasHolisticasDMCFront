@@ -246,7 +246,7 @@ export const sendpayamentbooks = (payload) => {
   return async function () {
     try {
 
-      const response = await axios.post("/pagobooks", payload)
+      const response = await axios.post("/libros/pagobooks", payload)
     } catch (error) {
       // Error en la petición
       console.error(error);
