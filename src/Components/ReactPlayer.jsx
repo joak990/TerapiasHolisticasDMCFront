@@ -45,7 +45,7 @@ function ReactPlayerVideo() {
       };
     }
   }, [getmyvideos, numPage, currentVideoIndex]);
-
+  
   const tooglePlay = useCallback(() => {
     const video = videoRefs.current[currentVideoIndex];
     if (video.paused) {
@@ -112,14 +112,14 @@ function ReactPlayerVideo() {
     
   {
   viewvideos && viewvideos.map((el, index) => (
-    <div className="" key={index}>
-      <div className="flex justify-center">
-      <h1 className=" text-5xl text-center flex font-semibold text-black">{el.nombre}</h1>
+    <div className="md:mt-44 mt-32" key={index}>
+      <div className="flex justify-center ">
+      <h1 className=" text-3xl md:text-5xl text-center flex font-semibold text-black">{el.nombre}</h1>
       </div>
      
         
         <div  className="flex justify-center">
-        <h1 className=" text-black">{el.descripcion}</h1>
+        <h1 className="text-sm md:text-xl text-black">{el.descripcion}</h1>
         </div>
      
         </div>
@@ -128,17 +128,15 @@ function ReactPlayerVideo() {
   </div>
       <div
         id="videoContainer"
-        className="relative border shadow-2xl shadow-black rounded-md overflow-hidden w-[900px] h[500px] drop-shadow-sm group"
+        className="relative border shadow-2xl shadow-black rounded-md overflow-hidden w-[290px] md:w-[900px] h[500px] drop-shadow-sm group"
       >
         {viewvideos?.map((el, i) => {
           return (
-            <video
-            
+            <video            
               key={i}
-              
               src={el.link}
               controlsList="nodownload"
-              className="w-[1000px] h-full object-cover"
+              className="  md:w-[1000px] h-full object-cover"
               ref={(el) => (videoRefs.current[i] = el)}
               onClick={tooglePlay}
               onEnded={handleVideoEnded}

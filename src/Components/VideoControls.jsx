@@ -67,13 +67,13 @@ function VideoControls({
 
   // Versión para móvil
   const mobileControls = (
-    <div className={`md:hidden flex items-center w-full justify-between  bg-black gap-2`}>
-      <button className="text-white focus:outline-none" onClick={tooglePlay}>
-        {isPlaying ? <BsPauseFill size={20} /> : <BsFillPlayFill size={20} />}
+    <div className={`md:hidden flex items-center w-full justify-between  bg-black `}>
+      <button className="text-white md:ml-0 ml-2 focus:outline-none" onClick={tooglePlay}>
+        {isPlaying ? <BsPauseFill size={16} /> : <BsFillPlayFill size={16} />}
       </button>
       <div className="flex items-center">
-        <span className="text-white md:text-sm text-[10px] mr-2">{FormatTime(progress)}</span>
-        <div className="relative w-32 h-2 bg-gray-600 rounded-full mr-2">
+        <span className="text-white md:text-sm text-[8px] mr-2">{FormatTime(progress)}</span>
+        <div className="relative w-24 h-1 bg-gray-600 rounded-full mr-2">
           <input
             type="range"
             min={0}
@@ -85,20 +85,21 @@ function VideoControls({
           />
           <div className="absolute top-0 left-0 h-full bg-blue-500 rounded-full" style={{ width: `${(progress / duration) * 100}%` }}></div>
         </div>
-        <span className="text-white md:text-sm text-[10px] mr-2">{FormatTime(duration)}</span>
+        <span className="text-white md:text-sm text-[8px] mr-2">{FormatTime(duration)}</span>
       </div>
       <div className="flex items-center">
-        <input
-          type="range"
-          min={0}
-          max={1}
-          value={volume}
-          onChange={handleVolumeChange}
-          step={0.1}
-          className="md:w-12 w-8  h-2 bg-gray-600 rounded-full mr-2"
-        />
-        <button className="text-white focus:outline-none mr-44" onClick={toogleFullScreen}>
-          <MdFullscreen size={20} />
+      <input
+  type="range"
+  min={0}
+  max={1}
+  value={volume}
+  onChange={handleVolumeChange}
+  step={0.1}
+  className="md:w-12 w-8 h-2 bg-gray-600 rounded-full mr-2"
+  style={{ '--thumb-size': '10px' }}
+/>
+        <button className="text-white focus:outline-none mr-4" onClick={toogleFullScreen}>
+          <MdFullscreen size={16} />
         </button>
       </div>
     </div>
