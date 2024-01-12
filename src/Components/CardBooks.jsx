@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { addToCart, getallbooks } from "../Redux/Actions";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import { Link } from "react-router-dom";
 
 function CardBooks() {
     const books = useSelector(state => state.books);
@@ -87,9 +88,11 @@ function CardBooks() {
                                 <p className="text-gray-700 font-custom">{book.descripcion}</p>
                                 <div className="flex justify-between items-center mt-4">
                                     <p className="font-custom text-gray-900  text-xl"> ${book.precio}</p>
-                                    <button onClick={() => handleBuyClick(book)} className="font-bold bg-bgla hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+                                    <Link to="/form">
+                                    <button className="font-bold bg-bgla hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
                                         Comprar
                                     </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

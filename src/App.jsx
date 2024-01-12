@@ -19,6 +19,8 @@ import Loading from "./Components/Loading";
 import Error from "./Views/Error";
 import VerifiedRegister from "./Views/VerifiedRegister";
 import Recovery from "./Views/Recovery";
+import FormBook from "./Views/FormBook";
+
 function App() {
   const location = useLocation();
 
@@ -67,6 +69,7 @@ function App() {
         <Route path="/recovery" element={<Recovery />} />
         <Route path="/error" element={<Error />} />
         <Route path="/load" element={<Loading />} />
+        <Route path="/form" element={<FormBook />} />
       </Routes>
     </>
   );
