@@ -1,10 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { nextPage, prevPage } from "../Redux/Actions";
 import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
 
 const Pagination = ({ cantPages }) => {
   const { numPage } = useSelector((state) => state);
   const dispatch = useDispatch();
+  const { courseId } = useParams();
 
   function next() {
     if (numPage < cantPages) {
@@ -18,23 +20,48 @@ const Pagination = ({ cantPages }) => {
     }
   }
 
+  // Función para construir el enlace del PDF basado en el parámetro de la URL
+  const buildPdfLink = (courseId) => {
+    // Modifica las lógicas según tus necesidades
+    switch (courseId) {
+      case "1":
+        return "https://drive.google.com/file/d/1VpkyO6rEDLcKMhpUlLHt3YbBfs7GmTE2/view?usp=drive_link";
+      case "2":
+        return "https://drive.google.com/file/d/1cTWpP-hlnukUGuNzrndqksmnjKfTtBWk/view?usp=sharing";
+      case "3":
+        return "https://drive.google.com/file/d/1026ClPgUc771Wm3w9BUfELsPnIhaM4Jl/view?usp=drive_link";
+      case "4":
+        return "https://drive.google.com/file/d/11e0LSbtHZRzJv0pDo8ErIdvpgTkwm4v8/view?usp=drive_link";
+      default:
+        return "";
+    }
+  };
+
+  const pdfLink = buildPdfLink(courseId);
+
   return (
-    <div className="flex justify-center items-center mt-16">
-      <div className="mr-4">
+    <div className="flex flex-col items-center mt-16">
+      <button className="mb-4 bg-blue-500 text-white px-4 py-2 rounded-md">
+        <a href={pdfLink} target="_blank" rel="noopener noreferrer">
+          Descargar PDF Teórico
+        </a>
+      </button>
+
+      <div className="flex">
         <button
-          className=" w-20 md:w-24 h-12 text-black rounded-xl font-bold"
+          className="mr-4 w-20 md:w-24 h-12 text-black rounded-xl font-bold"
           onClick={prev}
           disabled={numPage === 1}
         >
           PREV
         </button>
-      </div>
-      <div className="text-xl font-bold">
-        <h3 className="text-black shadow-xl" >{numPage}</h3>
-      </div>
-      <div className="ml-4">
+
+        <div className="text-xl font-bold">
+          <h3 className="text-black shadow-xl">{numPage}</h3>
+        </div>
+
         <button
-          className=" w-20 md:w-24 h-12 text-black rounded-xl font-bold"
+          className="ml-4 w-20 md:w-24 h-12 text-black rounded-xl font-bold"
           onClick={next}
           disabled={numPage === cantPages}
         >
