@@ -20,6 +20,7 @@ import Error from "./Views/Error";
 import VerifiedRegister from "./Views/VerifiedRegister";
 import Recovery from "./Views/Recovery";
 import FormBook from "./Views/FormBook";
+import DetailBooks from "./Views/DetailBooks";
 
 function App() {
   const location = useLocation();
@@ -65,6 +66,7 @@ function App() {
         <Route path="/success" element={<Success />} />
         <Route path="/paypal" element={<PaypalButton />} />
         <Route path="/:id" element={<DetailCourse />} />
+        <Route path="/book/:id" element={<DetailBooks />} />
         <Route path="/verified/:email/:name*" element={<VerifiedRegister />} />
         <Route path="/recovery" element={<Recovery />} />
         <Route path="/error" element={<Error />} />

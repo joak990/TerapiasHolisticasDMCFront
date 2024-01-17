@@ -49,11 +49,11 @@ function CardBooksMas() {
                   <h2 className="text-xl font-custom font-semibold mb-2">{book.nombre}</h2>
                   <p className="text-gray-700 font-custom">{book.descripcion}</p>
                   <div className="flex justify-between items-center mt-4">
-                    <Link to="/form">
+                  <Link to={`/book/${book.id}`}>
                       <button
                         className="font-bold bg-bgla hover:bg-blue-600    shadow-md shadow-blue-600  text-white font-bold py-2 px-4 rounded-full"
                       >
-                        Comprar
+                        ComprarAL
                       </button>
                     </Link>
                   </div>

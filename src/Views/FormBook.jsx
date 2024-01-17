@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import { bookMessage } from "../Redux/Actions";
 // import { FaInstagram, FaFacebook, FaWhatsapp } from "react-icons/fa"; // Importa los íconos de react-icons
 
 function FormBook() {
@@ -8,11 +9,11 @@ function FormBook() {
         name: "",
         apellido: "",
         email: "",
-        curso: "",
+        libro: "",
         telefono: ""
     });
     // const navigate = useNavigate();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
 
     const handleInputChange = (event) => {
@@ -24,18 +25,17 @@ function FormBook() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const aux = Object.keys(errors)
-        if(aux.length === 0 ){
+        // const aux = Object.keys(errors)
             console.log(input, '--->>>INPUT');
-            //dispatch
+            dispatch(bookMessage(input))
             setInput({
                 name: "",
                 apellido: "",
                 email: "",
-                curso: "",
+                libro: "",
                 telefono: ""
             })
-        }
+
     };
 
     return (
@@ -78,12 +78,12 @@ function FormBook() {
                         ></input>
                     </div>
                     <div className=" flex flex-col py-2">
-                        <label className=" uppercase text-sm py-2" >Curso</label>
+                        <label className=" uppercase text-sm py-2" >Libro</label>
                         <input
                             className=" border-2 rounded-lg p-3 flex border-gray-300"
                             type="text"
-                            name="curso"
-                            value={input.curso}
+                            name="libro"
+                            value={input.libro}
                             onChange={(e) => handleInputChange(e)}
                         ></input>
                     </div>

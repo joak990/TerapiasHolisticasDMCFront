@@ -10,7 +10,8 @@ import {
   UPDATE_CART_FROM_LOCAL_STORAGE,
   GET_COURSES_VIDEOS,
   ALL_BOOKS,
-  MY_BOOKS
+  MY_BOOKS,
+  BOOK_MESSAGE
 } from "./types";
 
 export const registerbasic = (payload) => {
@@ -465,6 +466,25 @@ export const getMyBooks = (payload) => {
         type: MY_BOOKS,
         payload: response.data,
       });
+    } catch (error) {
+      // Error en la petición
+      console.error(error);
+      return { success: false, message: "Error al obtener mis libros-contenido" };
+    }
+  };
+};
+
+
+export const bookMessage = (payload) => {
+  return async function (dispatch) {
+    try {
+      console.log(payload, "PAYLOAD BOOK MESSAGE");
+      // const response = await axios.post(`/libros/mybooks`,)
+
+      // return dispatch({
+      //   type: BOOK_MESSAGE,
+      //   payload: response.data,
+      // });
     } catch (error) {
       // Error en la petición
       console.error(error);
