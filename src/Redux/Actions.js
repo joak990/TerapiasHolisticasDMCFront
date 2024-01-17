@@ -479,12 +479,13 @@ export const bookMessage = (payload) => {
   return async function (dispatch) {
     try {
       console.log(payload, "PAYLOAD BOOK MESSAGE");
-      // const response = await axios.post(`/libros/mybooks`,)
+      const response = await axios.post(`/send-email/book`,payload)
+      console.log('response', response);
 
-      // return dispatch({
-      //   type: BOOK_MESSAGE,
-      //   payload: response.data,
-      // });
+      return dispatch({
+        type: BOOK_MESSAGE,
+        payload: response.data,
+      });
     } catch (error) {
       // Error en la petición
       console.error(error);

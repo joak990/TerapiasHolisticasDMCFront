@@ -6,16 +6,16 @@ import { bookMessage } from "../Redux/Actions";
 
 function FormBook() {
     const [input, setInput] = useState({
-        name: "",
+        nombre: "",
         apellido: "",
         email: "",
-        libro: "",
         telefono: ""
     });
     // const navigate = useNavigate();
     const dispatch = useDispatch();
 
 
+    
     const handleInputChange = (event) => {
         setInput({
             ...input,
@@ -29,10 +29,9 @@ function FormBook() {
             console.log(input, '--->>>INPUT');
             dispatch(bookMessage(input))
             setInput({
-                name: "",
+                nombre: "",
                 apellido: "",
                 email: "",
-                libro: "",
                 telefono: ""
             })
 
@@ -42,7 +41,7 @@ function FormBook() {
 
         <div className="  min-h-screen flex justify-center items-center mt-28 md:mt-44 ">
             <div className=" w-[300px] p-6 rounded-lg shadow-2xl shadow-black md:w-1/2">
-                <h2 className="text-3xl font-extralight mb-6 text-center">Contáctanos</h2>
+                <h2 className="text-3xl font-extralight mb-6 text-center">Hace tu pedido del Libro</h2>
                 <form className="space-y-4 " onSubmit={(e) => handleSubmit(e)}>
                     <div className=" grid md:grid-cols-2 gap-4 w-full py-2">
                         <div className=" flex flex-col">
@@ -50,8 +49,8 @@ function FormBook() {
                             <input
                                 className=" border-2 rounded-lg p-3 flex border-gray-300"
                                 type="text"
-                                name='name'
-                                value={input.name}
+                                name='nombre'
+                                value={input.nombre}
                                 onChange={(e) => handleInputChange(e)}
                             >
                             </input>
@@ -74,16 +73,6 @@ function FormBook() {
                             type="text"
                             name="email"
                             value={input.email}
-                            onChange={(e) => handleInputChange(e)}
-                        ></input>
-                    </div>
-                    <div className=" flex flex-col py-2">
-                        <label className=" uppercase text-sm py-2" >Libro</label>
-                        <input
-                            className=" border-2 rounded-lg p-3 flex border-gray-300"
-                            type="text"
-                            name="libro"
-                            value={input.libro}
                             onChange={(e) => handleInputChange(e)}
                         ></input>
                     </div>
