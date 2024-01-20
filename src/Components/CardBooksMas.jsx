@@ -53,7 +53,7 @@ function CardBooksMas() {
                       <button
                         className="font-bold bg-bgla hover:bg-blue-600    shadow-md shadow-blue-600  text-white font-bold py-2 px-4 rounded-full"
                       >
-                        ComprarAL
+                        Ver Mas
                       </button>
                     </Link>
                   </div>

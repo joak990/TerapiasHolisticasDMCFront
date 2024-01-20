@@ -1,35 +1,38 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../Logocuadrado.jpg"
-
+import logo from "../Logocuadrado.jpg";
+import zxcvbn from "zxcvbn"; // Importa la biblioteca zxcvbn
 import { registerbasic } from "../Redux/Actions";
 
 function Register() {
   const [errors, setErrors] = useState({});
-  const [isRecaptchaValid, setRecaptchaValid] = useState(false);
   const [isFormSubmitted, setFormSubmitted] = useState(false);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [form, setForm] = useState({
-    name : "",
-    email : "",
-    password : "",
-  type:"user"
-  
-    
+    name: "",
+    email: "",
+    password: "",
+    type: "user",
   });
 
-  
+  const [passwordStrength, setPasswordStrength] = useState(0);
+  const [isPasswordTouched, setPasswordTouched] = useState(false);
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setForm({
       ...form,
       [name]: value,
     });
+
+    if (name === "password") {
+      setPasswordTouched(true);
+      const result = zxcvbn(value);
+      setPasswordStrength(result.score);
+    }
   };
-
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -62,30 +65,29 @@ function Register() {
     }
 
     setErrors(newErrors);
-if (Object.keys(newErrors).length === 0) {
-  dispatch(registerbasic(form))
-      .then((response) => {
-      
-        if(response.status === "approved"){
-          navigate(`/verified/${form.email}/${form.name}"`)
-         
+
+    if (Object.keys(newErrors).length === 0) {
+      dispatch(registerbasic(form)).then((response) => {
+        if (response.status === "approved") {
+          navigate(`/verified/${form.email}/${form.name}`);
         }
-      })
-  
-  setForm({
-    name: "",
-    email: "",
-    password: "",
-    type:"user"
-  });
-}
+      });
+
+      setForm({
+        name: "",
+        email: "",
+        password: "",
+        type: "user",
+      });
+    }
   };
+
   return (
     <div className="flex">
       {/* Columna izquierda con fondo verde */}
       <div className="flex-1 bg-fondolog ">
         {/* Coloca aquí tu imagen */}
-        <div className="flex justify-center items-center h-screen"> 
+        <div className="flex justify-center items-center h-screen">
           <img
             src={logo}
             alt="Imagen"
@@ -100,7 +102,9 @@ if (Object.keys(newErrors).length === 0) {
           <h1 className="text-3xl font-semibold mb-4">Regístrate</h1>
           <form>
             <div className="mb-4">
-              <label htmlFor="displayName" className="block text-gray-700">Nombre</label>
+              <label htmlFor="displayName" className="block text-gray-700">
+                Nombre
+              </label>
               <input
                 type="text"
                 name="name"
@@ -110,11 +114,13 @@ if (Object.keys(newErrors).length === 0) {
                 placeholder="Tu nombre"
               />
               {errors.name && (
-            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-          )}
+                <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+              )}
             </div>
             <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700">Email</label>
+              <label htmlFor="email" className="block text-gray-700">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -123,12 +129,14 @@ if (Object.keys(newErrors).length === 0) {
                 className="w-full border border-gray-300 rounded px-3 py-2"
                 placeholder="Tu correo electrónico"
               />
-               {errors.email && (
-            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-          )}
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
             </div>
             <div className="mb-4">
-              <label htmlFor="password" className="block text-gray-700">Contraseña</label>
+              <label htmlFor="password" className="block text-gray-700">
+                Contraseña
+              </label>
               <input
                 type="password"
                 name="password"
@@ -137,9 +145,27 @@ if (Object.keys(newErrors).length === 0) {
                 className="w-full border border-gray-300 rounded px-3 py-2"
                 placeholder="Tu contraseña"
               />
+
+              {isPasswordTouched && (
+                <>
+                  {/* Barra de fortaleza de contraseña */}
+                  <div
+                    style={{
+                      height: "10px",
+                      backgroundColor: getPasswordStrengthColor(passwordStrength),
+                      width: "100%",
+                      marginTop: "5px",
+                    }}
+                  />
+
+                  {/* Texto que indica la fortaleza de la contraseña */}
+                  <p>{getPasswordStrengthLabel(passwordStrength)}</p>
+                </>
+              )}
+
               {errors.password && (
-            <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-          )}
+                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+              )}
             </div>
             <button
               type="button"
@@ -161,5 +187,40 @@ if (Object.keys(newErrors).length === 0) {
   );
 }
 
+// Función para obtener el color de la barra de fortaleza según la puntuación de zxcvbn
+function getPasswordStrengthColor(strength) {
+  switch (strength) {
+    case 0:
+      return "red";
+    case 1:
+      return "orange";
+    case 2:
+      return "yellow";
+    case 3:
+      return "lightgreen";
+    case 4:
+      return "green";
+    default:
+      return "transparent";
+  }
+}
 
-export default Register
+// Función para obtener una etiqueta de fortaleza de contraseña según la puntuación de zxcvbn
+function getPasswordStrengthLabel(strength) {
+  switch (strength) {
+    case 0:
+      return "Muy débil";
+    case 1:
+      return "Débil";
+    case 2:
+      return "Moderada";
+    case 3:
+      return "Fuerte";
+    case 4:
+      return "Muy fuerte";
+    default:
+      return "";
+  }
+}
+
+export default Register;

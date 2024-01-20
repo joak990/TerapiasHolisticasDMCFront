@@ -31,7 +31,8 @@
     "redux": "^4.2.1",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
-    "sweetalert2": "^11.7.31"
+    "sweetalert2": "^11.7.31",
+    "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",

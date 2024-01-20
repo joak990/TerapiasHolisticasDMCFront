@@ -481,7 +481,11 @@ export const bookMessage = (payload) => {
       console.log(payload, "PAYLOAD BOOK MESSAGE");
       const response = await axios.post(`/send-email/book`,payload)
       console.log('response', response);
-
+      if(response.data === true )  Swal.fire({
+        icon: 'success',
+        title: 'Gracias por solicitar el libro!',
+        text: 'Nos pondremos en contacto a la brevedad!',
+      });
       return dispatch({
         type: BOOK_MESSAGE,
         payload: response.data,
