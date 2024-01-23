@@ -22,7 +22,7 @@ function VideoControls({
 
   // Versión para escritorio
   const desktopControls = (
-    <div className={`hidden md:flex items-center w-[270px] p-1 justify-between bg-black gap-3 md:w-full`}>
+    <div className={`hidden md:flex items-center w-[300px] p-1 justify-between bg-black gap-3 md:w-full`}>
       <button className="text-white focus:outline-none" onClick={tooglePlay}>
         {isPlaying ? <BsPauseFill size={24} /> : <BsFillPlayFill size={24} />}
       </button>

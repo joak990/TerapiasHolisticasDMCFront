@@ -158,7 +158,7 @@ function Register() {
                     }}
                   />
 
-                  {/* Texto que indica la fortaleza de la contraseña */}
+                 
                   <p>{getPasswordStrengthLabel(passwordStrength)}</p>
                 </>
               )}

@@ -34,6 +34,7 @@ function Login() {
       [name]: value,
     });
   };
+
   const handleLogin = async () => {
     await setPersistence(firebaseAuth, browserSessionPersistence);
     const response = await signInWithPopup(firebaseAuth, provider);
@@ -85,11 +86,10 @@ function Login() {
     }
 
     setErrors(newErrors);
-    console.log("cliclk");
+
     if (Object.keys(newErrors).length === 0) {
       dispatch(Loginregister(form)).then((response) => {
-        console.log(response, "ident");
-        if (response == true) {
+        if (response === true) {
           navigate("/");
         }
       });
@@ -101,29 +101,26 @@ function Login() {
   };
 
   return (
-    <div className="flex">
+    <div className="flex flex-col md:flex-row">
       {/* Columna izquierda con fondo verde */}
-      <div className="flex-1 bg-fondolog">
-        {/* Coloca aquí tu imagen */}
-        <div className="flex justify-center items-center h-screen">
+      <div className="md:flex-1 bg-fondolog md:min-h-screen h-64">
+        <div className="flex justify-center items-center md:h-screen">
           <div className="transform rotate-0">
             <img
               src={logo}
               alt="Imagen"
-              className="w-96 h-96 object-cover animate-spin-slow infinite"
+              className="w-48 h-48 md:w-96 md:h-96 object-cover animate-spin-slow infinite"
             />
           </div>
         </div>
       </div>
 
       {/* Columna derecha */}
-      <div className="flex-1 bg-white p-8 flex items-center justify-center">
-        <div className="w-96">
-          {" "}
-          {/* Ancho máximo del formulario */}
-          <h1 className="text-3xl font-semibold mb-4">Iniciar Sesión</h1>
-          <form>
-            <div className="mb-4">
+      <div className="md:flex-1 bg-white p-4 md:p-8 flex items-center justify-center">
+        <div className="w-full md:w-96">
+          <h1 className="text-2xl md:text-3xl font-semibold mb-4">Iniciar Sesión</h1>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
               <label htmlFor="email" className="block text-gray-700">
                 Email
               </label>
@@ -140,7 +137,7 @@ function Login() {
                 <p className="text-red-500 text-sm mt-1">{errors.email}</p>
               )}
             </div>
-            <div className="mb-4">
+            <div>
               <label htmlFor="password" className="block text-gray-700">
                 Contraseña
               </label>
@@ -159,16 +156,15 @@ function Login() {
               <div className="flex justify-end">
                 <Link
                   to="/recovery"
-                  className="text-blue-500 text-end hover:underline"
+                  className="text-blue-500 text-sm hover:underline"
                 >
                   ¿Olvidaste tu contraseña?
                 </Link>
               </div>
             </div>
-            <div className="flex  justify-center">
+            <div className="flex justify-center">
               <button
                 type="submit"
-                onClick={handleSubmit}
                 className="bg-blue-800 text-white w-full h-8 rounded hover:bg-blue-900"
               >
                 Iniciar Sesión
@@ -176,25 +172,21 @@ function Login() {
             </div>
           </form>
           <div className="flex justify-center mt-4">
-            <hr className="border-t border-gray-300 flex-grow my-auto mx-2" />
-            <p className="font-extralight"> O continua con </p>
-            <hr className="border-t border-gray-300 flex-grow my-auto mx-2" />
+            <hr className="border-t border-gray-300 w-full my-auto" />
+            <p className="font-extralight mx-2"> O continua con </p>
+            <hr className="border-t border-gray-300 w-full my-auto" />
           </div>
-          <div className=" flex  justify-center  gap-10 "> 
+          <div className="flex justify-center gap-4">
             <button
               onClick={handleLogin}
-              className="mt-8 bg-blue-700 text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center"
+              className="mt-4 md:mt-8 bg-blue-700 text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center"
             >
-                Google
-              <FcGoogle className="text-2xl ml-2" />
+              Google <FcGoogle className="text-2xl ml-2" />
             </button>
-            <Link to="/register" className="">
-            <button className="mt-8 bg-blue-700 text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center">
-              Registrarse {" "}
-             
-             
-            </button>
-               
+            <Link to="/register" className="mt-4 md:mt-8">
+              <button className="bg-blue-700 text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center">
+                Registrarse
+              </button>
             </Link>
           </div>
         </div>

@@ -53,7 +53,7 @@ const Home = () => {
 
     <div className="">
 
-      <div className=" w-full h-[400px] md:h-[550px]  overflow-hidden relative">
+      <div className=" w-full h-[270px] md:h-[550px]  overflow-hidden relative">
         {slides.map((slide, slideIndex) => (
           <img
             key={slideIndex}
@@ -104,12 +104,12 @@ const Home = () => {
     <h1 className="text-5xl text-blue-950 font-family mb-1">
       Nuestros cursos 
     </h1>
-    <div className="flex flex-col sm:flex-row justify-center items-center mt-4" >
+    <div className="flex flex-col sm:flex-row justify-center items-center md:mt-4" >
       <CardCoursesMas />
     </div>
     <div>
       <h1 className="text-5xl text-blue-950 font-family">Nuestros Libros</h1>
-      <div className="flex flex-col sm:flex-row justify-center items-center mb-2" >
+      <div className="flex flex-col sm:flex-row justify-center items-center " >
       <CardBooksMas/>
     </div>
      

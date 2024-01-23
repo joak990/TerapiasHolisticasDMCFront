@@ -124,14 +124,7 @@ function Contact() {
           >
             <FaFacebook size={32} /> {/* Usar el ícono FaFacebook */}
           </a>
-          <a
-            href="https://web.whatsapp.com/send?phone=5491159482032"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-green-500 hover:text-green-600"
-          >
-            <FaWhatsapp size={32} /> {/* Usar el ícono FaWhatsapp */}
-          </a>
+        
         </div>
       </div>
     </div>

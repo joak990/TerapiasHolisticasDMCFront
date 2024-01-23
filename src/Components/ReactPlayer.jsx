@@ -112,7 +112,7 @@ function ReactPlayerVideo() {
     
   {
   viewvideos && viewvideos.map((el, index) => (
-    <div className="md:mt-44 mt-32" key={index}>
+    <div className="md:mt-44 " key={index}>
       <div className="flex justify-center ">
       <h1 className=" text-3xl md:text-5xl text-center flex font-semibold text-black">{el.nombre}</h1>
       </div>
@@ -136,7 +136,7 @@ function ReactPlayerVideo() {
               key={i}
               src={el.link}
               controlsList="nodownload"
-              className="  md:w-[1000px] h-full object-cover"
+              className="  md:w-[1000px] w-[300px] h-full object-cover"
               ref={(el) => (videoRefs.current[i] = el)}
               onClick={tooglePlay}
               onEnded={handleVideoEnded}
