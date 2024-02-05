@@ -1,9 +1,11 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef, useCallback} from "react";
 import VideoControls from "./VideoControls";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Pagination from "./Pagination";
+import { getmycourses } from "../Redux/Actions";
 
 function ReactPlayerVideo() {
+  const dispatch =  useDispatch()
   const getmyvideos = useSelector((state) => state.mycoursesvideos);
   const numPage = useSelector((state) => state.numPage);
 
@@ -22,7 +24,15 @@ function ReactPlayerVideo() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+
+    const currentURL = window.location.href;
+    const urlParts = currentURL.split("/");
+    const filteredUrlParts = urlParts.filter(part => part !== "");
+    const idCourse = filteredUrlParts[3]
+    dispatch(getmycourses(idCourse))
+
     const video = videoRefs.current[currentVideoIndex];
+
 
     if (video) {
       const handleTimeUpdate = async () => await setProgress(video.currentTime);
