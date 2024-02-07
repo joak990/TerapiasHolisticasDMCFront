@@ -39,6 +39,7 @@ function Login() {
     await setPersistence(firebaseAuth, browserSessionPersistence);
     const response = await signInWithPopup(firebaseAuth, provider);
 
+
     const datauser = {
       name: response.user.displayName,
       email: response.user.email,
@@ -46,7 +47,7 @@ function Login() {
       uid: response.user.uid,
       otp: 1,
     };
-
+    console.log(datauser,"id")
     dispatch(register_google(datauser)).then((response) => {
       if (response.data === true) {
         Swal.fire({

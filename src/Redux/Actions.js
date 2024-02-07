@@ -60,10 +60,11 @@ export const register_google = (payload) => {
 
   return async function (dispatch) {
     try {
-
+      console.log(payload, "payuuuuuuuuuuuuuuuuu");
       const response = await axios.post("/users", payload);
-      console.log(payload, "pay");
-      console.log(response.data);
+      
+      console.log(response.data,"response");
+      
       if (response.data === true) {
         return { success: false }
       } else {
