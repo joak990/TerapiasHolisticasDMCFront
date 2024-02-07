@@ -60,7 +60,7 @@ function Login() {
         });
       } else {
         navigate("/");
-        localStorage.setItem("id", response.user.uid);
+        
       }
     });
   };
