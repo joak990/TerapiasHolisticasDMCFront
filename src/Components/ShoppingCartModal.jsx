@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import Loading from "./Loading";
 import { FaTrashAlt } from "react-icons/fa";
 
-initMercadoPago('TEST-c5d16a4e-c668-4a83-8d0a-da19f76c25ce');
+initMercadoPago('APP_USR-da697f1d-22d5-4db9-90e4-cebc3109bd47');
 
 const ModalCarrito = ({ isOpen, onClose }) => {
   const dispatch = useDispatch()
