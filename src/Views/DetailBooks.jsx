@@ -87,15 +87,19 @@ function DetailBooks() {
                 return (
                     <>
                         <p className="font font-semibold text-lg">Contenidos</p>
-                    
+                        <p>"Este libro cuenta  el recorrido  de momentos y aspectos de las experiencias de personas que integraron <br />
+                        sus cuerpos : el físico, mental , emocional y espiritual. <br />
+                        Desmitifica  "el final" como concepto  de muerte escrito por marcela que vive actualmente en la falda <br />
+                        Provincia de córdoba y miguel y jorge , dos seres que pasaron por esta tierra, vivieron sus experiencias <br />
+                        Como humanos y ahora asisten desde el plano espiritual. <br />
+                        Ellos tres dejan de lado  el "por que" y cuentan  sus conocimientos sobre el "para que" <br />
+                        En la búsqueda de respuestas hablan sobre "el ser" , el alma, Dios , la energía. <br />
+                        y sus vibraciones , entre otros temas , integrándolos a los saberes terrenales <br />
+                         para darle una "vuelta de rosca" a nuestras creencias sobre las relaciones, el cuerpo  las enfermedades y los caminos individuales. <br />
+                         Si aún no tenés curiosidad , estoy segura que al adentrarte en estas páginas  y sumergirte en sus palabras , se te va a despertar."</p>
                     </>
                 );
-            case "6":
-                return (
-                    <>
-                        <p className="font font-semibold text-2xl">Contenidos</p>
-                    </>
-                );
+            
 
             default:
                 return <p>Contenidos no disponibles</p>;
@@ -153,7 +157,7 @@ function DetailBooks() {
                 <div className="bg-white rounded-lg shadow-xl shadow-blue-200 p-4 sm:p-6 lg:p-8 sm:flex">
                     <div className="mb-4 sm:w-1/2 sm:mr-4 lg:w-1/3 lg:mr-6">
                         <video
-                            src={course?.contents}
+                            src={course?.link}
 
 
                             autoPlay
@@ -177,7 +181,7 @@ function DetailBooks() {
                                     <div className=" flex items-center  text-right">
                                         <span className="text-red-500 text-sm  md:text-xl  ml-4 line-through">
                                             {" "}
-                                            $199.99{" "}
+                                            $14.000{" "}
                                         </span>
 
                                         <span className="text-green-600 md:text-xl text-sm ml-4 font-bold font-custom">

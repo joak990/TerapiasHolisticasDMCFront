@@ -49,7 +49,8 @@ function Login() {
     };
     console.log(datauser,"id")
     dispatch(register_google(datauser)).then((response) => {
-      if (response.data === true) {
+      console.log(response,"res");
+      if (response.success === false) {
         Swal.fire({
           title: "Usuario bloqueado",
           icon: "error",
@@ -60,7 +61,7 @@ function Login() {
         });
       } else {
         navigate("/");
-        
+        localStorage.setItem("id",datauser.uid)
       }
     });
   };

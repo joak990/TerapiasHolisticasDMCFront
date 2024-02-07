@@ -334,7 +334,7 @@ function DetailCourse() {
                   <div className=" flex items-center  text-right">
                     <span className="text-red-500 text-sm  md:text-xl  ml-4 line-through">
                       {" "}
-                      $199.99{" "}
+                      $14.000{" "}
                     </span>
 
                     <span className="text-green-600 md:text-xl text-sm ml-4 font-bold font-custom">

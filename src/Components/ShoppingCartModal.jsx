@@ -147,6 +147,12 @@ const ModalCarrito = ({ isOpen, onClose }) => {
         <div className="text-gray-600 flex justify-end font-bold text-xl my-4 mt-12">
           Total: ${total.toFixed(2)}
         </div>
+        {isLoading ? (
+            <Loading /> // Mostrar el componente de carga mientras isLoading es true
+          ) : (
+            // Mostrar el botón de MercadoPago una vez que isLoading es false
+            preferenceId && <Wallet initialization={{ preferenceId }} />
+          )}
         <div className="flex justify-start font-custom text-2xl items-start">
           <button className="font-custom text-sm md:text-base rounded-md shadow-lg bg-gray-300 shadow-gray-400 m-3 p-2 cursor-pointer hover:scale-110 ease-in duration-200 " onClick={removecart}>
             Vaciar carrito
@@ -156,12 +162,7 @@ const ModalCarrito = ({ isOpen, onClose }) => {
 
         {/* <hr className="my-4 border-t border-gray-400" /> */}
         <footer className="modal-card-foot flex justify-center mt-6">
-          {isLoading ? (
-            <Loading /> // Mostrar el componente de carga mientras isLoading es true
-          ) : (
-            // Mostrar el botón de MercadoPago una vez que isLoading es false
-            preferenceId && <Wallet initialization={{ preferenceId }} />
-          )}
+         
         </footer>
       </div>
     </div>

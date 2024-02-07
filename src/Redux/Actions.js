@@ -63,7 +63,7 @@ export const register_google = (payload) => {
       console.log(payload, "payuuuuuuuuuuuuuuuuu");
       const response = await axios.post("/users", payload);
       
-      console.log(response.data,"response");
+      console.log(response,"registergoogle");
       
       if (response.data === true) {
         return { success: false }
