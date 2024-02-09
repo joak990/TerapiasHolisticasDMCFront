@@ -17,6 +17,7 @@ export default {
       },
       fontFamily: {
         custom: ['The Seasons',], // Define la fuente personalizada
+        montserrat_alternates: ['Montserrat Alternates', 'sans-serif'],
       },
       textColor: {
         custom: '#643F6A',

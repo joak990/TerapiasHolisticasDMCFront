@@ -49,23 +49,23 @@ const Pagination = ({ cantPages }) => {
 
       <div className="flex">
         <button
-          className="mr-4 w-20 md:w-24 h-12 text-black rounded-xl font-bold"
+          className="mr-4 w-20 md:w-24 h-12 text-blue-300 rounded-xl font-bold"
           onClick={prev}
           disabled={numPage === 1}
         >
-          PREV
+          Anterior
         </button>
 
         <div className="text-xl font-bold">
-          <h3 className="text-black shadow-xl">{numPage}</h3>
+          <h3 className="text-blue-300  shadow-xl">{numPage}</h3>
         </div>
 
         <button
-          className="ml-4 w-20 md:w-24 h-12 text-black rounded-xl font-bold"
+          className="ml-4 w-20 md:w-24 h-12 text-blue-300 rounded-xl font-bold"
           onClick={next}
           disabled={numPage === cantPages}
         >
-          NEXT
+          Siguiente
         </button>
       </div>
     </div>

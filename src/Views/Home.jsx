@@ -88,7 +88,7 @@ const Home = () => {
         <div className="relative md:mt-32 ">
           <video
             src="https://firebasestorage.googleapis.com/v0/b/terapiasholisticasdmc.appspot.com/o/presentacion.mp4?alt=media&token=0d03c244-3fc0-4f92-9cfe-ed7693048e28"
-            autoPlay
+            
             controls
             className="w-[900px] rounded-xl "
           />
@@ -101,18 +101,18 @@ const Home = () => {
   }}>
 
   <div className="bg-white bg-opacity-50"> {/* Agrega este div para que el contenido sea legible */}
-    <h1 className="text-5xl text-blue-950 font-family mb-1">
+    <h1 className="text-5xl text-blue-950 font-extralight font-montserrat_alternates mb-1">
       Nuestros cursos 
     </h1>
     <div className="flex flex-col sm:flex-row justify-center items-center md:mt-4" >
       <CardCoursesMas />
     </div>
     <div>
-      <h1 className="text-5xl text-blue-950 font-family">Nuestros Libros</h1>
-      <div className="flex flex-col sm:flex-row justify-center items-center " >
+      <h1 className="text-5xl  mt-20 text-blue-950 font-extralight font-montserrat_alternates">Nuestros Libros</h1>
+      <div className="flex flex-col sm:flex-row justify-center items-center  mb-96" >
       <CardBooksMas/>
     </div>
-     
+      
     </div>
   </div>
 </div>

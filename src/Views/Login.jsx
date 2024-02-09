@@ -181,12 +181,12 @@ function Login() {
           <div className="flex justify-center gap-4">
             <button
               onClick={handleLogin}
-              className="mt-4 md:mt-8 bg-blue-700 text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center"
+              className="mt-4 md:mt-8 bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center"
             >
               Google <FcGoogle className="text-2xl ml-2" />
             </button>
             <Link to="/register" className="mt-4 md:mt-8">
-              <button className="bg-blue-700 text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center">
+              <button className="bg-blue-800 text-white py-2 px-4 rounded hover:bg-blue-900 flex items-center">
                 Registrarse
               </button>
             </Link>

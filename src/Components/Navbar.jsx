@@ -100,7 +100,7 @@ function Navbar() {
                 <li>
                   <a
                     href="/"
-                    className="hover:text-blue-800 font-custom text-2xl"
+                    className="hover:text-blue-950  font-montserrat_alternates text-2xl"
                   >
                     Inicio
                   </a>
@@ -108,7 +108,7 @@ function Navbar() {
                 <li>
                   <a
                     href="/courses"
-                    className="hover:text-blue-800 font-custom text-2xl"
+                    className="hover:text-blue-950  font-montserrat_alternates text-2xl"
                   >
                     Cursos
                   </a>
@@ -116,7 +116,7 @@ function Navbar() {
                 <li>
                   <a
                     href="/me"
-                    className="hover:text-blue-800 font-custom text-2xl"
+                    className="hover:text-blue-950  font-montserrat_alternates text-2xl"
                   >
                     Sobre mi
                   </a>
@@ -124,7 +124,7 @@ function Navbar() {
                 <li>
                   <a
                     href="/contact"
-                    className="hover:text-blue-800 font-custom text-2xl"
+                    className="hover:text-blue-950  font-montserrat_alternates text-2xl"
                   >
                     Contacto
                   </a>
@@ -133,7 +133,7 @@ function Navbar() {
                   <li>
                     <a
                       href="/mycourses"
-                      className="hover:text-blue-800 font-custom text-2xl"
+                      className="hover:text-blue-950  font-montserrat_alternates text-2xl"
                     >
                       Mis Cursos
                     </a>
@@ -143,7 +143,7 @@ function Navbar() {
                   <li>
                     <a
                       href="/login"
-                      className="hover:text-blue-800 font-custom text-2xl"
+                      className="hover:text-blue-950  font-montserrat_alternates text-2xl"
                     >
                       Iniciar Sesión
                     </a>
@@ -193,7 +193,7 @@ function Navbar() {
                       <li>
                         <a
                           href="/mycourses"
-                          className="hover:text-blue-800 font-custom text-xl block"
+                          className="hover:text-blue-950 font-montserrat_alternates text-xl block"
                         >
                           Mis Cursos
                         </a>
@@ -202,7 +202,7 @@ function Navbar() {
                         <a
                           href="/"
                           onClick={handleLogout}
-                          className="hover:text-blue-800 font-custom text-xl block"
+                          className="hover:text-blue-950 font-montserrat_alternatestext-xl block"
                         >
                           Cerrar Sesión
                         </a>

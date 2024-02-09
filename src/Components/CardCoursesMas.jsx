@@ -51,7 +51,7 @@ function CardCoursesMas() {
                   <div className="flex justify-between items-center mt-4">
                     <Link to={`/${course.id}`}>
                       <button
-                        className="font-bold bg-bgla hover:bg-blue-600    shadow-md shadow-blue-600  text-white font-bold py-2 px-4 rounded-full"
+                        className="font-bold bg-blue-800 hover:bg-blue-600  shadow-md shadow-blue-600  text-white font-bold py-2 px-4 rounded-full"
                       >
                         Ver Mas
                       </button>

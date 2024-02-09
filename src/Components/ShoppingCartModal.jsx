@@ -107,6 +107,28 @@ const ModalCarrito = ({ isOpen, onClose }) => {
     }
   }
 
+
+
+   // Verificar si no hay productos en el carrito
+   if (currentCart.length === 0) {
+    return (
+      <div className={`modal mt-44 md:mt-44 ${isOpen ? "is-active" : ""}`}>
+        <div className="modal-background" onClick={onClose}></div>
+        <div className="modal-card w-[80%] md:w-[70%] lg:w-[50%] mx-auto">
+          <div className="flex justify-center">
+            <h1 className="text-4xl md:mb-8 mb-8 font-custom text-center">Tu Carrito de Compras</h1>
+          </div>
+          <section className="modal-card-body p-4 rounded-lg shadow-2xl w-[330px]  shadow-black md:w-[700px]" >
+            <div className="text-center">
+              <p>Aún no tienes productos en tu carrito.</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    );
+  }
+
+
   return (
     <div className={`modal mt-44 md:mt-44 ${isOpen ? "is-active" : ""}`}>
       <div className="modal-background" onClick={onClose}></div>
@@ -160,7 +182,7 @@ const ModalCarrito = ({ isOpen, onClose }) => {
         </div>
         </section>
 
-        {/* <hr className="my-4 border-t border-gray-400" /> */}
+     
         <footer className="modal-card-foot flex justify-center mt-6">
          
         </footer>
