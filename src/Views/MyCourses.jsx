@@ -1,6 +1,5 @@
 
 import { Link } from "react-router-dom";
-import image from "../img/registros.jpg"
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getmycourses, getallmycourses, getMyBooks } from "../Redux/Actions";

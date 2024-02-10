@@ -1,25 +1,24 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { sendpayament } from "../Redux/Actions"
+import { useState, useEffect, useMemo , useCallback} from "react";
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import axios from "axios";
-import { useLocation } from 'react-router-dom';
 import Loading from "./Loading";
 import { FaTrashAlt } from "react-icons/fa";
 
 initMercadoPago('APP_USR-da697f1d-22d5-4db9-90e4-cebc3109bd47');
 
-const ModalCarrito = ({ isOpen, onClose }) => {
-  const dispatch = useDispatch()
-  const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+const ModalCarrito = () => {
+  const cartItems = useMemo(() => {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+  }, []);
+  
   const emailshop = localStorage.getItem("email")
   const [preferenceId, setPreferenceId] = useState(null)
   const [currentCart, setCurrentCart] = useState(cartItems);
   const [isLoading, setIsLoading] = useState(true);
-  const idshop = []
-  cartItems.map((e) => {
-    idshop.push(e.id)
-  })
+  const idshop = useMemo(() => {
+    const idArray = cartItems.map((e) => e.id);
+    return idArray;
+  }, [cartItems]);
   const itemNames = cartItems.map((item) => item.nombre).join(', ');
 
   console.log(itemNames, "carritonamessss");
@@ -37,27 +36,21 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   };
 
 
-  const createpreference = async () => {
+  const createpreference = useCallback(async () => {
     try {
-      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/mercado_pago",
-
-        {
-          title: itemNames,
-          quantity: 1,
-          price: total
-        }
-
-      )
-
+      const response = await axios.post("https://terapias-holisticas-dmc-back.vercel.app/mercado_pago", {
+        title: itemNames,
+        quantity: 1,
+        price: total
+      });
+  
       const { id } = response.data;
       console.log(response);
       return id;
-
     } catch (error) {
       console.log(error);
     }
-  }
-
+  }, [itemNames, total]);
 
   const removecart = () => {
     // Vaciar todo el carrito
@@ -67,11 +60,12 @@ const ModalCarrito = ({ isOpen, onClose }) => {
   };
 
 
-  const datashop = {
-    id: idshop,
-    email: emailshop,
-  }
-
+  const datashop = useMemo(() => {
+    return {
+      id: idshop,
+      email: emailshop,
+    };
+  }, [idshop, emailshop]);
 
 
 
@@ -89,31 +83,13 @@ const ModalCarrito = ({ isOpen, onClose }) => {
     };
 
     fetchData();
-  }, []);
+  }, [createpreference, datashop]);
 
-
-  const handlesave = () => {
-    console.log("se apretó el botón de MercadoPago");
-
-    // Guardar datashop en localStorage
-    localStorage.setItem("order", JSON.stringify(datashop));
-
-    // Asegurarse de que el pedido se haya guardado correctamente
-    const orderData = localStorage.getItem("order");
-    if (orderData) {
-      console.log("La información del pedido se ha guardado en el localStorage:", orderData);
-    } else {
-      console.error("Hubo un problema al guardar la información del pedido en el localStorage.");
-    }
-  }
-
-
-
-   // Verificar si no hay productos en el carrito
-   if (currentCart.length === 0) {
+  // Verificar si no hay productos en el carrito
+  if (currentCart.length === 0) {
     return (
-      <div className={`modal mt-44 md:mt-44 ${isOpen ? "is-active" : ""}`}>
-        <div className="modal-background" onClick={onClose}></div>
+      <div className={`modal mt-44 md:mt-44 `}>
+        {/* <div className="modal-background" onClick={onClose}></div> */}
         <div className="modal-card w-[80%] md:w-[70%] lg:w-[50%] mx-auto">
           <div className="flex justify-center">
             <h1 className="text-4xl md:mb-8 mb-8 font-custom text-center">Tu Carrito de Compras</h1>
@@ -130,8 +106,8 @@ const ModalCarrito = ({ isOpen, onClose }) => {
 
 
   return (
-    <div className={`modal mt-44 md:mt-44 ${isOpen ? "is-active" : ""}`}>
-      <div className="modal-background" onClick={onClose}></div>
+    <div className={`modal mt-44 md:mt-44 `}>
+      {/* <div className="modal-background" onClick={onClose}></div> */}
       <div className="modal-card w-[80%] md:w-[70%] lg:w-[50%] mx-auto">
         <div className="flex justify-center">
           <h1 className="text-4xl md:mb-8 mb-8 font-custom text-center">Tu Compra</h1>
@@ -166,25 +142,25 @@ const ModalCarrito = ({ isOpen, onClose }) => {
               <hr className="my-4 border-t border-gray-400" />
             </div>
           ))}
-        <div className="text-gray-600 flex justify-end font-bold text-xl my-4 mt-12">
-          Total: ${total.toFixed(2)}
-        </div>
-        {isLoading ? (
+          <div className="text-gray-600 flex justify-end font-bold text-xl my-4 mt-12">
+            Total: ${total.toFixed(2)}
+          </div>
+          {isLoading ? (
             <Loading /> // Mostrar el componente de carga mientras isLoading es true
           ) : (
             // Mostrar el botón de MercadoPago una vez que isLoading es false
             preferenceId && <Wallet initialization={{ preferenceId }} />
           )}
-        <div className="flex justify-start font-custom text-2xl items-start">
-          <button className="font-custom text-sm md:text-base rounded-md shadow-lg bg-gray-300 shadow-gray-400 m-3 p-2 cursor-pointer hover:scale-110 ease-in duration-200 " onClick={removecart}>
-            Vaciar carrito
-          </button>
-        </div>
+          <div className="flex justify-start font-custom text-2xl items-start">
+            <button className="font-custom text-sm md:text-base rounded-md shadow-lg bg-gray-300 shadow-gray-400 m-3 p-2 cursor-pointer hover:scale-110 ease-in duration-200 " onClick={removecart}>
+              Vaciar carrito
+            </button>
+          </div>
         </section>
 
-     
+
         <footer className="modal-card-foot flex justify-center mt-6">
-         
+
         </footer>
       </div>
     </div>

@@ -19,7 +19,6 @@ function Login() {
 
   const firebaseAuth = getAuth(app);
   const navigate = useNavigate();
-  const [isFormSubmitted, setFormSubmitted] = useState(false);
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
@@ -68,7 +67,6 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setFormSubmitted(true);
     const newErrors = {};
     if (!form.email.trim()) {
       newErrors.email = "El email es requerido";

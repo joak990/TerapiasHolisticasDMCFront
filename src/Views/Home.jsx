@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import CardCoursesMas from "../Components/CardCoursesMas";
 import CardBooksMas from "../Components/CardBooksMas";
-import CardMuestras from "../Components/CardMuestras";
 import carrusel from "../img/carrusel.jpg"; // Reemplaza "terapia.jpg" con la ruta de tu imagen de portada
 import carrusel2 from "../img/carrusel 2.jpg";
 import carrusel3 from "../img/carrusel 3.jpg";
 import carrusel4 from "../img/carrusel 4.jpg";
-import image from "../img/taller.jpg"
 import image2 from "../img/reflex.jpg"
 import { RxDot } from "react-icons/rx";
+
 const Home = () => {
+
   const slides = [
     {
       url: `${carrusel}`,
@@ -27,15 +27,10 @@ const Home = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const prevSlide = () => {
-    const newIndex = (currentIndex - 1 + slides.length) % slides.length;
-    setCurrentIndex(newIndex);
-  };
-
-  const nextSlide = () => {
+  const nextSlide = useCallback(() => {
     const newIndex = (currentIndex + 1) % slides.length;
     setCurrentIndex(newIndex);
-  };
+  }, [currentIndex, slides.length]);
 
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
@@ -47,12 +42,10 @@ const Home = () => {
     }, 5000); // Cambio cada 5 segundos
 
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [currentIndex, nextSlide]);
 
   return (
-
     <div className="">
-
       <div className=" w-full h-[270px] md:h-[550px]  overflow-hidden relative">
         {slides.map((slide, slideIndex) => (
           <img
@@ -77,45 +70,34 @@ const Home = () => {
           </div>
         ))}
       </div>
-
-
-
-
-
       <div className="relative flex justify-center mt-0 md:h-[800px]">
-       
-
         <div className="relative md:mt-32 ">
           <video
             src="https://firebasestorage.googleapis.com/v0/b/terapiasholisticasdmc.appspot.com/o/presentacion.mp4?alt=media&token=0d03c244-3fc0-4f92-9cfe-ed7693048e28"
-            
             controls
             className="w-[900px] rounded-xl "
           />
         </div>
       </div>
-      <div className="text-center mt-10" style={{ 
-    backgroundImage: `url(${image2})`,
-    backgroundSize: 'cover',
-   
-  }}>
-
-  <div className="bg-white bg-opacity-50"> {/* Agrega este div para que el contenido sea legible */}
-    <h1 className="text-5xl text-blue-950 font-extralight font-montserrat_alternates mb-1">
-      Nuestros cursos 
-    </h1>
-    <div className="flex flex-col sm:flex-row justify-center items-center md:mt-4" >
-      <CardCoursesMas />
-    </div>
-    <div>
-      <h1 className="text-5xl  mt-20 text-blue-950 font-extralight font-montserrat_alternates">Nuestros Libros</h1>
-      <div className="flex flex-col sm:flex-row justify-center items-center  mb-96" >
-      <CardBooksMas/>
-    </div>
-      
-    </div>
-  </div>
-</div>
+      <div className="text-center mt-10" style={{
+        backgroundImage: `url(${image2})`,
+        backgroundSize: 'cover',
+      }}>
+        <div className="bg-white bg-opacity-50"> {/* Agrega este div para que el contenido sea legible */}
+          <h1 className="text-5xl text-blue-950 font-extralight font-montserrat_alternates mb-1">
+            Nuestros cursos
+          </h1>
+          <div className="flex flex-col sm:flex-row justify-center items-center md:mt-4" >
+            <CardCoursesMas />
+          </div>
+          <div>
+            <h1 className="text-5xl  mt-20 text-blue-950 font-extralight font-montserrat_alternates">Nuestros Libros</h1>
+            <div className="flex flex-col sm:flex-row justify-center items-center  mb-96" >
+              <CardBooksMas />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -54,7 +54,7 @@ function ReactPlayerVideo() {
         });
       };
     }
-  }, [getmyvideos, numPage, currentVideoIndex]);
+  }, [getmyvideos, numPage, currentVideoIndex, dispatch]);
   
   const tooglePlay = useCallback(() => {
     const video = videoRefs.current[currentVideoIndex];
