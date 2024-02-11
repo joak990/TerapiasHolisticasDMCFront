@@ -41,8 +41,8 @@ const Pagination = ({ cantPages }) => {
 
   return (
     <div className="flex flex-col items-center mt-16">
-      <button className="mb-4 bg-blue-500 text-white px-4 py-2 rounded-md">
-        <a href={pdfLink} target="_blank" rel="noopener noreferrer">
+      <button className="mb-4 bg-blue-300 text-white  px-4 py-2 rounded-md">
+        <a href={pdfLink} target="_blank" rel="noopener noreferrer" className="font-bold text-center">
           Descargar PDF Teórico
         </a>
       </button>
