@@ -13,7 +13,7 @@ const dispatch = useDispatch()
 const status = urlParams.get('status');
 const cartbuy = JSON.parse(cart)
 
-
+const datamail = {email:email}
 const libros = cartbuy.filter(item => "link" in item);
 const cursos = cartbuy.filter(item => !("link" in item));
 
@@ -54,7 +54,7 @@ console.log(DataLibros ,'DataLibros');
   if(cursos || libros){
     {
       dispatch(sendpayament(DataCursos))
-      dispatch(sendmailnoti(email))
+      dispatch(sendmailnoti(datamail))
       dispatch(sendpayamentbooks(DataLibros))
       localStorage.removeItem("orderdata")
       localStorage.removeItem("cart")
