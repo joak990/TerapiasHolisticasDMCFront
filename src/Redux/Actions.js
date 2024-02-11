@@ -500,3 +500,19 @@ export const bookMessage = (payload) => {
 };
 
 
+
+export const sendmailnoti = (payload) => {
+
+  return async function () {
+    try {
+      console.log(payload, "pay");
+      const response = await axios.post("/cursos/buymail", payload)
+    
+
+    } catch (error) {
+      // Error en la petición
+      console.error(error);
+      return { success: false, message: "Error de envio de mail de compra" };
+    }
+  };
+};

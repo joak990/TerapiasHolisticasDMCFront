@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import logogira from '../img/logosinfondo.png'
-import { sendpayament , sendpayamentbooks } from '../Redux/Actions';
+import { sendmailnoti, sendpayament , sendpayamentbooks } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
 function Success() {
 
@@ -54,6 +54,7 @@ console.log(DataLibros ,'DataLibros');
   if(cursos || libros){
     {
       dispatch(sendpayament(DataCursos))
+      dispatch(sendmailnoti(email))
       dispatch(sendpayamentbooks(DataLibros))
       localStorage.removeItem("orderdata")
       localStorage.removeItem("cart")
