@@ -4,7 +4,7 @@ import axios from "axios";
 import Loading from "./Loading";
 import { FaTrashAlt } from "react-icons/fa";
 
-initMercadoPago('APP_USR-da697f1d-22d5-4db9-90e4-cebc3109bd47');
+initMercadoPago('APP_USR-c590ec6f-19a1-4948-890b-e297cfff9045');
 
 const ModalCarrito = () => {
   const cartItems = useMemo(() => {
