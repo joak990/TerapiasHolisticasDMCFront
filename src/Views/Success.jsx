@@ -71,8 +71,8 @@ console.log(DataLibros ,'DataLibros');
         ¡Gracias por realizar tu compra!
       </div>
       <div className="mt-8">
-        <Link to="/" className="bg-bgla hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Ir al Inicio
+        <Link to="/mycourses" className="bg-bgla hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Ir a mis cursos
         </Link>
       </div>
       

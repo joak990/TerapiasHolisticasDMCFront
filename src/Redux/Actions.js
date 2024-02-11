@@ -508,7 +508,7 @@ export const sendmailnoti = (payload) => {
       console.log(payload, "pay");
       const response = await axios.post("/cursos/buymail", payload)
     
-
+console.log(response);
     } catch (error) {
       // Error en la petición
       console.error(error);
