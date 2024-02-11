@@ -52,7 +52,7 @@ console.log(DataLibros ,'DataLibros');
 
 
   if(cursos || libros){
-    if(status === "approved"){
+    {
       dispatch(sendpayament(DataCursos))
       dispatch(sendpayamentbooks(DataLibros))
       localStorage.removeItem("orderdata")
