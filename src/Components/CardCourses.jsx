@@ -85,7 +85,7 @@ function CardCourses() {
           <img src={course.imagen} alt={course.nombre} className="w-full h-[200px] " />
           <div className="p-4">
             <h2 className="text-xl font-custom font-semibold mb-2">{course.nombre}</h2>
-            <p className="text-gray-700 font-custom">{course.descripcion}</p>
+            <p className="text-gray-700 text-blue-950 font-extralight font-montserrat_alternates font-custom">{course.descripcion}</p>
             <div className="flex justify-between items-center mt-4">
               <p className="font-custom text-gray-900  text-xl"> ${course.precio}</p>
               <button onClick={() => handleBuyClick(course)} className=" bg-blue-800 hover:bg-blue-600  shadow-md shadow-blue-600 text-white font-bold py-2 px-4 rounded-full">

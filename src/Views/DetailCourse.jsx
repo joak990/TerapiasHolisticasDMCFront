@@ -175,7 +175,7 @@ function DetailCourse() {
               autoPlay
               alt={course?.nombre}
               controls
-              className="w-full rounded-lg border border-purple-600"
+              className="w-full rounded-lg border border-blue-300 shadow-md shadow-blue-400"
             />
             <div className="mt-2 sm:mt-4">
               <div className="sm:ml-2">
@@ -219,7 +219,7 @@ function DetailCourse() {
             </div>
           </div>
           <div className="sm:w-1/2 sm:ml-4 lg:w-2/3 lg:ml-6">
-            <h1 className="text-2xl font-bold mb-4">{course?.nombre}</h1>
+            <h1 className="text-2xl   font-montserrat_alternates mb-4">{course?.nombre}</h1>
             {CourseContents(course)}
             <div className="flex items-center justify-between mb-4"></div>
 
@@ -262,7 +262,7 @@ function DetailCourse() {
               </div>
               <button
                 onClick={handleSubmit}
-                className="bg-blue-500 text-white font-bold px-4 py-2 rounded-full hover-bg-blue-600 mt-4"
+                className="bg-blue-800  font-montserrat_alternates text-white font-bold px-4 py-2 rounded-full hover:bg-blue-600 mt-4"
               >
                 Enviar Comentario
               </button>

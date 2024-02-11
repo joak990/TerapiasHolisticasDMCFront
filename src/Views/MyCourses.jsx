@@ -40,7 +40,7 @@ function MyCourses() {
   }
   return (
     <div className="mt-44 mx-auto max-w-screen-lg">
-      <h1 className="text-4xl text-custom text-center">MIS CURSOS</h1>
+      <h1 className="text-4xl text-blue-950 font-extralight font-montserrat_alternates text-center">MIS CURSOS</h1>
       {isLoading ? (
         <Loading /> // Mostrar el componente de carga mientras isLoading es true
       ) : (
@@ -53,7 +53,7 @@ function MyCourses() {
                   <h2 className="text-xl font-semibold">{course?.nombre}</h2>
                   <p className="text-gray-500 mt-2">{course?.descripcion}</p>
                   <Link to={`/playcourse/${course.id}`}>
-                    <button onClick={() => handlegetmyvideos(course.id)} className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+                    <button onClick={() => handlegetmyvideos(course.id)} className="mt-4 bg-blue-800 shadow-md shadow-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
                       Ver Curso
                     </button>
                   </Link>
@@ -70,7 +70,7 @@ function MyCourses() {
                   <h2 className="text-xl font-semibold">{libro?.nombre}</h2>
                   <p className="text-gray-500 mt-2">{libro?.descripcion}</p>
                   <Link to={`/playcourse/${libro.id}`}>
-                    <button onClick={() => handlegetmyvideos(libro.id)} className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+                    <button onClick={() => handlegetmyvideos(libro.id)} className="mt-4 bg-blue-800 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
                       Ver libro
                     </button>
                   </Link>

@@ -79,31 +79,31 @@ function Contact() {
   return (
     <div className="  min-h-screen flex justify-center items-center mt-28 md:mt-44 ">
       <div className=" w-[300px] p-6 rounded-lg shadow-2xl shadow-black md:w-1/2">
-        <h2 className="text-3xl font-extralight mb-6 text-center">Contáctanos</h2>
+        <h2 className="text-3xl font-montserrat_alternates text-blue-950 mb-6 text-center">Contáctanos</h2>
         <form action="https://getform.io/f/7a095ddb-8434-4364-9dc2-fb16286e3641" method="POST" className="space-y-4 ">
         <div className=" grid md:grid-cols-2 gap-4 w-full py-2">
                     <div className=" flex flex-col">
-                        <label className=" uppercase text-sm py-2">Nombre</label>
-                        <input className=" border-2 rounded-lg p-3 flex border-gray-300" type="text" name='name'></input>
+                        <label className=" uppercase font-montserrat_alternates text-blue-950 text-sm py-2">Nombre</label>
+                        <input className=" border-2 rounded-lg p-3 flex border-blue-950" type="text" name='name'></input>
                     </div>
                     <div className=" flex flex-col">
-                        <label className=" uppercase text-sm py-2">Numero de Telefono</label>
-                        <input  className=" border-2 rounded-lg p-3 flex border-gray-300" type="text" name='phone'></input>
+                        <label className=" uppercase text-sm font-montserrat_alternates text-blue-950 py-2">Numero de Telefono</label>
+                        <input  className=" border-2 rounded-lg p-3 flex border-blue-950" type="text" name='phone'></input>
                     </div>
                 </div>
                 <div className=" flex flex-col py-2">
-                    <label className=" uppercase text-sm py-2" >Email</label>
-                    <input className=" border-2 rounded-lg p-3 flex border-gray-300" type="text" name="email"></input>
+                    <label className=" uppercase text-sm py-2 font-montserrat_alternates text-blue-950 " >Email</label>
+                    <input className=" border-2 rounded-lg p-3 flex border-blue-950" type="text" name="email"></input>
                 </div>
                 <div className=" flex flex-col py-2">
-                    <label className=" uppercase text-sm py-2" >Asunto</label>
-                    <input className=" border-2 rounded-lg p-3 flex border-gray-300" type="text" name="subject"></input>
+                    <label className=" uppercase text-sm py-2 font-montserrat_alternates text-blue-950" >Asunto</label>
+                    <input className=" border-2 rounded-lg p-3 flex border-blue-950" type="text" name="subject"></input>
                 </div>
                 <div className=" flex flex-col py-2">
-                    <label className=" uppercase text-sm py-2" >Mensaje</label>
-                    <textarea className=" border-2 rounded-lg p-3 border-gray-300 " rows='10' name="message"></textarea>
+                    <label className=" uppercase text-sm py-2 font-montserrat_alternates text-blue-950" >Mensaje</label>
+                    <textarea className=" border-2 rounded-lg p-3 border-blue-950 " rows='10' name="message"></textarea>
                 </div>
-                <button className=" bg-bgla text-gray-100 mt-4 w-full p-4 rounded-lg">Enviar mensaje</button>
+                <button className=" bg-bgla text-gray-100 mt-4 w-full p-4 rounded-lg font-montserrat_alternates text-blue-950">Enviar mensaje</button>
         </form>
 
         <div className="flex justify-end mt-4">

@@ -36,7 +36,7 @@ function Courses() {
        
       </div>
      
-      <div className=" text-4xl mt-24 text-blue-950 font-extralight font-montserrat_alternates">
+      <div className=" text-4xl mt-24 text-blue-950 font-extralight  text-center font-montserrat_alternates">
           ¿Como comprar un curso online?
         </div>
         <div className="relative md:mt-32 ">

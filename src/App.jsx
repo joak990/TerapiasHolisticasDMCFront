@@ -10,7 +10,6 @@ import Sobremi from "./Views/Sobremi";
 import Contact from "./Views/Contact";
 import logowp from "./img/wplogo2.png";
 import ModalCarrito from "./Components/ShoppingCartModal";
-import { useState } from "react";
 import PlayMyCourses from "./Views/PlayMyCourses";
 import PaypalButton from "./Components/PaypalButton";
 import Success from "./Views/Success";
@@ -21,10 +20,24 @@ import VerifiedRegister from "./Views/VerifiedRegister";
 import Recovery from "./Views/Recovery";
 import FormBook from "./Views/FormBook";
 import DetailBooks from "./Views/DetailBooks";
+//import Popup from './Components/PopUp'; // Importa el componente Popup
+
 
 function App() {
   const location = useLocation();
+  //const [showPopup, setShowPopup] = useState(false);
 
+  //const handleClosePopup = () => {
+    //setShowPopup(false);
+  //};
+
+  //useEffect(() => {
+    //const timer = setTimeout(() => {
+     // setShowPopup(true); // Muestra el pop-up después de 30 segundos
+    //}, 30000);
+
+    //return () => clearTimeout(timer);
+  //}, []);
   return (
     <>
       {location.pathname !== "/register" && location.pathname !== "/login" && (
@@ -73,6 +86,7 @@ function App() {
         <Route path="/load" element={<Loading />} />
         <Route path="/form" element={<FormBook />} />
       </Routes>
+  
     </>
   );
 }

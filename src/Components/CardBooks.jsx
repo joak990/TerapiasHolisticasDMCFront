@@ -89,7 +89,7 @@ function CardBooks() {
                                 <div className="flex justify-between items-center mt-4">
                                     <p className="font-custom text-gray-900  text-xl"> ${book.precio}</p>
                                     <Link to="/form">
-                                    <button className="font-bold bg-bgla hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">
+                                    <button className="font-bold bg-blue-800 hover:bg-blue-600 shadow-md shadow-blue-600 text-white font-bold py-2 px-4 rounded-full">
                                         Comprar
                                     </button>
                                     </Link>
