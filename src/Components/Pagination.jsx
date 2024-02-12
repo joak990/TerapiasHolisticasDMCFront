@@ -25,7 +25,7 @@ const Pagination = ({ cantPages }) => {
     // Modifica las lógicas según tus necesidades
     switch (courseId) {
       case "1":
-        return "https://drive.google.com/file/d/1VpkyO6rEDLcKMhpUlLHt3YbBfs7GmTE2/view?usp=drive_link";
+        return "https://drive.google.com/file/d/1dXpOLkh8JtXPv9vuFukAGNl2Qx2nhDei/view?usp=drive_link";
       case "2":
         return "https://drive.google.com/file/d/1cTWpP-hlnukUGuNzrndqksmnjKfTtBWk/view?usp=sharing";
       case "3":
