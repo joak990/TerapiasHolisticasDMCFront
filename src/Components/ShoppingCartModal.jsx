@@ -112,7 +112,8 @@ const ModalCarrito = () => {
         <div className="flex justify-center">
           <h1 className="text-4xl md:mb-8 mb-8 font-custom text-center">Tu Compra</h1>
         </div>
-        <section className="modal-card-body p-4 rounded-lg shadow-2xl w-[330px]  shadow-black md:w-[700px]" >
+        <div className="flex justify-center">
+        <section className="modal-card-body p-4 rounded-lg shadow-2xl lg:shadow-black md:w-full lg:w-[1000px] mx-auto">
           {currentCart.map((item, index) => (
             <div key={index} className="md:mb-8 mb-10  mt-4 h-[200px]" >
               <div className=" flex flex-col md:flex-row items-center justify-between h-[100px]">
@@ -157,7 +158,7 @@ const ModalCarrito = () => {
             </button>
           </div>
         </section>
-
+        </div>
 
         <footer className="modal-card-foot flex justify-center mt-6">
 

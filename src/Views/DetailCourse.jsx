@@ -36,10 +36,11 @@ function DetailCourse() {
   }, [dispatch, id]);
 
 
-  const courseId = course ? course.id : null;
+  // const courseId = course ? course.id : null;
+
   const [form, setForm] = useState({
     id: iduser,
-    curso: courseId,
+    curso: id,
     Contenido: "",
     rating: "",
   });
@@ -135,8 +136,9 @@ function DetailCourse() {
       newErrors.rating = "Debes completar este campo";
     }
     setErrors(newErrors);
-
+    console.log(form,"antes de enviar")
     if (Object.keys(newErrors).length === 0) {
+     
       dispatch(createcomment(form));
 
       // Actualiza el comentario en el localStorage
@@ -214,7 +216,9 @@ function DetailCourse() {
             <div className="mt-4">
               <h2 className="font-semibold">
                 Tenes mas dudas sobre este curso hace{" "}
-                <span className="text-blue-700 cursor-pointer">click aqui</span>{" "}
+                <a    href="https://wa.link/keyesd"
+            target="_blank"
+            rel="noopener noreferrer" className="text-blue-700 cursor-pointer">click aqui</a>{" "}
               </h2>
             </div>
           </div>

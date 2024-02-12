@@ -104,18 +104,27 @@ export const Loginregister = (payload) => {
       console.log(payload);
       const response = await axios.post("/validate", payload);
       console.log(response.data, "responsedata");
+      
+      if(response.data.validate === true ) {
+        Swal.fire({
+          icon: 'error', // Cambiado de 'success' a 'error'
+          title: 'Tu nombre de usuario o tu correo no es valido',
+          text: 'Por favor verifica tus datos.',
+        });
+      }
+
       if (response.data.isDeleted === true) {
         Swal.fire({
           icon: 'error', // Cambiado de 'success' a 'error'
           title: 'Tu cuenta no esta verificada',
-          text: 'Por favor verifica tu cuenta.',
+          text: 'vuelve a registrarte nuevamente con los mismos datos.',
         });
 
       } else if (response.data === false) {
         Swal.fire({
           icon: 'error',
           title: 'Inicio de sesión incorrecto!',
-          text: 'Las Credenciales no son  validas!',
+          text: 'Tu contraseña no es valida!',
         });
       } else {
 
@@ -261,10 +270,28 @@ export const createcomment = (payload) => {
 
   return async function () {
     try {
-      console.log(payload, "pay");
+      console.log(payload, "comentariooooooo");
       const response = await axios.post("/comments", payload)
 
-      console.log(response, "response");
+      console.log(response, "responseCOMENTARIO");
+
+    } catch (error) {
+      // Error en la petición
+      console.error(error);
+      return { success: false, message: "Error al crear comentario" };
+    }
+  };
+};
+
+
+export const createcommentbooks = (payload) => {
+
+  return async function () {
+    try {
+      console.log(payload, "comentariooobooks");
+      const response = await axios.post("/comments/books", payload)
+
+      console.log(response);
 
     } catch (error) {
       // Error en la petición

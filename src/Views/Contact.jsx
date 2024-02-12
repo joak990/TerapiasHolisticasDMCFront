@@ -117,7 +117,7 @@ function Contact() {
             <FaInstagram size={32} /> {/* Usar el ícono FaInstagram */}
           </a>
           <a
-            href="https://www.facebook.com/TU_FACEBOOK"
+            href="https://www.facebook.com/profile.php?id=100064166696012"
             target="_blank"
             rel="noopener noreferrer"
             className="mr-3 text-blue-600 hover:text-blue-800"

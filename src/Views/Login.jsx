@@ -102,9 +102,11 @@ function Login() {
 
   return (
     <div className="flex flex-col md:flex-row">
-      {/* Columna izquierda con fondo verde */}
+       
       <div className="md:flex-1 bg-fondolog md:min-h-screen h-64">
+      {/* <h1 className="text-center font-montserrat_alternates text-5xl text-white mt-8">TERAPIAS HOLISTICAS DMC</h1> */}
         <div className="flex justify-center items-center md:h-screen">
+        
           <div className="transform rotate-0">
             <img
               src={logo}

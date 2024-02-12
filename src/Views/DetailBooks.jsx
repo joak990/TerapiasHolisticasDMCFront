@@ -1,10 +1,10 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Rating from "react-rating-stars-component";
 import Swal from "sweetalert2";
 import {
-    createcomment,
+    createcommentbooks,
     getAllComments,
     getallbooks,
 } from "../Redux/Actions";
@@ -26,7 +26,7 @@ function DetailBooks() {
     const [newComment, setNewComment] = useState("");
     const [coursess, setCoursess] = useState(null);
 
-    console.log('courseeeees -<<<<', course );
+    console.log('courseeeees -<<<<', course);
 
     useEffect(() => {
         dispatch(getallbooks());
@@ -57,10 +57,9 @@ function DetailBooks() {
         }
     }, [id]);
 
-    const courseId = course ? course.id : null;
     const [form, setForm] = useState({
         id: iduser,
-        curso: courseId,
+        libro: id,
         Contenido: "",
         rating: "",
     });
@@ -88,18 +87,18 @@ function DetailBooks() {
                     <>
                         <p className="font font-semibold text-lg">Contenidos</p>
                         <p>"Este libro cuenta  el recorrido  de momentos y aspectos de las experiencias de personas que integraron <br />
-                        sus cuerpos : el físico, mental , emocional y espiritual. <br />
-                        Desmitifica  "el final" como concepto  de muerte escrito por marcela que vive actualmente en la falda <br />
-                        Provincia de córdoba y miguel y jorge , dos seres que pasaron por esta tierra, vivieron sus experiencias <br />
-                        Como humanos y ahora asisten desde el plano espiritual. <br />
-                        Ellos tres dejan de lado  el "por que" y cuentan  sus conocimientos sobre el "para que" <br />
-                        En la búsqueda de respuestas hablan sobre "el ser" , el alma, Dios , la energía. <br />
-                        y sus vibraciones , entre otros temas , integrándolos a los saberes terrenales <br />
-                         para darle una "vuelta de rosca" a nuestras creencias sobre las relaciones, el cuerpo  las enfermedades y los caminos individuales. <br />
-                         Si aún no tenés curiosidad , estoy segura que al adentrarte en estas páginas  y sumergirte en sus palabras , se te va a despertar."</p>
+                            sus cuerpos : el físico, mental , emocional y espiritual. <br />
+                            Desmitifica  "el final" como concepto  de muerte escrito por marcela que vive actualmente en la falda <br />
+                            Provincia de córdoba y miguel y jorge , dos seres que pasaron por esta tierra, vivieron sus experiencias <br />
+                            Como humanos y ahora asisten desde el plano espiritual. <br />
+                            Ellos tres dejan de lado  el "por que" y cuentan  sus conocimientos sobre el "para que" <br />
+                            En la búsqueda de respuestas hablan sobre "el ser" , el alma, Dios , la energía. <br />
+                            y sus vibraciones , entre otros temas , integrándolos a los saberes terrenales <br />
+                            para darle una "vuelta de rosca" a nuestras creencias sobre las relaciones, el cuerpo  las enfermedades y los caminos individuales. <br />
+                            Si aún no tenés curiosidad , estoy segura que al adentrarte en estas páginas  y sumergirte en sus palabras , se te va a despertar."</p>
                     </>
                 );
-            
+
 
             default:
                 return <p>Contenidos no disponibles</p>;
@@ -123,9 +122,9 @@ function DetailBooks() {
             newErrors.rating = "Debes completar este campo";
         }
         setErrors(newErrors);
-
+console.log(form,"formpa")
         if (Object.keys(newErrors).length === 0) {
-            dispatch(createcomment(form));
+            dispatch(createcommentbooks(form));
 
             // Actualiza el comentario en el localStorage
 
@@ -191,11 +190,11 @@ function DetailBooks() {
                                 </div>
                                 <div className="flex mt-4  justify-start">
                                     <Link to="/form">
-                                    <button
-                                        className="font-bold bg-bgla hover:bg-blue-600 text-white font-bold w-28 h-8 rounded-full"
+                                        <button
+                                            className="font-bold bg-bgla hover:bg-blue-600 text-white font-bold w-28 h-8 rounded-full"
                                         >
-                                        Comprar
-                                    </button>
+                                            Comprar
+                                        </button>
                                     </Link>
                                 </div>
                             </div>
