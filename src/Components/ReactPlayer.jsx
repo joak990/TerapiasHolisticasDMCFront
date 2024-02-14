@@ -123,13 +123,13 @@ function ReactPlayerVideo() {
   {
   viewvideos && viewvideos.map((el, index) => (
     <div className="md:mt-44 " key={index}>
-      <div className="flex justify-center ">
-      <h1 className=" text-3xl md:text-5xl mt-4 text-center flex font-semibold text-white h-14 bg-blue-300">{el.nombre}</h1>
+      <div className="flex justify-center mt-10 ">
+      <h1 className="mt-10 text-sm md:text-5xl mt-4 text-center flex font-semibold text-white h-6 md:h-14 bg-blue-300">{el.nombre}</h1>
       </div>
      
         
         <div  className="flex justify-center">
-        <h1 className="text-sm md:text-xl  text-white h-8 bg-blue-300 mt-2">{el.descripcion}</h1>
+        <h1 className="text-sm md:text-xl  text-white h-6 bg-blue-300 mt-2">{el.descripcion}</h1>
         </div>
      
         </div>
