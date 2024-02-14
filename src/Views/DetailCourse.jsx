@@ -170,6 +170,7 @@ function DetailCourse() {
       ) : (
         <div className="bg-white rounded-lg shadow-xl shadow-blue-200 p-4 sm:p-6 lg:p-8 sm:flex">
           <div className="mb-4 sm:w-1/2 sm:mr-4 lg:w-1/3 lg:mr-6">
+         
             <video
               src={course?.contents}
 
@@ -181,6 +182,17 @@ function DetailCourse() {
             />
             <div className="mt-2 sm:mt-4">
               <div className="sm:ml-2">
+                <div className="flex justify-center">
+                <h2 className="font-semibold ">
+               Para inscribirte a clases practicas y certificarte{" "}
+                <a    href="https://wa.link/v2n4re"
+            target="_blank"
+            rel="noopener noreferrer" className="text-blue-700 cursor-pointer">click aqui</a>{" "}
+              </h2>
+              
+                </div>
+             
+            
                 <div className="flex justify-between items-center">
                   <div className="w-1/2">
                     <Rating
@@ -210,20 +222,22 @@ function DetailCourse() {
                   >
                     Comprar
                   </button>
+                  
                 </div>
               </div>
             </div>
             <div className="mt-4">
-              <h2 className="font-semibold">
+              <h2 className="font-semibold ">
                 Tenes mas dudas sobre este curso hace{" "}
                 <a    href="https://wa.link/keyesd"
             target="_blank"
             rel="noopener noreferrer" className="text-blue-700 cursor-pointer">click aqui</a>{" "}
               </h2>
+            
             </div>
           </div>
           <div className="sm:w-1/2 sm:ml-4 lg:w-2/3 lg:ml-6">
-            <h1 className="text-2xl   font-montserrat_alternates mb-4">{course?.nombre}</h1>
+          
             {CourseContents(course)}
             <div className="flex items-center justify-between mb-4"></div>
 
