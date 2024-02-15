@@ -87,27 +87,17 @@ const Home = () => {
             saberes.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed mt-4">
-            Esta modalidad invita a una nueva responsabilidad, donde es
-            necesario comprometerse a vivir desde los nuevos paradigmas de
-            vida.
+          Así mismo esta modalidad invita a una nueva responsabilidad, de quienes decidan obtener su certificado, para hacer de cada técnica aprendida un modo de vivir acorde al nuevo paradigma de la humanidad. Ya no se va a tratar solamente de tener un conocimiento… es necesario comprometerse a vivir desde el mismo.
           </p>
           <p className="text-lg text-gray-700 leading-relaxed mt-4">
-            Por ello, se ha creado la Plataforma Virtual de Cursos de Terapias
-            Holísticas DMC, que ofrece acceso a los contenidos TEÓRICOS
-            ACTUALIZADOS de cada Disciplina.
+          Por ello se crea <span className="font-bold">la Plataforma Virtual de Cursos de Terapias Holísticas DMC</span> para acceder a todos los contenidos TEÓRICOS ACTUALIZADOS de cada Disciplina, contemplando que todxs tenemos derecho al conocimiento de los nuevos paradigmas de vida.
+A partir del 2024, ingresando con un usuario a la plataforma tenés acceso al MÓDULO TEÓRICO de cada disciplina. Luego te incluís por whatsapp a los grupos de prácticas, virtuales y presenciales, con asistencia de un profesor en vivo. La certificación se obtiene con la presencialidad a dichas clases y un trabajo práctico final, que NO están incluidos en el material teórico que te presentamos aquí.
+
+
           </p>
           <p className="text-lg text-gray-700 leading-relaxed mt-4">
-            A partir del 2024, ingresando con un usuario a la plataforma,
-            tendrás acceso al MÓDULO TEÓRICO de cada disciplina.
-          </p>
-          <p className="text-lg text-gray-700 leading-relaxed mt-4">
-            La certificación se obtiene con la presencialidad a dichas clases
-            y un trabajo práctico final, que NO están incluidos en el material
-            teórico que te presentamos aquí.
-          </p>
-          <p className="text-lg text-gray-700 leading-relaxed mt-4">
-            Esta nueva Plataforma Virtual de Cursos de Terapias Holísticas DMC
-            es accesible, sencilla y operativa. Con unos pocos clics ya estás
+            <span className="font-bold">Esta nueva Plataforma Virtual de Cursos de Terapias Holísticas DMC</span>,
+             es accesible, sencilla y operativa. Con unos pocos clics ya estás
             en los cursos que elegiste.
           </p>
         </div>
