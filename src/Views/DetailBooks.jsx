@@ -85,18 +85,21 @@ function DetailBooks() {
             case "5":
                 return (
                     <>
-                        <p className="font font-semibold text-lg">Contenidos</p>
-                        <p>"Este libro cuenta  el recorrido  de momentos y aspectos de las experiencias de personas que integraron <br />
-                            sus cuerpos : el físico, mental , emocional y espiritual. <br />
-                            Desmitifica  "el final" como concepto  de muerte escrito por marcela que vive actualmente en la falda <br />
-                            Provincia de córdoba y miguel y jorge , dos seres que pasaron por esta tierra, vivieron sus experiencias <br />
-                            Como humanos y ahora asisten desde el plano espiritual. <br />
-                            Ellos tres dejan de lado  el "por que" y cuentan  sus conocimientos sobre el "para que" <br />
-                            En la búsqueda de respuestas hablan sobre "el ser" , el alma, Dios , la energía. <br />
-                            y sus vibraciones , entre otros temas , integrándolos a los saberes terrenales <br />
-                            para darle una "vuelta de rosca" a nuestras creencias sobre las relaciones, el cuerpo  las enfermedades y los caminos individuales. <br />
-                            Si aún no tenés curiosidad , estoy segura que al adentrarte en estas páginas  y sumergirte en sus palabras , se te va a despertar."</p>
-                    </>
+                    <p>"Este libro cuenta el recorrido de momentos y aspectos<br />
+                     de las experiencias de personas que integraron 
+                        sus cuerpos: el físico, mental, emocional y espiritual. <br />
+                        Desmitifica "el final" como concepto de muerte,<br /> Escrito por Marcela, que vive actualmente en La Falda, <br />
+                        Provincia de Córdoba, y Miguel y Jorge, dos seres que pasaron por esta tierra, vivieron sus experiencias <br />
+                        como humanos y ahora asisten desde el plano espiritual. <br />
+                        Ellos tres dejan de lado el "por qué" y cuentan sus conocimientos sobre el "para qué" <br />
+                        En la búsqueda de respuestas hablan sobre "el ser", el alma, Dios, la energía <br />
+                        y sus vibraciones, entre otros temas, integrándolos a los saberes terrenales <br />
+                        para darle una "vuelta de rosca" a nuestras creencias sobre las relaciones, el cuerpo, las enfermedades y los caminos individuales. <br />
+                        Si aún no tienes curiosidad, estoy segura de que al adentrarte en estas páginas y sumergirte en sus palabras, se te va a despertar."</p>
+
+                     <p className="text-end mt-2 font-extralight">Corina de la Peña</p>
+                </>
+                
                 );
 
 

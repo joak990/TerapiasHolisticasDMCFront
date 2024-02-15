@@ -3,6 +3,7 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 import axios from "axios";
 import Loading from "./Loading";
 import { FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 initMercadoPago('APP_USR-c590ec6f-19a1-4948-890b-e297cfff9045');
 
@@ -68,7 +69,7 @@ const ModalCarrito = () => {
   }, [idshop, emailshop]);
 
 
-
+  const totalUSD = (total / 1000) * 2;
   useEffect(() => {
     localStorage.setItem("orderdata", JSON.stringify(datashop));
     const fetchData = async () => {
@@ -94,11 +95,14 @@ const ModalCarrito = () => {
           <div className="flex justify-center">
             <h1 className="text-4xl md:mb-8 mb-8 font-custom text-center">Tu Carrito de Compras</h1>
           </div>
-          <section className="modal-card-body p-4 rounded-lg shadow-2xl w-[330px]  shadow-black md:w-[700px]" >
+          <div className="flex justify-center">
+          <section className="modal-card-body  p-4 rounded-lg shadow-2xl w-[330px]  shadow-black md:w-[700px]" >
             <div className="text-center">
               <p>Aún no tienes productos en tu carrito.</p>
             </div>
           </section>
+          </div>
+          
         </div>
       </div>
     );
@@ -139,6 +143,7 @@ const ModalCarrito = () => {
               </div>
               <div className=" text-right md:text-right mt-10 md:mt-0">
                 <div className="text-gray-600">Precio: ${item.precio.toFixed(2)}</div>
+                <div className="text-gray-600"> US 22</div>
               </div>
               <hr className="my-4 border-t border-gray-400" />
             </div>
@@ -146,12 +151,29 @@ const ModalCarrito = () => {
           <div className="text-gray-600 flex justify-end font-bold text-xl my-4 mt-12">
             Total: ${total.toFixed(2)}
           </div>
+          <div className="text-gray-600 flex justify-end font-bold text-xl my-4 mt-4">
+  total  US${totalUSD.toFixed(2)}
+</div>
           {isLoading ? (
             <Loading /> // Mostrar el componente de carga mientras isLoading es true
           ) : (
             // Mostrar el botón de MercadoPago una vez que isLoading es false
             preferenceId && <Wallet initialization={{ preferenceId }} />
-          )}
+            
+          )
+         
+          }
+          <div>
+            <Link to="https://wa.link/6xhf95">
+            
+          <button
+         href="https://temp-mail.org/es/"
+         className="font-bold bg-blue-800 hover:bg-blue-600   shadow-md shadow-blue-600 text-white  w-full h-12 ">
+         Comprar por paypal
+       </button>
+       </Link>
+          </div>
+           
           <div className="flex justify-start font-custom text-2xl items-start">
             <button className="font-custom text-sm md:text-base rounded-md shadow-lg bg-gray-300 shadow-gray-400 m-3 p-2 cursor-pointer hover:scale-110 ease-in duration-200 " onClick={removecart}>
               Vaciar carrito
