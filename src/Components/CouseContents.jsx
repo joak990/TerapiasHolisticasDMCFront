@@ -13,7 +13,7 @@ const CourseContents = (course) => {
                         <li className="text-gray-800"> • Claridad en el mensaje y características de los mismos</li>
                         <li className="text-gray-800"> • Perfil del lector.</li>
                     </ul><br />
-                    <p className="font font-semibold text-sm">1° nivel – Prácticas para la Certificación</p>
+                    <p className="font font-semibold text-sm">1° nivel – Prácticas para Certificarte como Lector de tus propios Registros Akáshicos</p>
                     <ul>
                         <li className="text-gray-800"> • Oración Sagrada</li>
                         <li className="text-gray-800"> • Liberación de creencias y conductas para optimizar nuestro “ser canal”</li>
@@ -21,7 +21,7 @@ const CourseContents = (course) => {
                      
                     </ul><br />
 
-                    <p className="font font-semibold text-sm ">2° nivel - Prácticas para la Certificación</p>
+                    <p className="font font-semibold text-sm ">2° nivel - Prácticas para Certificarte como Lector de Registros Akáshicos a terceros.</p>
                     <p>Luego de cursar el 1° nivel y tener una cierta práctica se puede realizar el 2° nivel de Registros Akáshicos para aprender a abrir registros de otros.</p><br />
                     <ul>
                         <li className="text-gray-800"> • Repaso de contenidos teóricos que sean necesarios</li>
