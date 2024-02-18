@@ -118,7 +118,7 @@ function Navbar() {
                     href="/me"
                     className="hover:text-blue-950  font-montserrat_alternates text-2xl"
                   >
-                    Sobre mi
+                  Acerca de nosotros
                   </a>
                 </li>
                 <li>
