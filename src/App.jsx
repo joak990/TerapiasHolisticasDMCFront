@@ -44,7 +44,7 @@ function App() {
       {location.pathname !== "/register" && location.pathname !== "/login" && (
         <div className="fixed z-50  bottom-4 right-4">
           <a
-            href="https://web.whatsapp.com/send?phone=5491159482032"
+            href="https://wa.link/7o21nd"
             target="_blank"
             rel="noopener noreferrer"
             className="  p-4 rounded-full "
