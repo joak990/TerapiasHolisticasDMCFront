@@ -99,7 +99,6 @@ de la propia maestría.</li>
                         <li className="text-gray-800">•	Etapas embrionarias y sentidos biológicos</li>
                         <li className="text-gray-800">•	Fundamentación científica: Bruce Lipton, Hamer, Corbera.</li>
                         <li className="text-gray-800">•	Metagenealogía: Características de la organización familiar y del colectivo inconsciente de dicho clan: estratos, proyecto de vida y proyecto sentido. Maestros, dobles y herederos universales. Orden de hermandad y síndromes.</li>
-                        <li className="text-gray-800">•	El lugar: características del consultorio para transformarlo en un quirófano energético</li>
                         <li className="text-gray-800">•	Ciclos biológicos</li>
                         <li className="text-gray-800">•	Emoción social y emoción real </li>
                         <li className="text-gray-800">•	Actos simbólicos: impacto en el inconsciente. </li>
