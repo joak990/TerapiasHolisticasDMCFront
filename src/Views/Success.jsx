@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import logogira from '../img/logosinfondo.png'
-import { sendmailnoti, sendpayament , sendpayamentbooks } from '../Redux/Actions';
+import { sendmailbuy, sendmailnoti, sendpayament , sendpayamentbooks } from '../Redux/Actions';
 import { useDispatch } from 'react-redux';
 function Success() {
 
   const currentURL = window.location.href;
   const email = localStorage.getItem('email')
   const cart = localStorage.getItem('cart');
+  
 // Analiza los parámetros de la URL
 const urlParams = new URLSearchParams(currentURL);
 const dispatch = useDispatch()
@@ -55,6 +56,7 @@ console.log(DataLibros ,'DataLibros');
     {
       dispatch(sendpayament(DataCursos))
       dispatch(sendmailnoti(datamail))
+      dispatch(sendmailbuy(datamail))
       dispatch(sendpayamentbooks(DataLibros))
       localStorage.removeItem("orderdata")
       localStorage.removeItem("cart")
